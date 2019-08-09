@@ -1,6 +1,6 @@
 title: Pelican Guide
 slug: pelican-guide
-category: guide
+category: guides
 date: 2019-07-27
 modified: 2019-08-01
 
