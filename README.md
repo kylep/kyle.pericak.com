@@ -10,5 +10,5 @@ This will launch a pelican container that mounts ./content and ./output. It
 will generate the html in ./output, and regen it on every change to a .md file
 in ./content.
 ```bash
-./pelican-dev.sh
+bin/pelican-dev.sh
 ```
