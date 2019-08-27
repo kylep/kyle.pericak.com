@@ -4,7 +4,7 @@ slug: x11-forwarding-ubuntu18
 category: guides
 date: 2019-08-19
 modified: 2019-08-19
-Status: published
+status: published
 
 # Objective
 Open Chrome on an Ubuntu Server VM deployed at a remote location.
