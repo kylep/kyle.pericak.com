@@ -2,9 +2,9 @@ title: Containerizing Pelican in Google Container Registry
 summary: Building a pelican Docker image and uploading to GCR for cloud-builder
 slug: build-pelican-image-gcr
 category: guides
+tags: Pelican,GCP
 date: 2019-08-27
 modified: 2019-08-27
-tags: pelican,docker,GCR,cloud-build
 authors: Kyle Pericak
 status: published
 
@@ -23,9 +23,8 @@ I share it on Docker Hub so I don't need to pay for public downloads from GCR.
 
 ---
 
-# Code on GitHub
-Take a look at my code on GitHub. I'll explain it here, but there's no point
-copying its content into this post.
+# My Code on GitHub
+Take a look at my code on GitHub. I'll explain it in this post.
 
 - [My GitHub repo for the Pelican Docker image](https://github.com/kylep/pelican)
 
@@ -48,8 +47,19 @@ requirements.txt - List of python packages to install for Pelican and plugins
 cloudbuild.yaml  - Instructions for Google Cloud-Builder
 ```
 
+### Dockerfile
+To build the pelican image:
 
-## About the cloudbuild.yaml file
+1. The pelican config file and requirements.txt are copied into the image
+1. Software dependencies such as git and pip are installed
+1. The packages listed in requirements.txt are installed
+1. My fork of pelican-themes is cloned. A fork isn't needed, but prevents any
+   unplanned changes to the theme I choose. Eventually I'll probably write my
+   own.
+1. 
+
+
+### cloudbuild.yaml
 
 Here are some references regarding building a cloudbuild.yaml file
 
@@ -57,14 +67,17 @@ Here are some references regarding building a cloudbuild.yaml file
 - [Variables Available in cloudbuild.yaml](https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values)
 - [cloud-builder/docker Source Code on GitHub](ttps://github.com/GoogleCloudPlatform/cloud-builders/tree/master/docker)
 
-In my cloudbuild file, there are two keys: steps and images.
+There are two keys: `steps` and `images`.
 
-The `steps:` key uses `cloud-builders/docker` to invoke a `docker build`
-command. It builds from the `Dockerfile` and tags the image. The variable
-`$PROJECT_ID` is subtituted with the GCP project's ID when cloud-build runs.
+The `steps:` key contains a list of tasks to be executed by cloud-builder.
+This file contains one task, which uses the `cloud-builders/docker` docker
+imageto invoke a `docker build` command. The docker build command works like
+the usual docker client would - it builds from the `Dockerfile` and tags the
+image. The variable `$PROJECT_ID` is subtituted with the GCP project's ID when
+cloud-build runs.
 
-The `images:` key defines which images to push to the Google Container
-Registry. In this case, it pushes the just-built container.
+The `images:` key defines a list of images to push to the Google Container
+Registry. In this case, it pushes the new pelican container.
 
 
 ## Build & Push the Image to GCR

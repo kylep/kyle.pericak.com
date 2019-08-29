@@ -1,6 +1,7 @@
 title: Building a Static Blog Site with Pelican and GCP
 summary: How this blog site was made
 slug: how-this-site-is-made
+tags: Pelican,GCP
 category: guides
 date: 2019-07-27
 modified: 2019-08-01

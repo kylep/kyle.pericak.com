@@ -2,6 +2,7 @@ title: Writing Blog Content for Pelican
 summary: Steps and examples for writing web content to be consumed by Pelican
 slug: write-pelican-post
 category: guides
+tags: Pelican
 date: 2019-08-28
 modified: 2019-08-28
 status: published

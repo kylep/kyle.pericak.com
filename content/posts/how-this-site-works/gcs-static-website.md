@@ -1,6 +1,7 @@
 title: Hosting a Static Website on Google Cloud Storage
 slug: gcs-static-website
 category: guides
+tags: Pelican,GCP
 date: 2019-08-27
 modified: 2019-08-27
 status: published

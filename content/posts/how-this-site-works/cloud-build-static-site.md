@@ -4,7 +4,7 @@ slug: cloud-build-static-site
 category: guides
 date: 2019-08-27
 modified: 2019-08-27
-tags: pelican,docker,GCR,cloud-build
+tags: Pelican,Docker,GCP
 authors: Kyle Pericak
 status: published
 
