@@ -162,7 +162,9 @@ openstack coe cluster list
 Watch the status in the `coe cluster list` output.
 
 It will start as `CREATE_IN_PROGRESS` if things are working, then move to
-either `CREATE_FAILED` or ...
+either `CREATE_FAILED` or `CREATE_COMPLETE`.
+
+If the create failed, its google time. Otherwise, the K8s cluster is now live!
 
 
 
