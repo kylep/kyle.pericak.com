@@ -23,7 +23,7 @@ To install openstack, I've written two posts:
 ---
 
 
-# Configure Magnum Cluster Template & Dependencie
+# Configure Magnum Cluster Template & Dependencies
 
 ## Create an SSH Keypair
 
