@@ -2,7 +2,7 @@ steps:
 
   - name: gcr.io/kylepericak/pelican:latest
     entrypoint: pelican
-    args: ["/workspace/content", "-o", "/workspace/output"]
+    args: ["/workspace/content", "-o", "/workspace/output", "-s", "/pelicanconf.py",]
 
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: gsutil
