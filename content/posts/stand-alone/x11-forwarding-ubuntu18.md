@@ -2,6 +2,7 @@ title: Network Jump Box / Bastion
 description: X11 forwarding Chrome through SSH to access internal web endpoints
 slug: x11-forwarding-ubuntu18
 category: guides
+tags: remote-access
 date: 2019-08-19
 modified: 2019-08-19
 status: published
