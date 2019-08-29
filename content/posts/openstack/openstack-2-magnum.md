@@ -7,17 +7,17 @@ modified: 2019-08-27
 status: published
 
 
-Magnum is the COE-as-a-Service project in OpenStack. COE stands for Container
-Orchestration Engine. Magnum can deploy Kubernetes on OpenStack.
+Magnum is an open-source "container orchestration engine as a service"
+(COEaaS) project for OpenStack. It's used to deploy Kubernetes on OpenStack.
 
 This guide will start from an already-deployed OpenStack Rocky cloud to deploy
 Magnum.
 
 
-To install openstack, I've written two posts:
+To install OpenStack, I've written two posts:
 
 - [OpenStack dev cluster in a VM](/openstack-1-vm-ka-aio.html)
-- [OpenStack dev cluster on one metalserver](/openstack-3-metal-ka-aio.html)
+- [OpenStack dev cluster on one metal server](/openstack-3-metal-ka-aio.html)
 
 
 ---
@@ -169,6 +169,26 @@ If the create failed, its google time. Otherwise, the K8s cluster is now live!
 
 
 ---
+
+
+# Use the Kubernetes Cluster
+For steps to build an app on this cluster, check out
+[Building a Kubernetes Application](/getting-started-kubernetes.html).
+
+## Generate Cluster Config
+This will create a cluster config file for kubectl in the current working
+directory, and print the export command to set `$KUBECONFIG`.
+```bash
+openstack coe cluster config kubernetes1
+```
+
+Run the export command that it printed to set up `kubectl`.
+
+## List Nodes
+This command will prove that the k8s nodes are ready to go
+```bash
+kubectl get nodes
+```
 
 
 # Reference Links
