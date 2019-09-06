@@ -70,7 +70,7 @@ def save_to_file(filename):
 
 def update_from_file(filename):
     """Read data from filename, write to database"""
-    with open('/home/kyle/sqldata.json') as json_file:
+    with open(filename) as json_file:
         jdata = json.load(json_file)
     data = json.dumps(jdata)
     conn = mariadb.connect(host=db_host, port=db_port, user=db_username,
