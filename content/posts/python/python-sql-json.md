@@ -62,7 +62,7 @@ def save_to_file(filename):
     cursor.execute(read_query)
     data = cursor.fetchone()[0]
     conn.close()
-    jdata = json.dumps(json.loads(data),  indent=4, sort_keys=True)
+    jdata = json.dumps(json.loads(data), indent=4, sort_keys=True)
     with open(filename, 'w+') as out_file:
         out_file.write(jdata)
     print('done')
