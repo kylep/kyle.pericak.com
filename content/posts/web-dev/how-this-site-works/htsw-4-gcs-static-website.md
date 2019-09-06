@@ -1,9 +1,10 @@
 title: Hosting a Static Website on Google Cloud Storage
-slug: gcs-static-website
-category: guides
+slug: htsw-4-gcs-static-website
+series: how-this-site-works
+category: web-dev
 tags: Pelican,GCP
-date: 2019-08-27
-modified: 2019-08-27
+date: 2019-08-04
+modified: 2019-08-04
 status: published
 
 ---
@@ -11,6 +12,18 @@ status: published
 Google Cloud Storage has a feature where storage buckets can be assigned a
 domain name and used as a cost effective web server. That's how this site is
 being hosted.
+
+---
+
+
+This guide is part of a series
+
+1. [Building a Static Blog Site with Pelican and GCP](/htsw-1-intro.html)
+1. [Build a pelican Docker image in the Google Container Registry](/htsw-2-pelican-image-gcr.html)
+1. [How to write Pelican blog content files](/htsw-3-write-pelican-post.html)
+1. **[Hosting a Static Website on Google Cloud Storage](/htsw-4-gcs-static-website.html)**
+1. [Automatically rebuilding the site with Google Cloud-Build](/htsw-5-cloud-build-static-site.html)
+
 
 ---
 
@@ -119,6 +132,16 @@ dst_url="gs://kyle.pericak.com"
 gsutil -m rsync -r -c -d $src_url $dst_url
 ```
 
+---
+
 
 # Reference Links
 - [cloud.google.com - Hosting a Static Website](https://cloud.google.com/storage/docs/hosting-static-website)
+
+
+---
+
+# Next  Up
+Now that you have a fully functional site hosted by Google Cloud Storage,
+you can use Cloud-Builder to
+[automatically rebuild the site every time you push it to GitHub](/htsw-5-cloud-build-static-site.html).

@@ -1,4 +1,4 @@
-title: about
+title: About
 summary: Details about this site and its author
 slug: about
 date: 2019-08-27
@@ -20,4 +20,4 @@ written.
 
 ---
 
-Check out my first guide, [how this site was created](/how-this-site-is-made.html)
+Check out my first guide, [how this site was created](/htsw-1-intro.html)

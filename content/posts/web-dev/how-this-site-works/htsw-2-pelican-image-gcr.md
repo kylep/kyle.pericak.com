@@ -1,15 +1,15 @@
 title: Containerizing Pelican in Google Container Registry
 summary: Building a pelican Docker image and uploading to GCR for cloud-builder
-slug: build-pelican-image-gcr
-category: guides
+series: how-this-site-works
+series_index: 2
+slug: htsw-2-pelican-image-gcr
+category: web-dev
 tags: Pelican,GCP
-date: 2019-08-27
-modified: 2019-08-27
+date: 2019-08-01
+modified: 2019-08-01
 authors: Kyle Pericak
 status: published
 
-
----
 
 Pelican is a static website generator written in Python that can convert
 markdown format text files into blog posts. This guide will install Pelican in
@@ -22,6 +22,18 @@ I share it on Docker Hub so I don't need to pay for public downloads from GCR.
 - [Docker Hub kpericak/pelican](https://cloud.docker.com/u/kpericak/repository/docker/kpericak/pelican)
 
 ---
+
+This guide is part of a series
+
+1. [Building a Static Blog Site with Pelican and GCP](/htsw-1-intro.html)
+1. **[Build a pelican Docker image in the Google Container Registry](/htsw-2-pelican-image-gcr.html)**
+1. [How to write Pelican blog content files](/htsw-3-write-pelican-post.html)
+1. [Hosting a Static Website on Google Cloud Storage](/htsw-4-gcs-static-website.html)
+1. [Automatically rebuilding the site with Google Cloud-Build](/htsw-5-cloud-build-static-site.html)
+
+
+---
+
 
 # My Code on GitHub
 Take a look at my code on GitHub. I'll explain it in this post.
@@ -56,7 +68,6 @@ To build the pelican image:
 1. My fork of pelican-themes is cloned. A fork isn't needed, but prevents any
    unplanned changes to the theme I choose. Eventually I'll probably write my
    own.
-1. 
 
 
 ### cloudbuild.yaml
@@ -85,3 +96,11 @@ To manually build your image and upload it to the GCR, run something like this:
 ```bash
 gcloud builds submit --tag gcr.io/kylepericak/pelican:latest
 ```
+
+
+---
+
+
+# Next Up
+Now a Pelican image is built, its time to write some content. Check out my next
+post, [How to write and push blog content files to GitHub](/htsw-3-write-pelican-post.html)

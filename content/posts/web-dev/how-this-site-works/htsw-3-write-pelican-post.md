@@ -1,10 +1,11 @@
 title: Writing Blog Content for Pelican
 summary: Steps and examples for writing web content to be consumed by Pelican
-slug: write-pelican-post
-category: guides
+series: how-this-site-works
+slug: htsw-3-write-pelican-post
+category: web-dev
 tags: Pelican
-date: 2019-08-28
-modified: 2019-08-28
+date: 2019-08-03
+modified: 2019-08-03
 status: published
 
 
@@ -13,6 +14,18 @@ raw content of a website. The content should be easy to write and maintain. It
 will be transformed by Pelican into a website.
 
 ---
+
+This guide is part of a series
+
+1. [Building a Static Blog Site with Pelican and GCP](/htsw-1-intro.html)
+1. [Build a pelican Docker image in the Google Container Registry](/htsw-2-pelican-image-gcr.html)
+1. **[How to write Pelican blog content files](/htsw-3-write-pelican-post.html)**
+1. [Hosting a Static Website on Google Cloud Storage](/htsw-4-gcs-static-website.html)
+1. [Automatically rebuilding the site with Google Cloud-Build](/htsw-5-cloud-build-static-site.html)
+
+
+---
+
 
 # What is Pelican
 [Pelican](https://github.com/getpelican/pelican) takes a collection of files
@@ -152,13 +165,13 @@ docker exec -it pelican \
 ---
 
 
-# Now What?
-Now that the content is written, its time to
-[host the site on Google Cloud Storage](/gcs-static-website.html).
+# Reference Links
+- [Offical Pelican Syntax Reference](http://docs.getpelican.com/en/3.6.3/content.html)
 
 
 ---
 
 
-# Reference Links
-- [Offical Pelican Syntax Reference](http://docs.getpelican.com/en/3.6.3/content.html)
+# Next Up
+Now that the content is written, its time to
+[host the static website on Google Cloud Storage](/htsw-4-gcs-static-website.html).

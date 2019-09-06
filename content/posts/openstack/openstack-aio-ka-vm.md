@@ -1,20 +1,35 @@
-title: Install Virtual Single-Node OpenStack with Kolla-Ansible
+title: Install OpenStack with Kolla-Ansible in a VM
 description: Installing openstack inside a cloud vm for dev and testing
-slug: openstack-1-vm-ka-aio
-category: guides
+slug: openstack-aio-ka-vm.
+category: openstack
 tags: OpenStack
 date: 2019-08-11
 modified: 2019-08-11
 status: published
 
-This guide installs openstack inside a VM, particularly one hosted by another
-OpenStack cluster. To see how Opentack was installed bare-metal on an Intel
-NUC, check out my other post [here.](/openstack-3-metal-ka-aio.html)
 
-- This single-node openstack cluster is for testing purposes. It will be
-- installed using Kolla-Ansible.
-- The cluster's KVM will run a nested hypervisor, so it won't be fast.
-- The version of OpenStack to be installed is [Rocky](https://www.openstack.org/software/rocky/).
+This guide installs OpenStack inside a single VM.
+To install OpenStack, I use [Kolla-Ansible](https://github.com/openstack/kolla-ansible)
+
+To see how OpenStack was installed bare-metal on an Intel NUC,
+check out my other post [here](/openstack-aio-ka-metal.html).
+
+OpenStack [Rocky](https://www.openstack.org/software/rocky/) will be installed,
+configured with a
+[VLAN provider network](https://docs.openstack.org/ocata/networking-guide/intro-os-networking.html#intro-os-networking-provider)
+for overcloud networking, and include the following OpenStack APIs:
+
+- Keystone
+- Cinder
+- Nova
+- Glance
+- Neutron
+- Heat
+- Magnum
+
+
+---
+
 
 # Environment
 
@@ -22,25 +37,23 @@ These specs are what was used while writing this guide.
 They are neither the minimum nor recomended requirements for a virtual
 OpenStack cluster.
 
-- VM hosted by [Breqwatr](https://breqwatr.com)'s  on-prem OpenStack.
-    - AWS/GCP/Azure can also host suitable VMs.
+- VM hosted by [Breqwatr](https://breqwatr.com)'s on-prem OpenStack
+    - AWS/GCP/Azure can also host suitable VMs
 - Ubuntu 18.04
 - 2 vSSD volumes: 200GB for the OS and 300GB for Cinder LVM
 - 2 VLAN ports: API interface and neutron interface
 - Docker images are the public Rocky images from Kolla on Docker Hub
 
-
-# OpenStack-on-OpenStack Considerations
+## OpenStack-on-OpenStack Considerations
 
 Skip this section if the installation is not on OpenStack.
 
-## Port Security
+### Disable Port Security
 Turn off neutron port-security on each port.
 Otherwise the unknown IPs will be blocked.
 ```bash
 for x in \
     3f664e5e-dd67-4fe5-b2cc-86c2918b6a2f \
-    59eeea38-5b74-46c5-af1f-cc75f62ba3c6 \
     c44da3d5-00e7-4e41-af39-7010d70ac6a5; do
   echo $x
   openstack port set --no-security-group $x
@@ -49,11 +62,17 @@ done
 ```
 
 
+---
+
+
 # Update the OS
 It will never be less risky to run an update than right now!
 ```bash
 apt-get update && apt-get upgrade -y
 ```
+
+
+---
 
 
 # Create Volume Group for Cinder
@@ -75,6 +94,9 @@ vgcreate cinder-volumes /dev/vdb
 ```
 
 
+---
+
+
 # Install Ansible
 
 Kolla-Ansible requires that Ansible be pre-installed. Apt can install it too,
@@ -84,6 +106,9 @@ with Kolla-Ansible.
 apt-get -y install python python-pip
 pip install ansible
 ```
+
+
+---
 
 
 # Install Kolla-Ansible
@@ -142,11 +167,6 @@ may be different from yours.
 
 ```yaml
 ---
-# Container details, matches docker hub tags
-kolla_base_distro: "ubuntu"
-kolla_install_type: "source"
-openstack_release: "rocky"
-
 # APIs listen on this VIP
 kolla_internal_vip_address: "10.100.202.254"
 
@@ -159,46 +179,58 @@ neutron_external_interface: "ens6"
 # If you have more than one install in the broadcast domain, make this unique
 keepalived_virtual_router_id: "77"
 
-# No https
-kolla_enable_tls_external: "no"
+# Define the docker image names and tag (kolla/ubuntu-source-<name>:rocky)
+kolla_base_distro: "ubuntu"
+kolla_install_type: "source"
+openstack_release: "rocky"
 
-# Which services/containers to deploy?
-enable_glance: "yes"
-enable_haproxy: "yes"
+# Which containers will be deployed
 enable_keepalived: "yes"
-enable_keystone: "yes"
 enable_mariadb: "yes"
 enable_memcached: "yes"
-enable_neutron: "yes"
-enable_nova: "yes"
 enable_rabbitmq: "yes"
 enable_chrony: "yes"
+enable_fluentd: "yes"
+enable_nova_ssh: "yes"
+enable_ceph: "no"
+enable_horizon: "yes"
+
+# Use HAProxy load balancer but disable TLS certs
+enable_haproxy: "yes"
+kolla_enable_tls_external: "yes"
+
+# Use qemu for nested hypervisors, kvm for metal
+enable_nova: "yes"
+nova_compute_virt_type: "qemu"
+
+# The default username and project can be changed here
+enable_keystone: "yes"
+keystone_admin_user: "admin"
+keystone_admin_project: "admin"
+
+# Glance stores VM templates. Use a file backend with cinder's LVM backend
+enable_glance: "yes"
+glance_backend_file: "yes"
+
+# Configure Cinder to use the 'cinder-volumes' vg for virtual block devices
 enable_cinder: "yes"
 enable_cinder_backup: "no"
 enable_cinder_backend_lvm: "yes"
-enable_fluentd: "yes"
-enable_nova_ssh: "yes"
-keystone_admin_user: "admin"
-keystone_admin_project: "admin"
-glance_backend_file: "yes"
-cinder_backend_ceph: "no"
 cinder_volume_group: "cinder-volumes"
-enable_ceph: "no"
-enable_magnum: "yes"
+cinder_backend_ceph: "no"
 
-# Use "qemu" for nested virtualization, use KVM for metal w/ Cpu support
-nova_compute_virt_type: "qemu"
-
-# Optional web UI
-enable_horizon: "yes"
-
-# Override the neutron defaults value for extension_drivers to enable the DNS
-# extension driver. This lets you change the search domain on subnets.
+# Enable the DNS ml2 extension driver in neutron & lbaas
+enable_neutron: "yes"
+enable_neutron_lbaas: "yes"
 neutron_extension_drivers:
   - name: "port_security"
     enabled: true
   - name: "dns"
     enabled: true
+
+# Configure magnum to look for the 'local-lvm' cinder volume type
+enable_magnum: "yes"
+default_docker_volume_type: "local-lvm"
 ```
 
 
@@ -210,6 +242,7 @@ random password from KA. The `kolla-genpwd` command populates it.
 cp ~/kolla-ansible/etc/kolla/passwords.yml /etc/kolla
 kolla-genpwd
 ```
+
 
 ## Ansible Inventory
 The KA ansible inventory defines which roles will be assigned to which hosts.
@@ -229,19 +262,16 @@ First run the bootstrap command to install docker and tune the server. In older
 branches it will add the wrong key for the apt repo, so do that yourself.
 
 ```bash
+kolla-ansible certificates
 kolla-ansible -i /etc/kolla/inventory bootstrap-servers
 kolla-ansible -i /etc/kolla/inventory deploy
 kolla-ansible -i /etc/kolla/inventory post-deploy
 ```
 
-
----
-
-
-# Install the OpenStack Command Line
+## Install the OpenStack Command Line
 This will enable the `openstack` command.
 ```bash
-pip install python-openstackclient
+pip install python-openstackclient python-neutronclient python-magnumclient
 ```
 
 To configure the openstack CLI, source the openrc file that was created by KA's
@@ -251,9 +281,35 @@ source /etc/kolla/admin-openrc.sh
 ```
 
 
-# Initial Setup of the OpenStack Cluster
-These remaining steps are optional, and just a demonstation of how to get a
-functional workload launched onto the cluster.
+---
+
+
+
+# Overcloud Cluster Configuration
+Now that the undercloud is functional and the OpenStack services are running,
+its time to configure the overcloud to be useful.
+
+These commands are ran directly on the new virtual OpenStack host.
+
+## Source the Admin OpenRC file
+Kolla-Ansible's post-deploy task created an openrc file which can be used to
+authenticate as the admin user it created. It's a good idea to make your own
+user and openrc file, but for now this will do.
+
+```bash
+source /etc/kolla/admin-openrc.sh
+```
+
+
+## Create a Cinder Volume Type
+
+If no cinder volume type has been created, one must be made. These is required
+for Magnum and for other storage backends, and also good practice.
+
+```bash
+openstack volume type create --public local-lvm
+```
+
 
 ## Create a Flat Provider Network
 Since this is OpenStack on OpenStack, using VLANs for the provider network is
@@ -335,7 +391,11 @@ openstack security group rule create --proto tcp --dst-port 1:65535 $group_id
 openstack security group rule create --proto udp --dst-port 1:65535 $group_id
 ```
 
-## Create a test VM
+
+---
+
+
+# Create a test VM
 ```bash
 openstack server create --image cirros --flavor tiny --network vx1-net test
 # This server was assigned 192.168.0.13
@@ -349,5 +409,8 @@ openstack server add floating ip \
 
 You can now ping or SSH to your VM. The cloud is ready for use.
 
-# References
-- [openstack.org's kolla-ansible developer quickstart](https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html)
+
+# Next Up
+In this guide we installed the Magnum OpenStack project, but didn't do anything
+with it. Check out my next guide to see how I deployed a private K8S cluster on
+OpenStack - [Deploying Kubernetes with Openstack Magnum](/openstack-magnum.html).

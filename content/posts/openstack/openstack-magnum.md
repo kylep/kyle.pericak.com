@@ -1,33 +1,40 @@
-title: Deploy Magnum for OpenStack with Kolla-Ansible
-slug: openstack-2-magnum
-category: guides
+title: Openstack Magnum: Kuberenetes as a Service
+summary: How to install, configure, and operate Magnum to deploy Kubernetes
+slug: openstack-magnum
+category: openstack
 tags: OpenStack, Kubernetes
-date: 2019-08-27
-modified: 2019-08-27
+date: 2019-08-30
+modified: 2019-08-30
 status: published
 
 
-Magnum is an open-source "container orchestration engine as a service"
-(COEaaS) project for OpenStack. It's used to deploy Kubernetes on OpenStack.
+Magnum is an OpenStack project used to deploy Kubernetes clusters "as a
+service". Once installed and configured, users can create K8S clusters with a
+single command.
 
-This guide will start from an already-deployed OpenStack Rocky cloud to deploy
-Magnum.
+Magnum depends on the core OpenStack projects, plus Heat and Octavia.
 
 
-To install OpenStack, I've written two posts:
+To install OpenStack & Magnum, I've written two posts:
 
 - [OpenStack dev cluster in a VM](/openstack-1-vm-ka-aio.html)
 - [OpenStack dev cluster on one metal server](/openstack-3-metal-ka-aio.html)
 
 
+**NOTE**: I haven't figured out how to get Octavia to actually work yet. Its
+absurdly difficult. Until it works, you cant use the LoadBalancer type for your
+services with this guide. NodePort still works.
+
+
 ---
 
 
-# Configure Magnum Cluster Template & Dependencies
+# Configure OpenStack Dependencies
+
 
 ## Create an SSH Keypair
 
-Enter a SSH public key for `$pub_key`.
+Enter a SSH public key for `$pub_key`. Be sure to keep the private key safe.
 
 The openstack command to create a keypair needs to load a file for the
 public key, so echo it to a file first.
@@ -44,31 +51,29 @@ openstack keypair create --public-key id_rsa.pub k8s
 rm id_rsa.pub
 ```
 
+
 ## Deploy CoreOS Glance Image
 
 Magnum needs a base image to install Kubernetes onto.
 The two supported options are fedora-atomic and coreos.
 
 ```bash
+# Download & Unzip CoreOS
 wget https://stable.release.core-os.net/amd64-usr/current/coreos_production_openstack_image.img.bz2
-apt-get install -y qemu-utils
 bzip2 -d  coreos_production_openstack_image.img.bz2
+
+# Install qemu-utils to enable the qemu-img command
+apt-get install -y qemu-utils
+
+# Convert the image file from qcow2 to raw format
 qemu-img convert -f qcow2 \
   -O raw coreos_production_openstack_image.img coreos.raw
 
+# Upload the image to OpenStack
 openstack image create --property os_distro=coreos --container-format bare \
   --disk-format raw --public --file coreos.raw coreos
 ```
 
-## Create a Cinder Volume Type
-
-If no cinder volume type has been created, one must be made.
-The name `local-lvm` is an example, any name can be used.
-If a volume type already exists, use it.
-
-```bash
-openstack volume type create --public local-lvm
-```
 
 ## Create a flavor for the k8s nodes
 
@@ -78,43 +83,24 @@ This defines the size of the container host VMs.
 openstack flavor create medium --disk 50 --vcpus 1 --ram 4096
 ```
 
+
 ---
 
 
-# Install Magnum
-These steps assume that Kolla-Ansible is being used.
 
-## Enable Magnum in globals.yml
+# Install the Magnum CLI
+This guide uses the CLI, I don't really like Horizon.
 
-Also specify the volume type.
-
-```yaml
-enable_magnum: "yes"
-default_docker_volume_type: "local-lvm"
-```
-
-If the volume type is not defined, the following error will occur:
-```text
-Property error: resources.docker_volume.properties.volume_type: Error validating value '': The VolumeType () could not be found.
-```
-
-## Install the Magnum CLI
-```bash
-pip install python-magnumclient
-```
-
-## Deploy Changes
-If magnum was already enabled in the globals file, reconfigure. Else, deploy.
+Be sure to source an openrc file for your project before running openstack
+commands.
 
 ```bash
-# to reconfigure:
-kolla-ansible -i /etc/kolla/inventory reconfigure
-
-# to deploy:
-kolla-ansible -i /etc/kolla/inventory deploy
+pip install python-openstackclient python-neutronclient python-magnumclient
 ```
 
 ## Show Container Orchestration Engine Service Status
+If the service isn't healthy, there's no point moving forward with this guide.
+
 ```bash
 openstack coe service list
 ```
@@ -124,13 +110,15 @@ openstack coe service list
 
 
 
-## Create a Kubernetes ClusterTemplate
+# Create a Kubernetes ClusterTemplate
+
 See [here](https://docs.openstack.org/magnum/latest/user/#overview) for the
 various arguments available to the cluster template create command.
 
 Create the Container Orchestration Engine template
 
 ```bash
+# Create the cluster template
 openstack coe cluster template create \
   --coe kubernetes \
   --image coreos \
@@ -143,19 +131,28 @@ openstack coe cluster template create \
   --master-flavor medium \
   --server-type vm \
   --docker-volume-size 5 \
+  --master-lb-enabled \
+  --floating-ip-enabled \
   k8s
 
+# Confirm it was created
 openstack coe cluster template list
 ```
+
 
 ---
 
 
 # Create the Kubernetes Cluster
 
+See [here](https://docs.openstack.org/magnum/latest/install/launch-instance.html)
+for detailed steps.
+
 ```bash
+# Create the cluster
 openstack coe cluster create --cluster-template k8s --node-count 1 kubernetes1
 
+# Check the status
 openstack coe cluster list
 ```
 
@@ -167,29 +164,44 @@ either `CREATE_FAILED` or `CREATE_COMPLETE`.
 If the create failed, its google time. Otherwise, the K8s cluster is now live!
 
 
-
 ---
 
 
 # Use the Kubernetes Cluster
-For steps to build an app on this cluster, check out
-[Building a Kubernetes Application](/getting-started-kubernetes.html).
+
 
 ## Generate Cluster Config
+
 This will create a cluster config file for kubectl in the current working
 directory, and print the export command to set `$KUBECONFIG`.
+
 ```bash
 openstack coe cluster config kubernetes1
 ```
 
-Run the export command that it printed to set up `kubectl`.
+Run the returned export command that it printed to set up `kubectl`.
 
-## List Nodes
-This command will prove that the k8s nodes are ready to go
+
+## Confirm Kubectl works and nodes are online
+
+Kubectl will use the config file at the path defined by `$KUBECONFIG`.
+
 ```bash
 kubectl get nodes
 ```
 
 
-# Reference Links
-- [OpenStack Magnum User Guide](https://docs.openstack.org/magnum/latest/user/)
+## Create a load-balanced service
+
+I'm writing a guide on how to install Octavia but I haven't gotten it working
+yet.
+
+
+
+---
+
+
+# Next Up
+
+I'm writing a section on how to use Kubernetes in general too, but I want to
+fix the Octavia problem first. Check back later!

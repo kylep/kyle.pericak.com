@@ -1,9 +1,10 @@
-title: Cloud Build: Automatically Building and Deploying This Site
+title: Cloud Build: Automatically Build and Deploy from GitHub Push
 summary: The steps followed to configure cloud-build triggers for my website.
-slug: cloud-build-static-site
-category: guides
-date: 2019-08-27
-modified: 2019-08-27
+series: how-this-site-works
+slug: htsw-5-cloud-build-static-site
+category: web-dev
+date: 2019-08-05
+modified: 2019-08-05
 tags: Pelican,Docker,GCP
 authors: Kyle Pericak
 status: published
@@ -15,13 +16,19 @@ holding the files and automatically rebuild everything, then push the changes
 up to GCS.
 
 
-# Pre-Reqs
+---
 
-This guide assumes the following has already been completed:
 
-1. [Build a pelican Docker image in the Google Container Registry](/build-pelican-image-gcr.html)
-1. [Write and push blog content files to GitHub](/write-pelican-post.html)
-1. [Hosting the site on Google Cloud Storage](/gcs-static-website.html)
+This guide is part of a series
+
+1. [Building a Static Blog Site with Pelican and GCP](/htsw-1-intro.html)
+1. [Build a pelican Docker image in the Google Container Registry](/htsw-2-pelican-image-gcr.html)
+1. [How to write Pelican blog content files](/htsw-3-write-pelican-post.html)
+1. [Hosting a Static Website on Google Cloud Storage](/htsw-4-gcs-static-website.html)
+1. **[Automatically rebuilding the site with Google Cloud-Build](/htsw-5-cloud-build-static-site.html)**
+
+
+---
 
 
 # About Cloud-Build & cloudbuild.yaml

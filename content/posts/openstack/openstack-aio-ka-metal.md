@@ -1,29 +1,42 @@
 title: Install OpenStack on Intel NUC
 description: Installing OpenStack inside an Intel Nuc
-slug: openstack-3-metal-ka-aio
-category: guides
-date: 2019-08-28
+slug: openstack-aio-ka-metal
+category: openstack
+date: 2019-08-12
 tags: OpenStack
-modified: 2019-08-28
+modified: 2019-08-12
 status: published
 
 
+This guide installs OpenStack on a single metal server.
+To install OpenStack, I use [Kolla-Ansible](https://github.com/openstack/kolla-ansible)
 
-This guide is basically the same as [my virtual OpenStack guide](/openstack-1-vm-ka-aio.html),
-but it specifically deals with the networking considerations of a metal server.
+For a much more detailed write-up or to install OpenStack in a VM, see my other
+post [here](/openstack-aio-ka-vm..html).
 
-If anything doesn't make sense here, reference that guide, where I cover it in
-better detail.
+OpenStack [Rocky](https://www.openstack.org/software/rocky/) will be installed,
+configured with a
+[VLAN provider network](https://docs.openstack.org/ocata/networking-guide/intro-os-networking.html#intro-os-networking-provider)
+for overcloud networking, and include the following OpenStack APIs:
+
+- Keystone
+- Cinder
+- Nova
+- Glance
+- Neutron
+- Heat
+- Magnum
 
 
-# Objective
-Install a single-node OpenStack cluster on an an Intel NUC for a dedicated
-desktop private cloud.
-
-The version of OpenStack to be installed is [Rocky](https://www.openstack.org/software/rocky/).
+---
 
 
 # Environment
+This was the hardware used while writing thie guide. It's neither the minimum
+nor recomended hardware setup for any sort of cloud.
+
+**Hardware:**
+
 Intel NUC with two drives, one interface, 32G RAM, running Ubuntu 18.04.
 
 **Drive Labels:**
@@ -39,6 +52,9 @@ Intel NUC with two drives, one interface, 32G RAM, running Ubuntu 18.04.
 - Cloud VIP: `10.254.2.254`
 
 
+--
+
+
 # Update & Prepare System
 
 Configure the VG for cinder and install Kolla-Ansible
@@ -47,7 +63,11 @@ Configure the VG for cinder and install Kolla-Ansible
 # Update and install deps
 apt-get update && apt-get upgrade -y
 apt-get -y install python python-pip
-pip install ansible python-openstackclient
+pip install \
+  ansible \
+  python-openstackclient \
+  python-neutronclient \
+  python-magnumclient
 
 # Create VG for cinder LVM
 pvcreate /dev/sda
@@ -129,6 +149,7 @@ network_vlan_ranges = physnet1:1:4094
 
 ```yaml
 ---
+
 kolla_internal_vip_address: "10.254.2.254"
 neutron_external_interface: "eno1"
 network_interface: "vlan.2"
@@ -146,14 +167,13 @@ enable_chrony: "yes"
 enable_fluentd: "yes"
 enable_nova_ssh: "yes"
 enable_ceph: "no"
-enable_magnum: "yes"
 enable_horizon: "yes"
 
 enable_haproxy: "yes"
-kolla_enable_tls_external: "no"
+kolla_enable_tls_external: "yes"
 
 enable_nova: "yes"
-nova_compute_virt_type: "qemu"
+nova_compute_virt_type: "kvm"
 
 enable_keystone: "yes"
 keystone_admin_user: "admin"
@@ -169,18 +189,26 @@ cinder_volume_group: "cinder-volumes"
 cinder_backend_ceph: "no"
 
 enable_neutron: "yes"
+enable_neutron_lbaas: "yes"
 neutron_extension_drivers:
   - name: "port_security"
     enabled: true
   - name: "dns"
     enabled: true
+
+enable_magnum: "yes"
+enable_octavia: "no"
+default_docker_volume_type: "local-lvm"
 ```
+
 
 ---
 
 
 # Install OpenStack using Kolla-Ansible
+
 ```bash
+kolla-ansible certificates
 kolla-ansible -i /etc/kolla/inventory bootstrap-servers
 kolla-ansible -i /etc/kolla/inventory deploy
 kolla-ansible -i /etc/kolla/inventory post-deploy
@@ -189,43 +217,43 @@ kolla-ansible -i /etc/kolla/inventory post-deploy
 
 ---
 
+# Overcloud Cluster Configuration
 
-# Overcloud Setup
-The cloud is up now. Configure the overcloud to host instances.
+The OpenStack services are deployed, now to configure the cloud to be usable.
 
-## Source the admin openrc file
+For details about these commands, see my previous VM guide [here](/openstack-aio-ka-vm..html).
+
+These commands are ran right on the physical OpenStack host.
+
 ```bash
+# Authenticate to the cloud
 source /etc/kolla/admin-openrc.sh
-```
 
-## Create a VLAN Provider Network
-```bash
+# Define the volume type in cinder
+openstack volume type create --public local-lvm
+
+# Create a provider network on VLAN 3
 openstack network create --external --share \
   --provider-physical-network physnet1 --provider-network-type vlan \
   --provider-segment 3 --disable-port-security vlan3-net
 
+# Assign a subnet to the vlan3-net network
 openstack subnet create \
   --dhcp --network vlan3-net \
   --subnet-range 10.254.3.0/24 \
   vlan3-subnet
-```
 
-## Create a flavor
-```bash
+# Create a small cirros-sized flavor
 openstack flavor create tiny --disk 1 --vcpus 1 --ram 256
-```
 
-## Create an image
-```bash
+# Download and import Cirros as a glance image
 wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 apt-get install -y qemu-utils
 qemu-img convert -f qcow2 -O raw cirros-0.4.0-x86_64-disk.img cirros.raw
 openstack image create --container-format bare --disk-format raw \
   --file cirros.raw --public "cirros"
-```
 
-## Open up the firewall
-```
+# Open up the firewall rules for the admin project
 proj_id=$(openstack project list | grep admin | awk '{print $2}')
 group_id=$(openstack security group list | grep $proj_id | awk '{print $2}')
 
@@ -234,10 +262,20 @@ openstack security group rule create --proto tcp --dst-port 1:65535 $group_id
 openstack security group rule create --proto udp --dst-port 1:65535 $group_id
 ```
 
-## Create a test VM
+
+---
+
+
+# Create a test VM
 ```bash
 openstack server create --image cirros --flavor tiny --network vlan3-net test
 ```
 
 The cloud is now ready for use. If layer 3 routing from vlan 2 to vlan 3 is
 configured, then the VM will be accessible.
+
+
+# Next Up
+In this guide we installed the Magnum OpenStack project, but didn't do anything
+with it. Check out my next guide to see how I deployed a private K8S cluster on
+OpenStack - [Deploying Kubernetes with Openstack Magnum](/openstack-magnum.html).
