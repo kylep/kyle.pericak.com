@@ -4,7 +4,7 @@ slug: python-cheat-sheet
 category: python
 tags: python
 date: 2019-09-04
-modified: 2019-09-04
+modified: 2019-09-06
 status: published
 
 
@@ -52,7 +52,23 @@ next(iter([1,2,3]))
 ---
 
 
+# Iterate through dictionary
+
+```python
+ex_dict = {'a': 1, 'b': 2, 'c': 3}
+for key in ex_dict:
+    print(key)
+    print(ext_dict[key]) # value
+```
+
+This works because `ex_dict.keys() == list(ex_dict)`
+
+
+---
 # Print JSON nicely in ASCII (no unicode 'u' prefix)
+
+This is like using [pprint](https://docs.python.org/3/library/pprint.html) on
+the json object but without the unicode prefixes.
 
 ```python
 data = ... # the json string
@@ -61,3 +77,95 @@ print(jdata)
 ```
 
 
+---
+
+
+# Replace a string in a file
+Though honestly, [sed](https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/)
+is usually a better option. Or if there are a lot of values, I like to use a
+jinja template.
+
+```python
+file_path = '/home/user/example_file'
+find_str = 'REPLACE_THIS'
+replace_str = 'WITH_THIS'
+
+# Open the file to read the value
+with open(file_path, 'r') as read_file:
+    file_content = read_file.read()
+
+# Replace the string
+file_content = file_content.replace(find_str, replace_str)
+
+# Write the file
+with open(file_path, 'w') as write_file:
+    write_file.write(replaced_content)
+```
+
+
+---
+
+
+# Get environment variable
+
+I mostly use this with [Dockerfile ENV values](https://docs.docker.com/engine/reference/builder/).
+
+```python
+import os
+
+environment_var_name = 'MY_ENV_VAR'
+environment_var_vlue os.environ[environment_var_name]
+```
+
+
+---
+
+
+# Use Jinja2 for templating
+
+I use this for config files, like [how Ansible does it](https://docs.ansible.com/ansible/latest/user_guide/playbooks_templating.html).
+
+```python
+from jinja2 import Template
+
+replacements = {'USERNAME': 'kyle', 'PASSWORD': 'example'}
+template_text = 'connection = mysql://{{USERNAME}}:{{PASSWORD}}@127.0.0.1'
+template = Template(template_text)
+replaced_text = template.render(**replacements)
+```
+
+## Jinja2 templating with files
+Same idea as above but it reads a .j2 file as input and writes it to a config
+file. Can combine this nicely with environment variables to write config files
+as part of a Docker start script.
+
+```python
+from jinja2 import Template
+
+def apply_template(jinja2_file, output_file, replacements):
+    """Replace the replacements values in jinja2_file, write to output_file"""
+    with open(jinja2_file, 'r') as j2_file:
+        j2_text = j2_file.read()
+    template = Template(j2_text)
+    replaced_text = template.render(**replacements)
+    with open(output_file, 'w+') as write_file:
+        write_file.write(replaced_text)
+
+```
+
+
+---
+
+
+# Execute SQL query against MySQL or MariaDB
+
+```python
+import mysql.connector as mariadb
+
+conn = mariadb.connect(host=db_host, port=db_port, user=db_username,
+                           password=db_password, database=db_name)
+cursor = conn.cursor()
+cursor.execute(sql_query)
+conn.commit() # if it was a write action
+conn.close()
+```
