@@ -1,23 +1,27 @@
 title: Modifying Openstack Kolla Container Images
-slug: kolla-custom-plugin.md
-category: guides
+slug: openstack-kolla-custom-plugin
+category: openstack
 date: 2019-08-26
 modified: 2019-08-26
-Status: draft
+Status: published
 
 
-# Objective
-Openstack Cinder needs some special software installed to work with certain
-storage backends.
+[Openstack Cinder](https://docs.openstack.org/cinder/latest/) needs some
+special software installed to work with certain storage backends.
 
-Kolla builds Docker containers for Openstack.
+[Kolla](https://docs.openstack.org/kolla/latest/) builds Docker containers for
+Openstack.
 
-This guide covers how to configure Kolla to modify how builds a container, such
-that it customizes the docker image by installing additional software inside
-of it, without having to fork the Kolla git project.
+This post documents the steps to customize how Kolla builds containers. In
+particular, these steps add the Pure Storage plugin to the Cinder-Volume
+service's Docker image.
+
+
+---
 
 
 # Install Kolla
+
 This example uses the Rocky checkout to make Rocky based images. Use the stable
 branch matching your openstack version else things get weird.
 
@@ -29,8 +33,11 @@ cd kolla
 pip install .
 ```
 
+
 ## Configure Kolla
+
 Use tox's genconfig envlist to generate a commented config file
+
 ```bash
 tox -e genconfig
 mkdir -p /etc/kolla
@@ -40,12 +47,17 @@ mv etc/kolla/kolla-build.conf /etc/kolla/
 Then make any changes to the new config file as needed.
 
 
+---
+
+
 # Add the Modifications
-Here's an example of adding the Pure Storage software to your cinder\_volume
+
+Here's an example of adding the Pure Storage's plugin to the cinder\_volume
 image.
 
 `vi /etc/kolla/template-overrides.j2`
-```
+
+```jinja2
 {% extends parent_template %}
 
 # Cinder Volume
@@ -54,7 +66,15 @@ RUN pip install purestorage
 {% endblock %}
 ```
 
-# Build, Using Modifications
+
+---
+
+
+# Build the Image w/ Modifications
+
 ```bash
-kolla-build --tag rocky-test-20190826-01 --template-override /etc/kolla/template-overrides.j2  cinder-volume
+kolla-build \
+  --tag rocky-test-20190826-01 \
+  --template-override /etc/kolla/template-overrides.j2  \
+  cinder-volume
 ```

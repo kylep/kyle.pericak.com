@@ -169,3 +169,35 @@ cursor.execute(sql_query)
 conn.commit() # if it was a write action
 conn.close()
 ```
+
+
+---
+
+
+# Read from std in (bash pipe)
+For instance I have a file named x that has a big string where I want to
+replace commas with spaces. Sed works but I can never remember the syntax.
+
+```python
+cat x | python -c "import sys; print(sys.stdin.read())"
+
+# Example of using python instead of sed to replace , with spaces
+cat x | python -c "import sys; print(sys.stdin.read().replace(',',' '))"
+
+# You can use this in fun ways like combining it with bash loops
+cat x | python -c \
+  "import sys; print(sys.stdin.read().replace(',','\n'))" | while read line; do
+  echo $line
+done
+```
+
+
+---
+
+
+# Custom Exceptions
+
+```python
+class MyCustomException(Error):
+    pass
+```

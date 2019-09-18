@@ -1,9 +1,9 @@
 title: Connect Wired Servers to Internet Through Wireless Ubuntu Server
 slug: ubuntu-wifi-to-wired-router
-category: guides
-date: 2019-08-19
-modified: 2019-08-19
-Status: draft
+category: operations
+date: 2019-08-20
+modified: 2019-08-20
+Status: published
 
 # Setup
 This setup was done on an [Intel Nuc](https://www.intel.ca/content/www/ca/en/products/boards-kits/nuc.html).
@@ -84,6 +84,7 @@ traffic is allowed to go:
 
 
 `vi /etc/iptables_rules.sh`
+
 ```
 #!/usr/bin/env bash
 echo "Loading rules..."
@@ -95,7 +96,8 @@ echo "Done"
 ```
 
 Make the script executable
-```
+
+```bash
 chmod +x /etc/iptables_rules.sh
 ```
 
@@ -110,17 +112,23 @@ routes.
 
 
 ## Configure iptables rules to load on boot
+
 Add the following line to your rc.local file. If it doesn't exist, create it.
+
 `vi /etc/rc.local`
+
 ```
 /etc/iptables_rules.sh
 ```
 
 If the file didn't exist, make sure that it starts with a shebang:
+
 ```
 #!/usr/bin/env bash
 ```
+
 and ensure that it's exectuable.
+
 ```
 chmod +x /etc/rc.local
 ```

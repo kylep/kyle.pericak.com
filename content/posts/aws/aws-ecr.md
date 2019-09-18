@@ -1,9 +1,10 @@
-title: Using AWS Elestic Container Registry
+title: Using AWS ECR - Elestic Container Registry
 slug: aws-ecr
-category: guides
+category: aws
+tags: aws, docker
 date: 2019-08-26
-modified: 2019-06-26
-Status: draft
+modified: 2019-09-10
+Status: published
 
 
 
@@ -42,7 +43,7 @@ Its the same procedure as above, but use the read-only policy instead:
 `AmazonEC2ContainerRegistryReadOnly`.
 
 Consider also making an admin group with the
-`mazonEC2ContainerRegistryFullAccess` permission.
+`AmazonEC2ContainerRegistryFullAccess` permission.
 
 ## Create Users for ECR Access
 Make two users, one for pushing and one for pulling. To make a user:
@@ -77,18 +78,18 @@ aws configure
 ```
 
 ## Get the docker login command
-Use the AWS cli to create the docker login command. Save it in a file for
-future reference:
+Use the AWS cli to fetch and execute the docker login command. You can also
+export this command to a file to run it, but there's no point since the token
+gets invalidated aftert 12 hours.
+
 ```bash
-aws ecr get-login --no-include-email --region ca-central-1 > docker_login.sh
+$(aws ecr get-login --no-include-email --region ca-central-1)
 chmod +x docker_login.sh
 ```
 
-## Log In to ECR
-Run the docker login command you saved to docker\_login.sh:
-```bash
-bash docker_login.sh
-```
+
+---
+
 
 # Push Images to the ECR Registry
 If you click on the Push Commands button in the ECR registry page you'll get
@@ -111,3 +112,16 @@ docker push $myId.dkr.ecr.ca-central-1.amazonaws.com/$repo:$tag
 If you first create the repository, you get an error like this: `name unknown:
 The repository with name 'kolla/ubuntu-source-base' does not exist in the
 registry with id '...'`
+
+
+
+---
+
+
+# Using Your Own Domain Name
+AWS doesn't let you use your own domain name, but you can create a reverse
+proxy to make it work. [Here's a guide I wrote]
+explaining how to do it with CloudFlare.
+
+
+

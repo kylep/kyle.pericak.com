@@ -1,9 +1,10 @@
 title: Connecting Ubuntu 18.04 to WPA Wifi from CLI
 slug: ubuntu-bionic-wifi
-category: guides
+category: operations
+tags: ubuntu, wifi
 date: 2019-08-19
 modified: 2019-08-19
-Status: draft
+Status: published
 
 # Setup
 This setup was done on an [Intel Nuc](https://www.intel.ca/content/www/ca/en/products/boards-kits/nuc.html).
@@ -22,8 +23,20 @@ Mine was called `wlp2s0`. Start it:
 ip link set dev wlp2s0 up
 ```
 
+
+---
+
+
 # Install wireless software
-Ubuntu server doesn't ship with the required packages to connect to wifi.
+
+Ubuntu server doesn't ship with the required packages to connect to wifi. This
+is kind of a catch-22, so you need a wired connection to follow this guide.
+You could also download the debs from another server but I won't be covering
+that.
+
+I'm pretty sure that it can connect to WEP without this, and its just the
+newer WPA2 networks that basically everyone is using that need this.
+
 ```bash
 apt-get install wireless-tools wpasupplicant
 ```
@@ -34,6 +47,7 @@ you don't pipe its output to grep, but it's pretty verbose.
 ```bash
 iwlist wlp2s0 scanning | grep -ie ssid
 ```
+
 
 # Join the Wifi Network with Netplan
 You can use various commands to interactively connect to the network, but I
@@ -73,6 +87,6 @@ dhclient wlp2s0 -v
 
 After that, you can connect to the wireless IP and don't need the wired one.
 
-# References
+# Reference Links
 - [AskUbuntu post about wpasupplicant](https://askubuntu.com/questions/138472/how-do-i-connect-to-a-wpa-wifi-network-using-the-command-line)
 - [Ubuntuforums.org netplan post](https://ubuntuforums.org/showthread.php?t=2392154)
