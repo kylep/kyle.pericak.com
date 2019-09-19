@@ -3,7 +3,7 @@ slug: aws-ecr
 category: aws
 tags: aws, docker
 date: 2019-08-26
-modified: 2019-09-10
+modified: 2019-09-19
 Status: published
 
 
@@ -84,7 +84,6 @@ gets invalidated aftert 12 hours.
 
 ```bash
 $(aws ecr get-login --no-include-email --region ca-central-1)
-chmod +x docker_login.sh
 ```
 
 
@@ -102,6 +101,13 @@ following:
 
 ```bash
 aws ecr create-repository --repository-name kolla/ubuntu-source-base
+```
+
+For scripting, this is a handy way of creating the repo if it doesn't exist:
+
+```bash
+aws ecr describe-repositories --repository-names $repo_name \
+  || aws ecr create-repository --repository-name $repo_name
 ```
 
 Then you can push.
