@@ -54,3 +54,13 @@ For those who don't use vim, a quick reminder:
 
 
 ---
+
+
+# VIM Tasks
+
+## Find & Replace
+
+```bash
+# replace findThis with ReplaceWithThis
+:%s/findThis/ReplaceWithThis/g
+```
