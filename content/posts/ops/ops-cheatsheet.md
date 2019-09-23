@@ -64,3 +64,18 @@ For those who don't use vim, a quick reminder:
 # replace findThis with ReplaceWithThis
 :%s/findThis/ReplaceWithThis/g
 ```
+
+
+---
+
+
+# Use an Insecure Docker Registry
+To use a registry with no HTTP cert:
+
+`vi /etc/docker/daemon.json`
+
+```json
+{
+    "insecure-registries" : ["myregistrydomain.com:5000"]
+}
+```

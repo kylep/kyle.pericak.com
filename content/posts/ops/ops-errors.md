@@ -4,7 +4,7 @@ slug: ops-errors
 category: operations
 tags: ops, cheatsheet
 date: 2019-09-11
-modified: 2019-09-11
+modified: 2019-09-23
 status: published
 
 
@@ -54,3 +54,16 @@ being used for OpenStack.
 
 
 ---
+
+
+# Weird chars when pasting
+
+When you paste sometimes you get `^[[200~` at the start and `^[[201~` at the
+end of the pasted content. Or maybe `0~` and `1~`.
+
+To resolve, run:
+```bash
+printf "\e[?2004l"^C
+```
+
+
