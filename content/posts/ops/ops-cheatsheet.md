@@ -4,7 +4,7 @@ slug: ops-cheatsheet
 category: operations
 tags: ops, cheatsheet
 date: 2019-09-11
-modified: 2019-09-11
+modified: 2019-09-23
 status: published
 
 
@@ -78,4 +78,23 @@ To use a registry with no HTTP cert:
 {
     "insecure-registries" : ["myregistrydomain.com:5000"]
 }
+```
+
+
+---
+
+
+# Ansible ignore errors
+
+The command is `ignore_errors: yes`
+
+Just throw this into the task that's failing. It will still fail, but the play
+won't stop.
+
+Example:
+
+```yml
+- name: Ensure the docker service is running
+  script: ../tools/validate-docker-execute.sh
+    ignore_errors: yes
 ```
