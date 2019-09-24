@@ -11,6 +11,13 @@ status: published
 ---
 
 
+# Find big files on Mac OS
+
+```bash
+sudo find / -type f -size +1G -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+```
+
+
 # Renew NTP Lease Ubuntu
 
 ```bash
