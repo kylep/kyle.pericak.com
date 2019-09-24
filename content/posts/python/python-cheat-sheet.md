@@ -4,7 +4,7 @@ slug: python-cheat-sheet
 category: python
 tags: python
 date: 2019-09-04
-modified: 2019-09-06
+modified: 2019-09-24
 status: published
 
 
@@ -13,6 +13,34 @@ status: published
 
 ---
 
+
+# Pylint Ignore Comments
+
+I can never remember the syntax to ignore certain pylint warnings. Yeah you can
+turn them off everywhere but usually I just want to ignore a certain occurence.
+
+```python
+# - This file is a mess and I don't want pylint here:
+# pylint: disable-all
+
+# - troublesome import not being found:
+# pylint: disable=import-error
+
+# - redefined-builtin (W0622):
+# pylint: disable=W0622
+
+# - too-many-public-methods (R0904):
+# pylint: disable=R0903
+
+# - too-many-arguments (R0913):
+# pylint: disable-msg=R0913
+
+# - Invalid constant name:
+# pylint: disable=C0103
+
+# - Catching too general exception:
+# pylint: disable=W0703
+```
 
 
 # Get an object from list of objects where the object property has value x
