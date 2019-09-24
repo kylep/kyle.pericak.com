@@ -98,3 +98,13 @@ Example:
   script: ../tools/validate-docker-execute.sh
     ignore_errors: yes
 ```
+
+
+---
+
+
+# How to tail -f on dmesg
+
+```bash
+dmesg -wH
+```
