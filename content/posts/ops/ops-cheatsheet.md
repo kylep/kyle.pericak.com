@@ -13,8 +13,14 @@ status: published
 
 # Find big files on Mac OS
 
+My SSD is always almost full. Here are useful commands for cleaning up:
+
 ```bash
-sudo find / -type f -size +1G -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+# Find all the files over 1G
+sudo find / -type f -size +1G -exec ls -lh {} \; | awk '{ print $9 ": " $5 }' 2>/dev/null
+
+# List files in Downloads directory by size
+ls -lhS ~/Downloads
 ```
 
 
