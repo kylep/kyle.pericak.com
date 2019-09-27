@@ -4,7 +4,7 @@ slug: python-cheat-sheet
 category: python
 tags: python
 date: 2019-09-04
-modified: 2019-09-24
+modified: 2019-09-26
 status: published
 
 
@@ -40,8 +40,19 @@ turn them off everywhere but usually I just want to ignore a certain occurence.
 
 # - Catching too general exception:
 # pylint: disable=W0703
+
+# - Using python3 compatible print statement makes python2 linter mad
+# pylint: disable=superfluous-parens
 ```
 
+
+## Turn off Linting for now
+
+In VIM, run:
+
+```
+:ALEToggle
+```
 
 # Get an object from list of objects where the object property has value x
 
@@ -229,3 +240,7 @@ done
 class MyCustomException(Error):
     pass
 ```
+
+
+
+
