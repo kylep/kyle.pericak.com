@@ -1,7 +1,7 @@
 title: Using AWS S3 from Python
 slug: aws-s3-python
-category: aws,s3,python
-tags: aws, python
+category: aws
+tags: aws,python,s3
 date: 2019-08-26
 modified: 2019-09-26
 Status: published
