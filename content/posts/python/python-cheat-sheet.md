@@ -272,3 +272,6 @@ hash -r pip
 ```
 
 Now pip works again.
+
+As an asside, if subprocess32 really was your problem, updating pip didn't
+help. For some reason you have to use apt to install `python-subprocess32`.
