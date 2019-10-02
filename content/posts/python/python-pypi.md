@@ -5,7 +5,7 @@ category: python
 tags: python
 date: 2019-09-06
 modified: 2019-09-06
-status: draft
+status: published
 
 
 1. Write the project code
