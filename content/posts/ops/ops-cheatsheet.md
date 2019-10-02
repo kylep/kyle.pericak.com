@@ -121,3 +121,32 @@ Example:
 ```bash
 dmesg -wH
 ```
+
+
+---
+
+
+# Ubuntu Downgrade a package
+
+```bash
+# Find the available versions under Versions:
+apt-cache showpkg <package>
+
+# Install one of those
+apt-get install <package>=<version>
+```
+
+
+---
+
+
+# Make Ansible run Python 3 on target nodes
+
+Useful for OS that ship with python3 but not python2.
+Edit the inventory, find a group of the groups and apply this var.
+
+```ini
+[baremetal:vars]
+ansible_python_interpreter=/usr/bin/python3
+```
+
