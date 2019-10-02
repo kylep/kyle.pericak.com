@@ -4,14 +4,14 @@ slug: python-pypi
 category: python
 tags: python
 date: 2019-09-06
-modified: 2019-09-06
+modified: 2019-10-2
 status: published
 
 
 1. Write the project code
+1. Create a release on github and put it in the `download_url` of setup.py
 1. Write a setup.py file to build and describe the project
 1. Write a setup.cfg file pointing to the readme
-1. Create a release on github and put it in the `download_url` of setup.py
 1. create a source distribution
 
 
@@ -21,11 +21,29 @@ I'm not going to cover how to build a python project in this post, but here's
 the very small and simple project I used when learning this procedure:
 [GitHub: kylep/jsc2f](https://github.com/kylep/jsc2f).
 
+
+---
+
+
+# Create a Release on GitHub
+
+Log into your GitHub project and click on releases. If you can't find the link,
+you can also just append `/releases` to the end of the URL to get there.
+
+Click "Create a new release". Enter your tag and branch, along with a release
+title and description.
+
+Under the Assets section of the new release there's a (tar.gz) link to download
+the source code. If you right click it and copy the URL, that's used next in
+the setup.py file.
+
+---
+
+
 # Write a setup.py file
 
-Here's mine, but with comments I don't actually have in the code.
-The `download_url` value comes from the GitHub release, which you might not
-have made yet. Just push, make the release, then push again.
+Here's mine. Check GitHub to see if I've changed it.
+The `download_url` value comes from the GitHub release.
 
 ```python
 from setuptools import setup
@@ -63,9 +81,24 @@ setup(
 
 ```
 
-# Writing setup.py
-Picking a topic:
+
+## Picking a topic:
 I used [this classifier list](https://pypi.org/pypi?%3Aaction=list_classifiers)
+
+
+---
+
+
+# Write setup.cfg
+This goes in the project root next to seutp.py.
+
+`vi setup.cfg`
+
+```ini
+[metadata]
+description-file = README.md
+```
+
 
 
 # Creating a source distribution
