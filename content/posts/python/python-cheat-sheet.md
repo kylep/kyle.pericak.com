@@ -243,4 +243,35 @@ class MyCustomException(Error):
 
 
 
+---
 
+
+# Can't run pip after updating
+
+So you ran into a problem because ubuntu ships an ancient version of pip, and
+some dependency package like subprocess32 is breaking your install. A forum
+post says you should update pip. Ok... sure.
+
+```bash
+pip install -U pip
+```
+
+Great... Except now pip won't run at all.
+
+```bash
+pip install python-openstackclient
+Traceback (most recent call last):
+  File "/usr/bin/pip", line 9, in <module>
+    from pip import main
+ImportError: cannot import name main
+```
+
+To fix it, I think a reboot might have worked, but this is what worked for me:
+```bash
+hash -r pip
+```
+
+Now pip works again.
+
+As an asside, if subprocess32 really was your problem, updating pip didn't
+help. For some reason you have to use apt to install `python-subprocess32`.
