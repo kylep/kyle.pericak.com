@@ -4,7 +4,7 @@ slug: ops-cheatsheet
 category: operations
 tags: ops, cheatsheet
 date: 2019-09-11
-modified: 2019-09-23
+modified: 2019-10-06
 status: published
 
 
@@ -150,3 +150,16 @@ Edit the inventory, find a group of the groups and apply this var.
 ansible_python_interpreter=/usr/bin/python3
 ```
 
+
+---
+
+
+# Bash: Print all but first line
+
+Use `tail -n +2`.
+This was unintuitive to me because +1 seems like it should do it.
+
+```bash
+# Example
+docker images | awk '{print $3}' | tail -n +2
+```
