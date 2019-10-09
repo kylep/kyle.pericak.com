@@ -3,7 +3,7 @@ summary: Building a pelican Docker image and uploading to GCR for cloud-builder
 series: how-this-site-works
 series_index: 2
 slug: htsw-2-pelican-image-gcr
-category: web-dev
+category: gcp
 tags: Pelican,GCP
 date: 2019-08-01
 modified: 2019-08-01

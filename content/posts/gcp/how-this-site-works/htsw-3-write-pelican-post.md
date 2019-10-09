@@ -2,7 +2,7 @@ title: Writing Blog Content for Pelican
 summary: Steps and examples for writing web content to be consumed by Pelican
 series: how-this-site-works
 slug: htsw-3-write-pelican-post
-category: web-dev
+category: gcp
 tags: Pelican
 date: 2019-08-03
 modified: 2019-08-03

@@ -2,7 +2,7 @@ title: Cloud Build: Automatically Build and Deploy from GitHub Push
 summary: The steps followed to configure cloud-build triggers for my website.
 series: how-this-site-works
 slug: htsw-5-cloud-build-static-site
-category: web-dev
+category: gcp
 date: 2019-08-05
 modified: 2019-08-05
 tags: Pelican,Docker,GCP
