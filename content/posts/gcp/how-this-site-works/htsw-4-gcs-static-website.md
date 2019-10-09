@@ -1,7 +1,7 @@
 title: Hosting a Static Website on Google Cloud Storage
 slug: htsw-4-gcs-static-website
 series: how-this-site-works
-category: web-dev
+category: gcp
 tags: Pelican,GCP
 date: 2019-08-04
 modified: 2019-08-04

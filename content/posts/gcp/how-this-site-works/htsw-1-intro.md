@@ -3,7 +3,7 @@ summary: How this blog site was made
 series: how-this-site-works
 slug: htsw-1-intro
 tags: Pelican,GCP
-category: web-dev
+category: gcp
 date: 2019-07-27
 modified: 2019-08-01
 status: published
