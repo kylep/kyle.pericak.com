@@ -4,7 +4,7 @@ slug: ops-cheatsheet
 category: operations
 tags: ops, cheatsheet
 date: 2019-09-11
-modified: 2019-10-06
+modified: 2019-10-09
 status: published
 
 
@@ -163,3 +163,22 @@ This was unintuitive to me because +1 seems like it should do it.
 # Example
 docker images | awk '{print $3}' | tail -n +2
 ```
+
+
+---
+
+
+# Bash: Run code whenever a script exits
+
+Use trap.
+- [This is a nice post covering lots of examples](http://redsymbol.net/articles/bash-exit-traps/).
+- [Here's where I first saw it used](https://github.com/GoogleCloudPlatform/endpoints-quickstart/blob/master/scripts/deploy_api.sh)
+
+```bash
+temp_file=$(mktemp)
+
+cleanup() {
+  rm "$temp_file"
+}
+
+trap cleanup EXIT
