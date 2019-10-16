@@ -8,12 +8,12 @@ modified: 2019-10-14
 status: published
 
 
-This post covers how to interact with Google's Cloud Firestore from Python.
+This post covers how to interact with Google's Cloud Firestore, using examples
+written in Python. The concepts should apply to any language.
 
 Firestore is the newer version of Datastore. You can find the differences
 [here](https://cloud.google.com/firestore/docs/firestore-or-datastore).
 In this post, the  database is configured in Native mode.
-
 Other than some extra language support, Native mode's coolest new feature seems
 to be the ability to listen to a post. From what I can tell, this could replace
 the need for pub/sub in some scenarios.
@@ -29,7 +29,7 @@ with your own project name.
 
 Offical Firestore pricing data is [here](https://cloud.google.com/firestore/pricing).
 
-**Note that Firestore is almost twice the price/operation of Datastore mode.**
+**Note that Firestore mode is almost twice the price of Datastore mode.**
 Datastore pricing can be found [here](https://cloud.google.com/datastore/pricing).
 
 Every day a number of free operations are allowed, which for a small
@@ -73,10 +73,8 @@ allow for the direct serialization of a programs objects/dictionaries.
 Firestore uses a document database organized into documents and collections.
 This is a change from the older Datastore model of Entities organized by Kinds.
 
-Documents:
-
-- supported nested data structures called Maps, basically JSON with extra types
-- are limited to 1MB
+Documents support nested data structures ("Maps"). Think of them like JSON
+objects, but with more types supported. Documents are limited to 1MB each.
 
 Documents are stored in Collections.
 Collections are containers for documents, like a filesystem's directories.
@@ -115,10 +113,11 @@ Entity Keys consists of the following components:
 
 # Create IAM Service Account
 
-Before Python can access Datastore, access needs to be configured in the
-[Identity Access Management](https://console.cloud.google.com/iam-admin) tool.
+Before your code can access Datastore/Firestore, access needs to be configured
+in the [Identity Access Management](https://console.cloud.google.com/iam-admin)
+tool.
 
-First, create a [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts)
+First, create a [Service Account](https://console.cloud.google.com/iam-admin/serviceaccounts):
 
 1. Open the Service Account page
 1. Select your project
@@ -158,7 +157,7 @@ Write the requirement file
 google-cloud-firestore
 ```
 
-Install the requuirements
+Install the requirements
 
 ```bash
 pip install -r rqeuirements.txt
@@ -181,15 +180,17 @@ Some notes about the firestore python API:
   list of DocumentReference objects.
 - `firestore.client().collection().document` returns
   a [DocumentReferece](https://googleapis.dev/python/firestore/latest/document.html),
-  which interacts with the actual Firestore documents. It can get/set/create.
+  which interacts with the actual Firestore documents. The DocumentReference
+  object can operate (get/set/create) on the actuall Document.
 - `firestore.client().collection().document().get()` will return
   a [DocumentSnapshot](https://developers.google.com/android/reference/com/google/firebase/firestore/DocumentSnapshot)
   of the document. The document snapshot is how you read data from a document.
+  Document snapshots are a representation of the document state taken at the
+  instant of their creation.
 - `firestore.client().collection().document().create()` makes a new document.
-  The create() method returns some `update_time` data. If the object already
-  existed, a `google.api_core.exceptions.AlreadyExists` exception is thrown.
-  See the code examples for an example of how to avoid that.
-- Write operations return a [WriteResult](https://cloud.google.com/firestore/docs/reference/rest/v1/WriteResult)
+  If the object already  existed, a `google.api_core.exceptions.AlreadyExists`
+  exception is thrown.
+- Write operations (create & set) return a [WriteResult](https://cloud.google.com/firestore/docs/reference/rest/v1/WriteResult).
 
 
 ```python
@@ -199,7 +200,8 @@ from google.cloud import firestore
 # The key file is an exported JSON file from the IAM tool
 key_file_path = '{}/gcp_keys/datastore_admin.json'.format(environ['HOME'])
 
-# GCP expects the GOOGLE_APPLICATION_CREDENTIALS environment variable to be set
+# When running this on a local system, the cloud.google package from GCP
+# expects the GOOGLE_APPLICATION_CREDENTIALS environment variable to be set
 # to the exported IAM key file's path
 environ['GOOGLE_APPLICATION_CREDENTIALS'] = key_file_path
 
@@ -218,7 +220,7 @@ ref_col_test = client.collection('test')
 # google.cloud.firestore_v1.document.DocumentReference object
 ref_doc_document1 = ref_col_test.document('document1')
 
-# Perform the actual database query to get the document. Get returns a
+# Perform the actual database query to get the document. get() returns a
 # google.cloud.firestore_v1.document.DocumentSnapshot object.
 snapshot_document1 = ref_doc_document1.get()
 
