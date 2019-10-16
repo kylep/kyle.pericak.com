@@ -5,7 +5,7 @@ category: gcp
 tags: gcp, api, python
 date: 2019-10-14
 modified: 2019-10-14
-status: draft
+status: published
 
 
 This post covers how to interact with Google's Cloud Firestore from Python.
