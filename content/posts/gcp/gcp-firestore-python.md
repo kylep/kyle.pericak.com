@@ -1,6 +1,6 @@
 title: Google Cloud Firestore Basics - Python
 summary: Reading and writing Datastore entries from local python
-slug: gcp-datastore-pythonn
+slug: gcp-datastore-python
 category: gcp
 tags: gcp, api, python
 date: 2019-10-14
