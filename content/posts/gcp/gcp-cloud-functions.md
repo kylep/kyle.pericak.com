@@ -1,4 +1,4 @@
-title: Serverless APIs with Google Cloud Functions - Hello World
+title: Google Cloud Functions Basics - Serverless APIs
 summary: An introduction to Google Cloud Platform's Cloud Functions
 slug: gcp-cloud-functions
 category: gcp
@@ -9,7 +9,8 @@ status: published
 
 
 This post covers getting started with a very simple Google Cloud Functions API,
-a great serverless solution with affordable pricing.
+a great serverless solution with affordable pricing. This API will pull the
+IP address from the HTTP request, and return `Hello <source IP>`.
 
 
 # Pricing Details
