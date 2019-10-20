@@ -12,7 +12,7 @@ This guide covers how I set up a dedicated modded Minecraft Feed The Beast
 server on spare laptop so my wife and I could play together.
 
 **NOTE**: Ubuntu 18.04 doesn't work at all. It uses a newer version of Java
-which doesn't work with Minecfraft's launcher.
+which doesn't work with Minecraft's launcher.
 
 ---
 
@@ -109,10 +109,10 @@ a window that seems to `tail -f` the minecraft log.
 
 ## Alternative Option: Twitch Client
 
-*Note*: The twitch launcher is, IMO, bad. It refuses to go offline, shows you
-tons of stuff you don't need, and is in general a pain to work with. Unless you
-already use Twitch for other games or enjoy watching streamers, I suggest you
-try MultiMC first.
+*Note*: The twitch launcher is a pain. It refuses to go offline and shows you
+tons of stuff not related to modding minecraft.
+Unless you already use Twitch for other games or enjoy watching streamers,
+I suggest you try MultiMC first.
 
 From a Windows client OS, go to [twitch's download site](https://www.twitch.tv/downloads)
 and download the **twitch app for windows**.
