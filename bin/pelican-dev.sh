@@ -6,7 +6,7 @@ docker run -d \
   --name pelican \
   -v $(pwd)/content:/content \
   -v $(pwd)/output:/output \
-  -p 8888:8000 \
+  -p 0.0.0.0:8000:8000 \
   gcr.io/kylepericak/pelican \
   tail -f /dev/null
 
@@ -16,5 +16,7 @@ docker exec -it pelican \
     --debug \
     --autoreload \
     --listen \
+    --port 8000 \
+    --bind 0.0.0.0 \
     /content \
     -o /output
