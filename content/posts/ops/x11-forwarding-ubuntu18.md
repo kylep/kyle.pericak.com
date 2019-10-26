@@ -14,8 +14,8 @@ workstation. Its really tedious, and having a web UI right on the jump server's
 subnet can be really helpful.
 
 In this guide, I show how I launch Chrome on a remote Ubuntu server without
-ever installing any graphics tools like Ubuntu Dekstop on that server, and
-without needing VNC/RDP/PCOIP/ect. X11 forwarding lets the XQuarts process on
+ever installing any graphics tools like Ubuntu Desktop on that server, and
+without needing VNC/RDP/PCOIP/etc. X11 forwarding lets the XQuarts process on
 a Macbook render the browser, while it still uses the networking on the Ubuntu
 server it launched from.
 
@@ -24,7 +24,7 @@ server it launched from.
 
 
 # Configure Workstation (Macbook) SSH Settings for X11 Forwarding
-If you're not using a macbook, this won't apply.
+If you're not using a Macbook, this won't apply.
 
 
 ## Set XAuthLocation
@@ -44,7 +44,7 @@ Host *
 
 ## Enable ForwardAgent and ForwardX11
 
-My hostname was adc-bmc and its IP was 192.168.2.2. Alter this as needed.
+My hostname was `adc-bmc` and its IP was 192.168.2.2. Alter this as needed.
 On your workstation:
 
 `vi ~/.ssh/config`
@@ -61,7 +61,7 @@ Host adc-bmc
 
 ## Install Chrome
 
-You can use firefox or whatever instead. Chrome's install will fail due to
+You can use Firefox or whatever instead. Chrome's install will fail due to
 missing dependencies, but apt can sort it out.
 
 ```bash

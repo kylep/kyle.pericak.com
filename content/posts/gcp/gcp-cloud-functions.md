@@ -86,7 +86,7 @@ You can leave this blank. It's a list of libraries that will be used.
 1. Go to the 'Trigger" tab
 1. Find the URL. Copy it.
 
-You can now test the URL with curl, your browser, httpie, python, ect.
+You can now test the URL with curl, your browser, httpie, python, etc.
 
 ```bash
 https://<region>-<project>.cloudfunctions.net/HelloWorld

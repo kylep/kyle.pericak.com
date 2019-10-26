@@ -1,7 +1,7 @@
 title: HTTPS on Custom Domain with AWS ECS Fargate and LetsEncrypt
 summary: Creating a docker container on Fargate with valid HTTPS on your domain
 slug: aws-ecs-custom-domain-https
-categrory: aws
+category: aws
 tags: aws, docker, ecs, letsencrypt
 date: 2019-09-11
 modified: 2019-09-11
@@ -24,7 +24,7 @@ some other way.
 Go to the [VPC page](https://ca-central-1.console.aws.amazon.com/vpc/) for your
 region.
 
-Click **Create VPC** and fill out the form. 
+Click **Create VPC** and fill out the form.
 
 
 # Define the Docker Image & Start Script
@@ -68,4 +68,4 @@ provided by the ALB using a CNAME.
 
 # Create the Service
 
-Be sure to choose the existing load balancer
+Be sure to choose the existing load balancer.

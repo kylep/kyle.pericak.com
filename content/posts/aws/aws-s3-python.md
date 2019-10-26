@@ -8,7 +8,7 @@ Status: published
 
 
 This guide covers how to upload and download files from Amazon's S3 using
-Python. Setup is done from the web ui.
+Python. Setup is done from the web UI.
 
 
 # Create a Bucket
@@ -30,7 +30,7 @@ IAM stands for Identity and Access Management.
 
 ## Create a Policy
 From the left nav-bar, go to policies. The default policies don't grant
-programatic access, so you need to make a new one.
+programmatic access, so you need to make a new one.
 
 For admin rights, I just used the visual policy builder and granted it
 access to everything. I'll come back and update this guide with how to lock
@@ -45,7 +45,7 @@ AmazonS3FullAccess to see the difference between the two.
 
 ## Create/Edit a User
 
-On the left navbar, go to Users > Add User. Or edit a user that exists.
+On the left nav-bar, go to Users > Add User. Or edit a user that exists.
 Fill in the wizard and assign the group.
 
 

@@ -14,7 +14,7 @@ office wifi.
 
 The server will host 192.168.0.1 and act as a gateway for the wired servers.
 It will do NAT just like a home router does to ensure there are no routing
-problems with the upstream layer3 devices.
+problems with the upstream layer 3 devices.
 
 This setup begins where my [Ubuntu Wifi Guide](ubuntu-bionic-wifi) left off.
 Check it out if you're not sure how to connect to the Wifi from an Ubuntu
@@ -76,7 +76,7 @@ routed out the wifi interface wlp2s0 (the default gateway / default route), and
 apply the MASQUERADE rule which will run port address translation, allowing
 internet.
 
-There are two tables, `nat` and `filter`. The nat table does the translation,
+There are two tables, `nat` and `filter`. The NAT table does the translation,
 the filter table defines what's allowed in and out. We need to specify that
 traffic is allowed to go:
 - From the ethernet port to the wifi port

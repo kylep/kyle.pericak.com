@@ -1,4 +1,4 @@
-title: Openstack Magnum: Kuberenetes as a Service
+title: Openstack Magnum: Kubernetes as a Service
 summary: How to install, configure, and operate Magnum to deploy Kubernetes
 slug: openstack-magnum
 category: openstack
@@ -32,11 +32,11 @@ services with this guide. NodePort still works.
 # Configure OpenStack Dependencies
 
 
-## Create an SSH Keypair
+## Create an SSH Key-pair
 
 Enter a SSH public key for `$pub_key`. Be sure to keep the private key safe.
 
-The openstack command to create a keypair needs to load a file for the
+The openstack command to create a key-pair needs to load a file for the
 public key, so echo it to a file first.
 
 This key will be used in the COE template and injected into each container
@@ -55,7 +55,7 @@ rm id_rsa.pub
 ## Deploy CoreOS Glance Image
 
 Magnum needs a base image to install Kubernetes onto.
-The two supported options are fedora-atomic and coreos.
+The two supported options are fedora-atomic and CoreOS.
 
 ```bash
 # Download & Unzip CoreOS
@@ -75,7 +75,7 @@ openstack image create --property os_distro=coreos --container-format bare \
 ```
 
 
-## Create a flavor for the k8s nodes
+## Create a flavor for the K8S nodes
 
 This defines the size of the container host VMs.
 
@@ -161,7 +161,7 @@ Watch the status in the `coe cluster list` output.
 It will start as `CREATE_IN_PROGRESS` if things are working, then move to
 either `CREATE_FAILED` or `CREATE_COMPLETE`.
 
-If the create failed, its google time. Otherwise, the K8s cluster is now live!
+If the create failed, its google time. Otherwise, the K8S cluster is now live!
 
 
 ---

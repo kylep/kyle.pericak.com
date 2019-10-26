@@ -10,7 +10,7 @@ status: draft
 
 This post covers my experience testing the Google Cloud Endpoints product.
 
-*Note*: I tried to start here before learning Google App Engine and Googe Cloud
+*Note*: I tried to start here before learning Google App Engine and Google Cloud
 Functions. That was a mistake. Google Cloud Endpoints is basically useless
 without something to back the endpoints. I'd thought this would be a third way
 of building them, but instead this product is a layer on top of those existing
@@ -40,7 +40,7 @@ As usual, I'm mostly re-hashing an official guide but adding my commentary and
 notes to it. In this case, I started with the [Cloud Endpoints Quickstart](https://cloud.google.com/endpoints/docs/quickstart-endpoints).
 
 
-## Chosing a Cloud Endpoint option
+## Choosing a Cloud Endpoint option
 
 There are three options for cloud endpoints:
 1. OpenAPI
@@ -61,7 +61,7 @@ formerly known as [Swagger](https://swagger.io/docs/specification/about/).
 ## Create and upload an OpenAPI file
 
 I made a git repo, which I might not bother pushing, and pulled the example
-openApi file.
+openAPI file.
 
 ```bash
 wget https://raw.githubusercontent.com/GoogleCloudPlatform/endpoints-quickstart/master/openapi.yaml
@@ -69,7 +69,7 @@ wget https://raw.githubusercontent.com/GoogleCloudPlatform/endpoints-quickstart/
 
 Then I reviewed their scripts to see what the did. It seems, mostly, like they
 just get your gcloud project id with `gcloud config get-value project`, then
-make a temp file, and copy the openapi.yaml file to it.
+make a temp file, and copy the `openapi.yaml` file to it.
 
 The script also replaces YOUR-PROJECT-ID with your project ID. Then it runs
 `gcloud endpoints services deploy <file name>` on the file.

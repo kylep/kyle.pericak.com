@@ -1,10 +1,10 @@
-title: Operations Cheatsheet
+title: Operations Cheat Sheet
 description: Reference page for ops stuff
 slug: ops-cheatsheet
 category: operations
 tags: ops, cheatsheet
 date: 2019-09-11
-modified: 2019-10-09
+modified: 2019-10-24
 status: published
 
 
@@ -48,7 +48,7 @@ aws ecr describe-repositories --repository-names $repo_name \
 
 # Passwordless sudo on Ubuntu Server
 
-Run visudo as root.
+Run `visudo` as root.
 
 ```bash
 # as root
@@ -56,14 +56,14 @@ export EDITOR=vim
 visudo
 ```
 
-Add the user (replace exampleUser) at the end.
+Add the user (replace `exampleUser`) at the end.
 
 ```text
 exampleUser ALL=(ALL) NOPASSWD: ALL
 ```
 
 For those who don't use vim, a quick reminder:
-`i` enter to insertmode , `[esc]` to exit insert mode, `:wq` to save and quit.
+`i` enter to insert mode , `[esc]` to exit insert mode, `:wq` to save and quit.
 
 
 ---
@@ -76,6 +76,26 @@ For those who don't use vim, a quick reminder:
 ```bash
 # replace findThis with ReplaceWithThis
 :%s/findThis/ReplaceWithThis/g
+```
+
+## Spell-Check commands
+
+```text
+# enable/disable
+:set spell spelllang=en_ca
+:setlocal spell spelllang=en_ca
+:set nospell
+
+# next/last
+]s
+[s
+
+# suggest change
+z=
+
+# add/remove word from dictionary
+zg
+zw`
 ```
 
 
@@ -180,5 +200,4 @@ temp_file=$(mktemp)
 cleanup() {
   rm "$temp_file"
 }
-
-trap cleanup EXIT
+```

@@ -8,7 +8,8 @@ modified: 2019-08-30
 status: draft
 
 
-This guide is broken dont follow it
+This guide is broken, don't follow it. Octavia is a pain in Pike and won't
+work right.
 
 
 [Octavia](https://wiki.openstack.org/wiki/Octavia)
@@ -51,19 +52,19 @@ To deploy Octavia, first:
   These VMs do the actual load balancing.
     - Upload the file as a Glance image. The glance image must have a tag for
       Octavia to select it.
-- Create a VLAN provider network. It's ID is hardcoded in the config files,
+- Create a VLAN provider network. It's ID is hard-coded in the config files,
   so it can't be changed later. Octavia uses this network to talk to the
   amphora VMs it creates. Port-security is required.
-- Create a flavor which also will be hardcoded into the config files. The
+- Create a flavor which also will be hard-coded into the config files. The
   amphora VMs will be built using this flavor.
-- Create an SSH Keypair in keystone named octavia\_ssh\_key. Cloud-init will
+- Create an SSH key-pair in keystone named octavia\_ssh\_key. Cloud-init will
   inject this key into the amphora VMs to allow troubleshooting.
-- Create an OpenStack security group named octavia for tcp 5555,9443. It's also
-  hardcoded into the config files.
+- Create an OpenStack security group named octavia for TCP 5555,9443. It's also
+  hard-coded into the config files.
 - Build a bunch of certificate files manually, there's no working automation to
   help. Then, copy some of them into KA's config directory.
     - Be sure to combine the client cert and key files into one file
-- Update the Kolla-Ansible globals.yml and use Kollla-Ansible to reconfigure
+- Update the Kolla-Ansible globals.yml and use Kolla-Ansible to reconfigure
   the cloud.
 
 
@@ -90,7 +91,7 @@ support.
 
 There's a script in the Octavia GitHub repo that supposedly makes the required
 certificates, at least insecurely for testing. It doesn't work at the time of
-my writing this. It will let Kolla-Ansible install the sevice but load
+my writing this. It will let Kolla-Ansible install the service but load
 balancers will fail to create.
 
 
@@ -321,7 +322,7 @@ openstack subnet create \
 I can't find where to download the glance image that Octavia needs. Looks like
 you have to build it yourself.
 
-Clone their github checkout and build it yourself.
+Clone their GitHub checkout and build it yourself.
 
 Note the `--tag amphora`, that's what's used by Octavia to select the image.
 
@@ -345,7 +346,7 @@ openstack image create --container-format bare --disk-format raw --public \
 
 ## Create Flavor for Octavia
 
-From this [quickstart doc](https://docs.openstack.org/octavia/pike/contributor/guides/dev-quick-start.html)
+From this [quick-start doc](https://docs.openstack.org/octavia/pike/contributor/guides/dev-quick-start.html)
 Octavia seems to need 1GB RAM for the Amphora VM.
 
 ```bash
@@ -357,7 +358,7 @@ Looks like private flavors break everything. Need to use a public one
 openstack flavor create --disk 20 --ram 2048 --vcpus 1 --public pub-octavia
 
 
-## Create Keypair
+## Create Key-Pair
 
 
 Kolla-Ansible hardcodes a keypair named `octavia_ssh_key` into octavia.conf.

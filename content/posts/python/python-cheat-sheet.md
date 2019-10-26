@@ -17,7 +17,7 @@ status: published
 # Pylint Ignore Comments
 
 I can never remember the syntax to ignore certain pylint warnings. Yeah you can
-turn them off everywhere but usually I just want to ignore a certain occurence.
+turn them off everywhere but usually I just want to ignore a certain occurrence.
 
 ```python
 # - This file is a mess and I don't want pylint here:
@@ -250,13 +250,13 @@ class MyCustomException(Error):
 
 So you ran into a problem because ubuntu ships an ancient version of pip, and
 some dependency package like subprocess32 is breaking your install. A forum
-post says you should update pip. Ok... sure.
+post says you should update pip.
 
 ```bash
 pip install -U pip
 ```
 
-Great... Except now pip won't run at all.
+Except now pip won't run at all.
 
 ```bash
 pip install python-openstackclient
@@ -266,7 +266,9 @@ Traceback (most recent call last):
 ImportError: cannot import name main
 ```
 
-To fix it, I think a reboot might have worked, but this is what worked for me:
+I think maybe the pip executable file moved after the update.
+To fix it:
+
 ```bash
 hash -r pip
 ```

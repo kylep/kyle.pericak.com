@@ -39,7 +39,7 @@ The files should be placed in a structure as follows.
 - Blog posts go in content/posts, and can be sorted into subdirectories.
 - Static pages go in content/pages.
 - output/ doesn't need to exist, but it is created by Pelican as a place to
-  store the generated website files. It should alwys be empty in github.
+  store the generated website files. It should always be empty in GitHub.
 ```text
 .
 +-- content/
@@ -74,7 +74,7 @@ Regular text
 ### Even smaller header
 ```
 
-## Horizontl Line
+## Horizontal Line
 ```text
 ---
 ```
@@ -105,11 +105,11 @@ The numbers will automatically increment.
 
 # Preview the Site
 The content is ready to be converted into a website. Use a Pelican container to
-generate the site. The pelican container can also act as a local webserver to
+generate the site. The pelican container can also act as a local web server to
 preview changes before pushing them.
 
 ## Pull the Pelican Image
-Pull a pelican imagefrom GCR or Docker Hub.
+Pull a pelican image from GCR or Docker Hub.
 Mine is `gcr.io/kylepericak/pelican` on GCR and `kpericak/pelican` on Docker
 Hub. The GCR image is private, since they charge me for the downloads.
 
@@ -122,9 +122,9 @@ docker pull kpericak/pelican
 ## Launch the Pelican container
 Run this from the project root. It will mount the content/ and output/
 directories into a new container named "pelican". It will also forward the
-port Pelican's webserver listens on (8000) to the workstation's port 8888.
+port Pelican's web server listens on (8000) to the workstation's port 8888.
 
-The Pelican autoreload feature looks like maybe its multithreaded or something,
+The Pelican auto-reload feature looks like maybe its multithreaded or something,
 so running it as the root process of the docker container doesn't work.
 Instead, launch the container with the `tail -f /dev/null` command so it just
 idles.
@@ -139,8 +139,8 @@ docker run -d \
   tail -f /dev/null
 ```
 
-## Launch the local webserver and auto-rebuild service
-This will build the site files, launch the webserver, and watch for new
+## Launch the local web server and auto-rebuild service
+This will build the site files, launch the web server, and watch for new
 file changes so it can automatically rebuild.
 
 The example `docker exec` command runs interactively. I like to run it in a
@@ -166,7 +166,7 @@ docker exec -it pelican \
 
 
 # Reference Links
-- [Offical Pelican Syntax Reference](http://docs.getpelican.com/en/3.6.3/content.html)
+- [Official Pelican Syntax Reference](http://docs.getpelican.com/en/3.6.3/content.html)
 
 
 ---

@@ -1,5 +1,5 @@
 title: Private Minecraft Feed-The-Beast Server & Client Setup
-description: Hosting a private modded mincraft server and connecting to it
+description: Hosting a private modded Minecraft server and connecting to it
 slug: gaming-minecraft-feedthebeast
 category: gaming
 tags: minecraft
@@ -21,7 +21,7 @@ which doesn't work with Minecraft's launcher.
 ## Make the VM
 
 I'm just using a laptop with Windows 8.0 and Hyper-V for this. It has 16GB RAM,
-4 Cores + Hyperthreading, and a 1TB SSD.
+4 Cores + Hyper-threading, and a 1TB SSD.
 
 Here are the server VM specs I used:
 - Operating System: Ubuntu 16.04 Server
@@ -91,18 +91,18 @@ bash ~/ftb/ServerStart.sh
 
 ## Preferred Option: MultiMC
 
-This is now my prefered way of installing the client. It works offline, and is
+This is now my preferred way of installing the client. It works offline, and is
 strictly about launching Minecraft. Also it has some nice features like
 a window that seems to `tail -f` the minecraft log.
 
 1. Download [Multi-MC](https://multimc.org/), install, and launch it.
 1. Click Add Instance
-1. Choose FTB Legacy > FTB Ultimate Reloaded. Ok.
+1. Choose FTB Legacy > FTB Ultimate Reloaded. OK.
 1. Wait for the download to finish
 1. Double-click the new icon with the mod name
 1. If prompted to go to the account manager, say yes
 1. If not in the settings window, open it. Go to Java. Increase the RAM.
-   It looks like 5120MB works well, with 512 for PermGem.
+   It looks like 5120MB works well, with 512 for PermGen.
 1. Close the settings.
 1. Double-click on the installed mod to launch it
 

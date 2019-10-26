@@ -18,19 +18,19 @@ Registry, and it will run on Amazon's [Fargate Container-as-a-Service](https://a
 
 # Launch the container
 
-1. Upload an image to AWC ECR. [See my guide on using AWS ECR](/aws-ecr.html).
+1. Upload an image to AWS ECR. [See my guide on using AWS ECR](/aws-ecr.html).
 1. Open [AWS ECS](https://ca-central-1.console.aws.amazon.com/ecs/)
 1. Under Container Definition, select Configure
 1. Fill in the form
     1. For the image URL, use the URL of the image uploaded to
        ECR. I was testing a reverse proxy image, so it looked like this:
        `000000000000.dkr.ecr.ca-central-1.amazonaws.com/test/revproxy:latest`
-    1. I have my nginx reverse proxy a 256mb soft limit for RAM
+    1. I have my nginx reverse proxy a 256MB soft limit for RAM
     1. For my reverse proxy I made port mappings for port 80 and 443
     1. No need to fill out any of the advanced fields
 1. Fill out the Task Definition section, click Next
 1. Define your service
-    1. Without a loadbalancer, the only way to access your container will be by
+    1. Without a load-balancer, the only way to access your container will be by
        using [PrivateLink](https://aws.amazon.com/blogs/compute/access-private-applications-on-aws-fargate-using-amazon-api-gateway-privatelink/).
     1. During the initial cluster create wizard you can choose an Application
        Load Balancer. That seems to work well.
@@ -49,7 +49,7 @@ Navigate to the newly created service and go to the Details tab. From there you
 can see a Load Balancing section. It should have a link to the new load
 balancer.
 
-You can also access this page from the left navbar by going to Load Balancing,
+You can also access this page from the left nav-bar by going to Load Balancing,
 then choosing the new load balancer.
 
 In the Description tab here, you can find the DNS name that AWS has assigned

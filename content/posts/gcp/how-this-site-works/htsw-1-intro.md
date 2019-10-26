@@ -36,7 +36,7 @@ GCS has a feature that lets you upload HTML files to a storage bucket named
 after your domain. The storage bucket backing this site is called
 `kyle.pericak.com`.
 
-The `pericak.com` domain also has a CNAME for `kyle` pointing at an API url
+The `pericak.com` domain also has a CNAME for `kyle` pointing at an API URL
 hosted by Google, `storage.l.googleusercontent.com`, which directs traffic to
 their web service.
 
@@ -50,8 +50,8 @@ and is used for GitHub readme.md files, among other uses. The posts are saved
 to a public GitHub repository, in this case `kylep/kyle.pericak.com`.
 
 A static site generator named Pelican is used to turn the blog content into a
-websitee. Pelican accepts the markdown content files as input, and
-programatically tansforms them into the posts and pages of a blog site. It
+website. Pelican accepts the markdown content files as input, and
+programmatically transforms them into the posts and pages of a blog site. It
 has customizable themes and plugins to enable features like embedding a table
 of contents by writing `[TOC]`.
 
@@ -61,7 +61,7 @@ Pelican is built into a Docker image, where it can be ran interactively from a
 workstation (Macbook) or automatically from Google Cloud-Build.
 
 Google Cloud-Build is configured with a trigger to watch for changes to the
-public GitHub repository `kylep/pelican`. When a change is deteced, it rebuilds
+public GitHub repository `kylep/pelican`. When a change is detected, it rebuilds
 the pelican image and re-pushes it to the Google Container Registry.
 
 Another trigger watches for both the `kylep/pelican` repository and also the

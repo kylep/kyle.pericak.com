@@ -19,7 +19,7 @@ The way this works is you open up an interactive python session, ideally in
 a virtualenv. Set the variable values at the top. Run the two functions as
 needed. In another window/pane, edit the json files.
 
-Another option is to use JQ with interactive mysql commands. I'm not convering
+Another option is to use JQ with interactive MySQL commands. I'm not covering
 that in this post, though.
 
 

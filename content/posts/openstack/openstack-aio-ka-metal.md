@@ -1,5 +1,5 @@
 title: Install OpenStack on Intel NUC
-description: Installing OpenStack inside an Intel Nuc
+description: Installing OpenStack inside an Intel NUC
 slug: openstack-aio-ka-metal
 category: openstack
 date: 2019-08-12
@@ -32,8 +32,8 @@ for overcloud networking, and include the following OpenStack APIs:
 
 
 # Environment
-This was the hardware used while writing thie guide. It's neither the minimum
-nor recomended hardware setup for any sort of cloud.
+This was the hardware used while writing this guide. It's neither the minimum
+nor recommended hardware setup for any sort of cloud.
 
 **Hardware:**
 
@@ -89,7 +89,7 @@ kolla-genpwd
 
 # Configure Networking
 
-The Intel NUC only has one ethernet port, but Kolla-Ansible requires two ports.
+The Intel NUC only has one Ethernet port, but Kolla-Ansible requires two ports.
 One port is for the APIs, and another can't have any addresses on it as it ends
 up being controlled by OpenVSwitch and Neutron.
 
