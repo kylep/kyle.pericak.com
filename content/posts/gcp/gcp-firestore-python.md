@@ -27,13 +27,13 @@ with your own project name.
 
 # Pricing
 
-Offical Firestore pricing data is [here](https://cloud.google.com/firestore/pricing).
+Official Firestore pricing data is [here](https://cloud.google.com/firestore/pricing).
 
 **Note that Firestore mode is almost twice the price of Datastore mode.**
 Datastore pricing can be found [here](https://cloud.google.com/datastore/pricing).
 
 Every day a number of free operations are allowed, which for a small
-application makes Datastore very afforable. Even after the free tier though,
+application makes Datastore very affordable. Even after the free tier though,
 the pricing is pretty good. Firestore and Datastore have the same free tiers.
 
 
@@ -171,7 +171,7 @@ pip install -r rqeuirements.txt
 
 A fake project name of "example" will be used. Be sure to use a valid one.
 
-Some notes about the firestore python API:
+Some notes about the Firestore python API:
 
 - `firestore.client().collection` returns a [CollectionReference](https://googleapis.dev/python/firestore/latest/collection.html),
   which allows you to operate on the named collection.
@@ -181,7 +181,7 @@ Some notes about the firestore python API:
 - `firestore.client().collection().document` returns
   a [DocumentReferece](https://googleapis.dev/python/firestore/latest/document.html),
   which interacts with the actual Firestore documents. The DocumentReference
-  object can operate (get/set/create) on the actuall Document.
+  object can operate (get/set/create) on the actual Document.
 - `firestore.client().collection().document().get()` will return
   a [DocumentSnapshot](https://developers.google.com/android/reference/com/google/firebase/firestore/DocumentSnapshot)
   of the document. The document snapshot is how you read data from a document.

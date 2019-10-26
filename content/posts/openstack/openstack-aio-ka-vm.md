@@ -1,5 +1,5 @@
 title: Install OpenStack with Kolla-Ansible in a VM
-description: Installing openstack inside a cloud vm for dev and testing
+description: Installing openstack inside a cloud VM for dev and testing
 slug: openstack-aio-ka-vm.
 category: openstack
 tags: OpenStack
@@ -34,7 +34,7 @@ for overcloud networking, and include the following OpenStack APIs:
 # Environment
 
 These specs are what was used while writing this guide.
-They are neither the minimum nor recomended requirements for a virtual
+They are neither the minimum nor recommended requirements for a virtual
 OpenStack cluster.
 
 - VM hosted by [Breqwatr](https://breqwatr.com)'s on-prem OpenStack
@@ -148,16 +148,16 @@ The globals file contains most of the important deployment settings for KA.
 
 Check these two links for more info:
 - [openstack.org KA advanced reference](https://docs.openstack.org/kolla-ansible/latest/admin/advanced-configuration.html)
-- [Github page for globals file](https://github.com/openstack/kolla-ansible/blob/master/etc/kolla/globals.yml)
+- [GitHub page for globals file](https://github.com/openstack/kolla-ansible/blob/master/etc/kolla/globals.yml)
 
-Any configs not defined are set by defaults.yml files in KA's ansible roles.
+Any configs not defined are set by defaults.yml files in KA's Ansible roles.
 
 The globals file can specify your openstack version, where it will pull its
 containers from, and which containers will be deployed. Be sure to replace
 `kolla_internal_vip_address`'s value with your VIP address.
 
 The VIP can't be used by your existing network card, else HAproxy will throw a
-fit and Kolla-Ansible will fail at the mariadb step.
+fit and Kolla-Ansible will fail at the Mariadb step.
 
 The networking in this example is as simple as it gets. You can really split
 things up in this file if you want to. Note the network interface name too, it
@@ -245,7 +245,7 @@ kolla-genpwd
 
 
 ## Ansible Inventory
-The KA ansible inventory defines which roles will be assigned to which hosts.
+The KA Ansible inventory defines which roles will be assigned to which hosts.
 The all-in-one inventory file assigns all roles to localhost.
 
 ```bash

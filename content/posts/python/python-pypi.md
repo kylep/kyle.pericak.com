@@ -90,7 +90,7 @@ I used [this classifier list](https://pypi.org/pypi?%3Aaction=list_classifiers)
 
 
 # Write setup.cfg
-This goes in the project root next to seutp.py.
+This goes in the project root next to setup.py.
 
 `vi setup.cfg`
 
@@ -106,7 +106,7 @@ description-file = README.md
 For this you use the python [sdist](https://docs.python.org/2/distutils/sourcedist.html)
 tool and [twine](https://pypi.org/project/twine/).
 
-from the git project root:
+From the git project root:
 
 ```bash
 pip install twine

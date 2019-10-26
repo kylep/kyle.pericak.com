@@ -1,5 +1,5 @@
 title: Intro to Building a Kubernetes Application
-description: How to build a simple kubernetes application, with K8S on Magnum
+description: How to build a simple Kubernetes application, with K8S on Magnum
 slug: getting-started-kubernetes
 category: kubernetes
 tags: Kubernetes,Docker
@@ -49,14 +49,14 @@ Check out this [kubectl cheatsheet](https://kubernetes.io/docs/reference/kubectl
 
 ## Proxy K8S Network to Workstation
 
-This will launch a proxy on `localhost:8001` into the k8s cluster's network.
+This will launch a proxy on `localhost:8001` into the K8S cluster's network.
 
 ```bash
 kubectl proxy
 ```
 ## Run kubernetes-bootcamp
 
-I dont know what it does, but its useful to run it as an example anyways.
+I don't know what it does, but its useful to run it as an example anyways.
 ```bash
 kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 ```
@@ -83,7 +83,7 @@ To paraphrase, pods:
 
 - Contain one or more Docker containers
 - Each have their own IP address
-- Share etworking and storage between all containers in the pod
+- Share networking and storage between all containers in the pod
 - Meant to run a single instance of your application
 - Meant to be deployed inside Deployments as replicas
 - Do not automatically heal if a node fails
@@ -151,13 +151,13 @@ Error from server: Get https://<minion hostname>:10250/containerLogs/default/<po
 See [here](https://cloud.google.com/kubernetes-engine/docs/concepts/deployment).
 Basically though, deployments are containers that hold x identical pods.
 
-To list launched deployemnts:
+To list launched deployments:
 
 ```bash
 kubectl get deployments
 ```
 
-### Interacting with Deployements
+### Interacting with Deployments
 
 ```bash
 # Restart the pods in a replica by destroying and recreating them
@@ -181,7 +181,7 @@ look for.
 #### There are 4 types of service:
 
 1. ClusterIP: Internal networking only
-1. NodePort: Bind the service to a port on each Node IP, Nat'd to ClusterIP
+1. NodePort: Bind the service to a port on each Node IP, NAT'd to ClusterIP
 1. LoadBalancer: Creates a load balancer with its own IP, balances NodePorts
 1. ExternalName: DNS Magic, works with kube-dns to return a CNAME
 

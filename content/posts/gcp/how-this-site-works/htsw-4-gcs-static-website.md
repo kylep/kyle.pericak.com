@@ -40,11 +40,11 @@ name that will be applied to the storage bucket. This is used to confirm
 ownership of the domain.
 
 **Note:** I had a really hard time doing this with GoDaddy. The TXT change
-would not propogate even after over 24 hours. I transfered my domain to
+would not propagate even after over 24 hours. I transferred my domain to
 [CloudFlare](https://cloudflare.com/). Their updates apply basically right
 away!
 
-- [How I transfered the domain from GoDaddy to CloudFlare](/dns-xfer-godaddy-cloudflare.html).
+- [How I transferred the domain from GoDaddy to CloudFlare](/dns-xfer-godaddy-cloudflare.html).
 
 **Steps to add the domain to the search console:**
 
@@ -107,7 +107,7 @@ GCS doesn't know where the page root is.
 ### Set the default ACL for the bucket
 This can be done from the command-line using `gsutil`.
 
-If this isn't done then the webiste will show XML with an error stating
+If this isn't done then the website will show XML with an error stating
 `Anonymous caller does not have storage.objects.list access`.
 
 ```bash
@@ -120,9 +120,14 @@ Go to the bucket named after the domain, then Permissions. The permissions can
 be modified here.
 
 
+---
+
+
 # Push Site Content to GCS
+
 Run the gsutil rsync module to upload files to GCS. Note that `$dst_url` is
 pointing at my domain-associated cloud storage bucket.
+
 ```bash
 # -r    recurse - sync directories
 # -c    compare checksums instead of mtime

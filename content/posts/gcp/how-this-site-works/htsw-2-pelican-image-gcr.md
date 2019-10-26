@@ -82,9 +82,9 @@ There are two keys: `steps` and `images`.
 
 The `steps:` key contains a list of tasks to be executed by cloud-builder.
 This file contains one task, which uses the `cloud-builders/docker` docker
-imageto invoke a `docker build` command. The docker build command works like
+image to invoke a `docker build` command. The docker build command works like
 the usual docker client would - it builds from the `Dockerfile` and tags the
-image. The variable `$PROJECT_ID` is subtituted with the GCP project's ID when
+image. The variable `$PROJECT_ID` is substituted with the GCP project's ID when
 cloud-build runs.
 
 The `images:` key defines a list of images to push to the Google Container

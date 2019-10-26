@@ -1,4 +1,4 @@
-title: Using AWS ECR - Elestic Container Registry
+title: Using AWS ECR - Elastic Container Registry
 slug: aws-ecr
 category: aws
 tags: aws, docker
@@ -13,7 +13,7 @@ This was done using a Ubuntu Xenial VM. Docker is already installed.
 
 
 # Create an AWS ECR Repository
-Nagivate to the
+Navigate to the
 [AWS ECR Repositories page](https://ca-central-1.console.aws.amazon.com/ecr/repositories)
 and click Create a repository.
 
@@ -29,7 +29,7 @@ or CICD environment.
 First, review the AWS Group access levels [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html).
 
 ### Make a group with write access
-Users in this group can push to existing registries but they can't use the cli
+Users in this group can push to existing registries but they can't use the CLI
 to make new ones.
 
 1. Go to the [AWS IAM page](https://console.aws.amazon.com/iam)
@@ -50,7 +50,7 @@ Make two users, one for pushing and one for pulling. To make a user:
 1. Go to the [AWS IAM page](https://console.aws.amazon.com/iam)
 2. Click Users on the sidebar
 3. Add User
-4. Enter user name, check Programatic Access, next
+4. Enter user name, check Programmatic Access, next
 5. Choose from the groups you just created to grant read/write access, next
 6. Skip the tags, next
 7. Create User. Be sure to save the secret access key in your password manager.
@@ -78,9 +78,9 @@ aws configure
 ```
 
 ## Get the docker login command
-Use the AWS cli to fetch and execute the docker login command. You can also
+Use the AWS CLI to fetch and execute the docker login command. You can also
 export this command to a file to run it, but there's no point since the token
-gets invalidated aftert 12 hours.
+gets invalidated after 12 hours.
 
 ```bash
 $(aws ecr get-login --no-include-email --region ca-central-1)
@@ -92,7 +92,7 @@ $(aws ecr get-login --no-include-email --region ca-central-1)
 
 # Push Images to the ECR Registry
 If you click on the Push Commands button in the ECR registry page you'll get
-examples programatically generated for your registry.
+examples programmatically generated for your registry.
 
 Pushing is kind of unintuitive. Unlike a normal `registry:2` docker registry,
 ECR won't automatically create your repositories for you. You have to manually

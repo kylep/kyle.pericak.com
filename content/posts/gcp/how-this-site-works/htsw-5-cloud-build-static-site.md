@@ -54,7 +54,7 @@ There are two keys: steps and images.
 
 The `steps:` key uses `cloud-builders/docker` to invoke a `docker build`
 command. It builds from the `Dockerfile` and tags the image. The variable
-`$PROJECT_ID` is subtituted with the GCP project's ID when cloud-build runs.
+`$PROJECT_ID` is substituted with the GCP project's ID when cloud-build runs.
 
 The `images:` key defines which images to push to the Google Container
 Registry. In this case, it pushes the just-built container.

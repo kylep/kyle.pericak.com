@@ -42,7 +42,7 @@ the IP down the road.
 SSH to the server to confirm that it works.
 
 ### Configure Remote User
-These steps will create a user named "remoteuser"
+These steps will create a user named `remoteuser`
 
 ```bash
 # Create the user
@@ -90,8 +90,8 @@ For convenience, I like to copy the key to the root user too. Optional.
 
 ## Authorize the SSH Public Key on the Pivot Serer
 
-Back on the Pivot server, edit the remoteuser's `authorized_keys` file to
-grant this SSH keypair access. Paste the SSH key at the end of the file
+Back on the Pivot server, edit the remote user's `authorized_keys` file to
+grant this SSH key-pair access. Paste the SSH key at the end of the file
 
 ```bash
 vi /home/remoteuser/.ssh/authorized_keys
@@ -115,10 +115,10 @@ port=22222
 ssh -fN -R 0.0.0.0:$port:127.0.0.1:22 $user@$pivot
 ```
 
-### Connect through the pivtot
+### Connect through the pivot
 
 From the pivot server, SSH to the DHD. This example assumes your username
-is myuser.
+is `myuser`.
 
 ```bash
 ssh -p 22222 myuser@127.0.0.1
@@ -187,7 +187,7 @@ Edit the crontab
 
 `sudo vi /etc/crontab`
 
-and insert this line, where myuser is your username on the DHD.
+and insert this line, where `myuser` is your username on the DHD.
 If you use root, you have to also give root the ssh private key.
 
 ```text
@@ -204,4 +204,4 @@ Then kill the session (using `ps aux` and `kill`) then watch it come back.
 
 Done. Now the server is a dial-home device. It will constantly dial your pivot
 server and re-open the session whenever its closed. To lock the server out,
-just remove its public key from remoteuser's `authorized_keys` file.
+just remove its public key from `remoteuser`'s `authorized_keys` file.

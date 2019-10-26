@@ -56,7 +56,7 @@ configure networks since Ubuntu's Bionic stable release. Here's the netplan
 config I used. You can see the wired connection in there too, it doesn't need
 to be there once this is finished.
 
-Be sure to replace "MySSID" and "My Password" with your own.
+Be sure to replace "`MySSID`" and "`My Password`" with your own.
 
 `vi /etc/netplan/01-netcfg.yaml`
 ```
@@ -80,7 +80,7 @@ netplan try
 ```
 
 You should have an IP address now in `ifconfig`. For some reason I didn't get
-one right away, so I forced the dhcp request like this:
+one right away, so I forced the DHCP request like this:
 ```
 dhclient wlp2s0 -v
 ```
