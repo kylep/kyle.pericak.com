@@ -1,3 +1,4 @@
+title: Vim Spell-Check
 description: Vim Spell-Check
 slug: vim-spellcheck
 category: operations
@@ -7,12 +8,16 @@ modified: 2019-10-25
 status: published
 
 
-When using VIM to write markdown files, spelling becomes a concern. As of Vim
-7, spell-checking is a built-in feature.
+As of Vim7, spell-checking is a built-in feature.
 
 
-The spell checker will highly incorrectly spelled words in red. It will
-highlight words that are in another dictionary (such as `en_us`) in blue.
+The spell checker will highlight incorrectly spelled words in red.
+Light blue highlights indicate words which are only found in another dictionary
+(such as "color" from `en_us`).
+
+
+---
+
 
 # Commands
 
@@ -27,7 +32,10 @@ Enable spellcheck
 :setlocal spell spelllang=en_ca
 ```
 
-Or if you'te not picky, the easier to remember:
+Or if you're not picky, the `spelllang` argument can be omitted. I'm not sure
+what the default is, but I figure it's probable `en` which uses all the English
+dictionaries together.
+
 ```
 :set spell
 ```

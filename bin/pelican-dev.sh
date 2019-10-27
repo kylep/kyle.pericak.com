@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ ! -d bin ]]; then
+  echo "ERROR: Run this from the base dir"
+  exit 1
+fi
+
 # Optional Theme mount for theme development. Pass the root dir of theme as arg
 template_mount=""
 if [[ $# == 1 ]]; then
