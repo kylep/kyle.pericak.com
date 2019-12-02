@@ -212,4 +212,6 @@ temp_file=$(mktemp)
 cleanup() {
   rm "$temp_file"
 }
+
+trap cleanup EXIT
 ```
