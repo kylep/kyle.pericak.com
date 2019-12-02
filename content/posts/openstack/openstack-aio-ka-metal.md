@@ -1,7 +1,7 @@
-title: Install OpenStack on Intel NUC
+title: Install Non-Prod OpenStack on a Physical Server
 summary: Installing all-in-one OpenStack with Kolla-Ansible metal as a test cloud
 slug: openstack-aio-ka-metal
-category: openstack
+category: cloud
 tags: OpenStack
 date: 2019-08-13
 modified: 2019-08-13
