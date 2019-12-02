@@ -1,16 +1,24 @@
-title: Google Cloud Functions Basics - Serverless APIs
-summary: An introduction to Google Cloud Platform's Cloud Functions
+title: Google Cloud Functions: Basics
+summary: Building a simple servless API on Google Cloud Platform's Cloud Functions
 slug: gcp-cloud-functions
 category: cloud
 tags: gcp, api
 date: 2019-10-11
 modified: 2019-10-11
-status: draft
+status: published
+image: google-cloud-functions.png
+thumbnail: google-cloud-functions-thumb.png
 
 
 This post covers getting started with a very simple Google Cloud Functions API,
 a great serverless solution with affordable pricing. This API will pull the
 IP address from the HTTP request, and return `Hello <source IP>`.
+
+---
+
+[TOC]
+
+---
 
 
 # Pricing Details
@@ -23,7 +31,7 @@ Check the official [Google docs](https://cloud.google.com/functions/pricing)
 for accurate and up-to-date pricing, but here's what it looked like at the time
  of my writing this.
 
-Pricing's broken into a few fees:
+Pricing is broken into a few fees:
 
 - *Invocations*: A flat fee per function execution. $0.0000004 per invocation,
   excluding the first 2 million.
