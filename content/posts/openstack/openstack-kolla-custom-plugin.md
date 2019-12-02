@@ -1,16 +1,24 @@
-title: Modifying Openstack Kolla Container Images
+title: Modifying OpenStack Kolla Docker Images
+summary: Creating a custom Cinder Docker image without modifying the Kolla code.
 slug: openstack-kolla-custom-plugin
-category: openstack
+category:cloud
+tags: OpenStack
 date: 2019-08-26
 modified: 2019-08-26
-Status: published
+status: published
+image: openstack-kolla.png
+thumbnail: openstack-kolla-thumb.png
 
 
-[Openstack Cinder](https://docs.openstack.org/cinder/latest/) needs some
+**This post is linked to from the [OpenStack Deep Dive Project](/openstack)**
+
+---
+
+[OpenStack Cinder](https://docs.openstack.org/cinder/latest/) needs some
 special software installed to work with certain storage backends.
 
 [Kolla](https://docs.openstack.org/kolla/latest/) builds Docker containers for
-Openstack.
+OpenStack.
 
 This post documents the steps to customize how Kolla builds containers. In
 particular, these steps add the Pure Storage plugin to the Cinder-Volume
@@ -23,7 +31,7 @@ service's Docker image.
 # Install Kolla
 
 This example uses the Rocky checkout to make Rocky based images. Use the stable
-branch matching your openstack version else things get weird.
+branch matching your OpenStack version else things get weird.
 
 ```bash
 apt-get install -y git python python-pip
@@ -36,7 +44,7 @@ pip install .
 
 ## Configure Kolla
 
-Use tox's genconfig envlist to generate a commented config file
+Use tox's `genconfig envlist` to generate a commented config file:
 
 ```bash
 tox -e genconfig
@@ -78,3 +86,5 @@ kolla-build \
   --template-override /etc/kolla/template-overrides.j2  \
   cinder-volume
 ```
+
+That's it. You can now use this image with the included plugin.

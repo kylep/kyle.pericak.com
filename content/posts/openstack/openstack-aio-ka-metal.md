@@ -1,18 +1,24 @@
 title: Install OpenStack on Intel NUC
-description: Installing OpenStack inside an Intel NUC
+summary: Installing all-in-one OpenStack with Kolla-Ansible metal as a test cloud
 slug: openstack-aio-ka-metal
 category: openstack
-date: 2019-08-12
 tags: OpenStack
-modified: 2019-08-12
+date: 2019-08-13
+modified: 2019-08-13
 status: published
+image: openstack-kolla.png
+thumbnail: openstack-kolla-thumb.png
 
+
+
+**This post is linked to from the [OpenStack Deep Dive Project](/openstack)**
+
+---
 
 This guide installs OpenStack on a single metal server.
-To install OpenStack, I use [Kolla-Ansible](https://github.com/openstack/kolla-ansible)
 
-For a much more detailed write-up or to install OpenStack in a VM, see my other
-post [here](/openstack-aio-ka-vm..html).
+To install OpenStack, I use [Kolla-Ansible](https://github.com/openstack/kolla-ansible),
+an open source Ansible project that deploys Kolla OpenStack images.
 
 OpenStack [Rocky](https://www.openstack.org/software/rocky/) will be installed,
 configured with a
@@ -27,6 +33,9 @@ for overcloud networking, and include the following OpenStack APIs:
 - Heat
 - Magnum
 
+---
+
+[TOC]
 
 ---
 
@@ -52,7 +61,7 @@ Intel NUC with two drives, one interface, 32G RAM, running Ubuntu 18.04.
 - Cloud VIP: `10.254.2.254`
 
 
---
+---
 
 
 # Update & Prepare System
@@ -271,11 +280,6 @@ openstack security group rule create --proto udp --dst-port 1:65535 $group_id
 openstack server create --image cirros --flavor tiny --network vlan3-net test
 ```
 
-The cloud is now ready for use. If layer 3 routing from vlan 2 to vlan 3 is
+The cloud is now ready for use. If layer 3 routing from VLAN 2 to VLAN 3 is
 configured, then the VM will be accessible.
 
-
-# Next Up
-In this guide we installed the Magnum OpenStack project, but didn't do anything
-with it. Check out my next guide to see how I deployed a private K8S cluster on
-OpenStack - [Deploying Kubernetes with Openstack Magnum](/openstack-magnum.html).

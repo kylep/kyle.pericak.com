@@ -1,11 +1,13 @@
 title: Google Cloud Firestore Basics - Python
-summary: Reading and writing Datastore entries from local python
-slug: gcp-datastore-python
-category: gcp
-tags: gcp, api, python
+summary: Reading and writing Firestore entries from local python, and some comparisons with Datastore
+slug: gcp-firestore-python
+category: cloud
+tags: GCP, python
 date: 2019-10-14
 modified: 2019-10-14
 status: published
+image: google-firestore.png
+thumbnail: google-firestore-thumb.png
 
 
 This post covers how to interact with Google's Cloud Firestore, using examples
@@ -123,8 +125,8 @@ First, create a [Service Account](https://console.cloud.google.com/iam-admin/ser
 1. Select your project
 1. Click "Create Service Account"
 1. Service Account Details:
-    1. Service account name: PythonDatastoreAdmin
-    1. Service account ID: pythondatastoreadmin
+    1. Service account name: `PythonDatastoreAdmin`
+    1. Service account ID: `pythondatastoreadmin`
     1. Service account description: SA with Full Datastore Access for Python
 1. Grant this service account access to project (optional)
     1. Select a role: Datastore > Cloud Datastore Owner
@@ -177,10 +179,10 @@ Some notes about the Firestore python API:
   which allows you to operate on the named collection.
 - `firestore.client().collection().list_documents` returns a [Page Iterator](google.api_core.page_iterator.GRPCIterator).
   Casting a page iterator to a list will trigger a read operation, returning a
-  list of DocumentReference objects.
+  list of `DocumentReference` objects.
 - `firestore.client().collection().document` returns
   a [DocumentReferece](https://googleapis.dev/python/firestore/latest/document.html),
-  which interacts with the actual Firestore documents. The DocumentReference
+  which interacts with the actual Firestore documents. The `DocumentReference`
   object can operate (get/set/create) on the actual Document.
 - `firestore.client().collection().document().get()` will return
   a [DocumentSnapshot](https://developers.google.com/android/reference/com/google/firebase/firestore/DocumentSnapshot)
@@ -268,13 +270,13 @@ If that happens, review the IAM Service account steps.
 
 ### Iterator has already started
 
-If you try and cast a GRPCIterator to list twice, you get a ValueError.
+If you try and cast a `GRPCIterator` to list twice, you get a `ValueError`.
 
 ```text
 ValueError: ('Iterator has already started', <google.api_core.page_iterator.GRPCIterator object)
 ```
 
-The ValueError is thrown because `._started` is `True` in the iterator. It has
+The `ValueError` is thrown because `._started` is `True` in the iterator. It has
 already done its thing and won't work again. I didn't see any good way to
 restart the iterator without discarding it.
 You can see the details in the [page iterator source code](https://github.com/googleapis/google-cloud-python/blob/master/api_core/google/api_core/page_iterator.py).

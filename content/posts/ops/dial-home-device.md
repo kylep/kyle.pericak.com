@@ -1,11 +1,13 @@
 title: Remote Access: Build a Dial-Home Device
-description: Building a remote jump-box that dials home to establish a session
+summary: Building a remote jump-box that dials home to establish a session
 slug: dial-home-device
 category: operations
-tags: ops,remote-access
+tags: remote access, Ubuntu
 date: 2019-09-17
 modified: 2019-09-17
 status: published
+image: gear.png
+thumbnail: gear-thumb.png
 
 
 You've deployed a server in a customer environment and you don't have remote

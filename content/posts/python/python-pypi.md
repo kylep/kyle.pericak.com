@@ -1,21 +1,31 @@
 title: Upload a Python Package to PyPi
-description: Uploading a python package to PyPi so it can be pulled with pip
+summary: Sharing a custom python package on PyPi so it can be pulled with pip
 slug: python-pypi
-category: python
-tags: python
+category: development
+tags: python,pypi
 date: 2019-09-06
 modified: 2019-10-2
 status: published
+image: pypi.png
+thumbnail: pypi-thumb.png
 
+
+**This post is linked to from the [FOSS Python App Project](/open-source-cli-project)**
+
+---
+
+
+At a high level, the steps to upload a package to PyPi are as follows:
 
 1. Write the project code
-1. Create a release on github and put it in the `download_url` of setup.py
+1. Create a release on GitHub and put it in the `download_url` of setup.py
 1. Write a setup.py file to build and describe the project
 1. Write a setup.cfg file pointing to the readme
 1. create a source distribution
 
 
 # Write the project code
+
 
 I'm not going to cover how to build a python project in this post, but here's
 the very small and simple project I used when learning this procedure:
@@ -83,6 +93,7 @@ setup(
 
 
 ## Picking a topic:
+
 I used [this classifier list](https://pypi.org/pypi?%3Aaction=list_classifiers)
 
 
@@ -90,6 +101,7 @@ I used [this classifier list](https://pypi.org/pypi?%3Aaction=list_classifiers)
 
 
 # Write setup.cfg
+
 This goes in the project root next to setup.py.
 
 `vi setup.cfg`
@@ -118,6 +130,3 @@ python setup.py sdist
 twine upload --skip-existing dist/*
 # Enter your username and password for PyPI
 ```
-
-
-

@@ -1,11 +1,11 @@
 title: Google Cloud Functions Basics - Serverless APIs
 summary: An introduction to Google Cloud Platform's Cloud Functions
 slug: gcp-cloud-functions
-category: gcp
+category: cloud
 tags: gcp, api
 date: 2019-10-11
 modified: 2019-10-11
-status: published
+status: draft
 
 
 This post covers getting started with a very simple Google Cloud Functions API,

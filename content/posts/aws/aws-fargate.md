@@ -1,22 +1,27 @@
-title: Running Custom Docker Containers on AWS ECS (Fargate) from Web Console
+title: AWS Fargate: Basics
 summary: How to run a docker container on AWS Fargate from the web console
 slug: aws-fargate
-category: aws
-tags: aws, docker, ecs
+category: cloud
+tags: AWS, Docker
 date: 2019-09-10
 modified: 2019-09-10
 status: published
+image: aws-fargate.png
+thumbnail: aws-fargate-thumb.png
 
 
-How to run a docker container on AWS ECS using the AWS web console. The
-container launched will be one which was created from the AWS Elastic Container
-Registry, and it will run on Amazon's [Fargate Container-as-a-Service](https://aws.amazon.com/fargate/).
+How to run a docker container on AWS ECS (Elastic Compute Cloud)  using the AWS 
+web console. A container from the Elastic Container Registry will be launched.
+It will run on Amazon's [Fargate Container-as-a-Service](https://aws.amazon.com/fargate/).
 
+---
+
+[TOC]
 
 ---
 
 
-# Launch the container
+# Launch a container on Fargate
 
 1. Upload an image to AWS ECR. [See my guide on using AWS ECR](/aws-ecr.html).
 1. Open [AWS ECS](https://ca-central-1.console.aws.amazon.com/ecs/)
@@ -43,7 +48,7 @@ It will take a little while. Once its finished you can click on View Service.
 ---
 
 
-# Publish container to the internet
+# Publish container's network to the internet
 
 Navigate to the newly created service and go to the Details tab. From there you
 can see a Load Balancing section. It should have a link to the new load

@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
-if [[ ! -d bin ]]; then
-  echo "ERROR: Run this from the base dir"
+if [[ "$(whoami)" != "root" ]]; then
+  echo "ERROR: Need to run this as root"
+  exit 1
+fi
+
+if [[ ! -d content || ! -f pelicanconf.py ]]; then
+  echo "ERROR: content dir or pelicanconf.py not found. Run from  project root"
   exit 1
 fi
 
@@ -15,12 +20,15 @@ fi
 
 mkdir -p output
 docker pull gcr.io/kylepericak/pelican
-docker rm -f pelican >/dev/null || true
+if [[ $(docker ps -a  | grep pelican) ]]; then
+  docker rm -f pelican
+fi
 docker run -d $template_mount \
   --name pelican \
+  -v $(pwd)/pelicanconf.py:/pelicanconf.py \
   -v $(pwd)/content:/content \
   -v $(pwd)/output:/output \
-  -p 0.0.0.0:8000:8000 \
+  -p 0.0.0.0:80:8000 \
   gcr.io/kylepericak/pelican \
   tail -f /dev/null
 

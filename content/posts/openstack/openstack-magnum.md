@@ -5,7 +5,7 @@ category: openstack
 tags: OpenStack, Kubernetes
 date: 2019-08-30
 modified: 2019-08-30
-status: published
+status: draft
 
 
 Magnum is an OpenStack project used to deploy Kubernetes clusters "as a

@@ -1,11 +1,13 @@
 title: Docker Shared Memory (/dev/sdh)
-description: Shared memory for Docker
+summary: Using a high-performance shared memory volume in Docker containers
 slug: docker-shared-memory
-category: docker
-tags: docker
+category: development
+tags: Docker
 date: 2019-09-06
 modified: 2019-09-06
 status: published
+image: Docker.png
+thumbnail: docker-thumb.png
 
 
 Docker supports shared memory. The default is only 64MB though which is TINY.

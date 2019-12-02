@@ -1,11 +1,13 @@
 title: Private Minecraft Feed-The-Beast Server & Client Setup
-description: Hosting a private modded Minecraft server and connecting to it
+summary: Hosting a private modded Minecraft server and connecting to it using various clients.
 slug: gaming-minecraft-feedthebeast
 category: gaming
 tags: minecraft
-date: 2019-09-20
-modified: 2019-10-11
+date: 2019-09-02
+modified: 2019-09-02
 status: published
+image: ftb.png
+thumbnail: ftb-thumb.png
 
 
 This guide covers how I set up a dedicated modded Minecraft Feed The Beast
@@ -74,11 +76,12 @@ apt-get install -y default-jre
 
 ## Launch the Server
 
-I like to console into the server and start a TMUX session, then SSH to it
+I like to console into the server and start a Tmux session, then SSH to it
 and join that session to keep the server running. You can also just make a
 systemd unit if you like.
 
-From the ftb folder start the server interactively:
+From the `~/ftb` folder start the server interactively:
+
 ```bash
 bash ~/ftb/ServerStart.sh
 ```
@@ -88,12 +91,21 @@ bash ~/ftb/ServerStart.sh
 
 # Client Setup
 
+## Suggested Option: FTB Launcher
 
-## Preferred Option: MultiMC
+Download the official FTB launcher from [here](https://www.feed-the-beast.com/).
 
-This is now my preferred way of installing the client. It works offline, and is
-strictly about launching Minecraft. Also it has some nice features like
-a window that seems to `tail -f` the minecraft log.
+It's really intuitive, no instructions are needed.
+
+
+## Alternate Option 1: MultiMC
+
+This option has my favorite UI, but it seems to run into Java problems on
+Windows sometimes.
+
+MultiMC works offline, and is strictly about launching Minecraft.
+It has some nice features like a window that seems to `tail -f` the Minecraft
+log. It can also set different resource usage values per mod.
 
 1. Download [Multi-MC](https://multimc.org/), install, and launch it.
 1. Click Add Instance
@@ -107,12 +119,14 @@ a window that seems to `tail -f` the minecraft log.
 1. Double-click on the installed mod to launch it
 
 
-## Alternative Option: Twitch Client
+## Alternative Option 2: Twitch Client
 
-*Note*: The twitch launcher is a pain. It refuses to go offline and shows you
-tons of stuff not related to modding minecraft.
+**Note**: The twitch launcher is a pain. It refuses to go offline and shows you
+tons of stuff not related to modding Minecraft.
 Unless you already use Twitch for other games or enjoy watching streamers,
 I suggest you try MultiMC first.
+
+**Update**: This is pretty much discontinued now, definitely avoid it.
 
 From a Windows client OS, go to [twitch's download site](https://www.twitch.tv/downloads)
 and download the **twitch app for windows**.

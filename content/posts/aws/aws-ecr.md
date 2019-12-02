@@ -1,18 +1,28 @@
-title: Using AWS ECR - Elastic Container Registry
+title: AWS ECR - Elastic Container Registry: Basics
+summary: Creating and operating a Docker registry on AWS with custom users
 slug: aws-ecr
-category: aws
-tags: aws, docker
+category: cloud
+tags: AWS, Docker
 date: 2019-08-26
 modified: 2019-09-19
-Status: published
+status: published
+image: aws-ecr.png
+thumbnail: aws-ecr-thumb.png
 
 
+This post covers how to make a Docker registry on AWS Elastic Container
+Registry (ECR).
+To secure the registry, least-privilege roles are created and assigned to
+service account users in the AWS AIM tool
 
-# Environment
-This was done using a Ubuntu Xenial VM. Docker is already installed.
+---
 
+[TOC]
+
+---
 
 # Create an AWS ECR Repository
+
 Navigate to the
 [AWS ECR Repositories page](https://ca-central-1.console.aws.amazon.com/ecr/repositories)
 and click Create a repository.
@@ -20,15 +30,19 @@ and click Create a repository.
 Fill in the form to name your repository.
 
 # Create an AWS IAM User For the Registry
+
 Its a good idea to have user accounts with write access, and others with
 read-only access. This way you can push to the registry with your privileged
 user but you never need to expose those credentials outside your development
-or CICD environment.
+or CI/CD environment.
+
 
 ## Create Groups for ECR Access
+
 First, review the AWS Group access levels [here](https://docs.aws.amazon.com/AmazonECR/latest/userguide/ecr_managed_policies.html).
 
 ### Make a group with write access
+
 Users in this group can push to existing registries but they can't use the CLI
 to make new ones.
 
@@ -36,17 +50,25 @@ to make new ones.
 2. Click Groups on the sidebar
 3. Name the group, ex: `ecr-write`
 4. Attach Policy: `AmazonEC2ContainerRegistryPowerUser`, next
-5. click Create Group
+5. Create Group
+
 
 ### Make a read-only group
+
 Its the same procedure as above, but use the read-only policy instead:
 `AmazonEC2ContainerRegistryReadOnly`.
 
 Consider also making an admin group with the
 `AmazonEC2ContainerRegistryFullAccess` permission.
 
+
 ## Create Users for ECR Access
-Make two users, one for pushing and one for pulling. To make a user:
+
+Make two users, one for pushing and one for pulling. You can share the user
+will read access to anyone who needs to consume the images.
+
+To make a user:
+
 1. Go to the [AWS IAM page](https://console.aws.amazon.com/iam)
 2. Click Users on the sidebar
 3. Add User
@@ -57,7 +79,8 @@ Make two users, one for pushing and one for pulling. To make a user:
 
 
 
-# Connect Docker to the Elastic Container Registry
+# Connect Docker to the new  Registry
+
 ## Install the AWS CLI
 The one from apt is really old and doesn't work. Use pip.
 ```bash
@@ -111,6 +134,7 @@ aws ecr describe-repositories --repository-names $repo_name \
 ```
 
 Then you can push.
+
 ```bash
 docker push $myId.dkr.ecr.ca-central-1.amazonaws.com/$repo:$tag
 ```
@@ -118,16 +142,3 @@ docker push $myId.dkr.ecr.ca-central-1.amazonaws.com/$repo:$tag
 If you first create the repository, you get an error like this: `name unknown:
 The repository with name 'kolla/ubuntu-source-base' does not exist in the
 registry with id '...'`
-
-
-
----
-
-
-# Using Your Own Domain Name
-AWS doesn't let you use your own domain name, but you can create a reverse
-proxy to make it work. [Here's a guide I wrote]
-explaining how to do it with CloudFlare.
-
-
-

@@ -1,23 +1,28 @@
-title: Connect Wired Servers to Internet Through Wireless Ubuntu Server
+title: Creating a Wireless Router for Wired Servers With Ubuntu Server
+summary: Connecting wired servers, through a switch, to an ubuntu server with a wireless card.
 slug: ubuntu-wifi-to-wired-router
+tags: WiFi, Ubuntu
 category: operations
 date: 2019-08-20
 modified: 2019-08-20
-Status: published
+status: published
+image: wifi.png
+thumbnail: wifi-thumb.png
+
 
 # Setup
 This setup was done on an [Intel Nuc](https://www.intel.ca/content/www/ca/en/products/boards-kits/nuc.html).
 
 The Nuc is running Ubuntu Server 18.04 Bionic, CLI only. It has a wired
 connection to a rack switch on an access port, and a wireless connection to the
-office wifi.
+office WiFi.
 
 The server will host 192.168.0.1 and act as a gateway for the wired servers.
 It will do NAT just like a home router does to ensure there are no routing
 problems with the upstream layer 3 devices.
 
-This setup begins where my [Ubuntu Wifi Guide](ubuntu-bionic-wifi) left off.
-Check it out if you're not sure how to connect to the Wifi from an Ubuntu
+This setup begins where my [Ubuntu WiFi Guide](ubuntu-bionic-wifi) left off.
+Check it out if you're not sure how to connect to the WiFi from an Ubuntu
 server.
 
 
@@ -65,22 +70,22 @@ netplan try
 
 
 # Configure NAT
-We'll use iptables for NAT.
+We'll use `iptables` for NAT.
 
 First, make a file that defines the rules you want:
 
 ## Define iptables rules file
 
 These rules will take any traffic coming from 192.168.0.0/24 that are being
-routed out the wifi interface wlp2s0 (the default gateway / default route), and
-apply the MASQUERADE rule which will run port address translation, allowing
+routed out the WiFi interface `wlp2s0` (the default gateway / default route),
+and apply the MASQUERADE rule which will run port address translation, allowing
 internet.
 
 There are two tables, `nat` and `filter`. The NAT table does the translation,
 the filter table defines what's allowed in and out. We need to specify that
 traffic is allowed to go:
-- From the ethernet port to the wifi port
-- Back from wifi to ethernet, when it is `RELATED` or `ESTABLISHED`
+- From the Ethernet port to the WiFi port
+- Back from WiFi to Ethernet, when it is `RELATED` or `ESTABLISHED`
 
 
 `vi /etc/iptables_rules.sh`
@@ -127,7 +132,7 @@ If the file didn't exist, make sure that it starts with a shebang:
 #!/usr/bin/env bash
 ```
 
-and ensure that it's exectuable.
+Ensure that it's executable:
 
 ```
 chmod +x /etc/rc.local

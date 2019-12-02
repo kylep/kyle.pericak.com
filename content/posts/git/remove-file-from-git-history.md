@@ -1,10 +1,12 @@
 title: Remove/Delete a File from Git History
-summary: Deleting a file that has been pushed to git
+summary: Deleting a file after it's been pushed to to a remote git repository
 slug: remove-file-from-git-history
-tags: dev
-category: git
+tags: Git
+category: development
 date: 2019-09-06
 status: published
+image: git.png
+thumbnail: git-thumb.png
 
 
 While writing a [tool to download JSON fields from SQL tables](/jsc2f.html),

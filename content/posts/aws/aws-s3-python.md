@@ -1,13 +1,16 @@
 title: Using AWS S3 from Python
+summary: Saving and reading files from S3 using python and a dedicated IAM user.
 slug: aws-s3-python
-category: aws
-tags: aws,python,s3
-date: 2019-08-26
+category: cloud
+tags: AWS,python,S3
+date: 2019-09-26
 modified: 2019-09-26
-Status: published
+status: published
+image: aws-s3.png
+thumbnail: aws-s3-thumb.png
 
 
-This guide covers how to upload and download files from Amazon's S3 using
+This post covers how to upload and download files from Amazon's S3 using
 Python. Setup is done from the web UI.
 
 
@@ -29,6 +32,7 @@ IAM stands for Identity and Access Management.
 
 
 ## Create a Policy
+
 From the left nav-bar, go to policies. The default policies don't grant
 programmatic access, so you need to make a new one.
 
@@ -37,10 +41,14 @@ access to everything. I'll come back and update this guide with how to lock
 that down later.
 
 
+---
+
+
 # Add the policy to a group
+
 Go to the groups on the left. Either make a new one or edit an existing one.
 Under Permissions, click Attach Policy. If you want, you can also add
-AmazonS3FullAccess to see the difference between the two.
+`AmazonS3FullAccess` to see the difference between the two.
 
 
 ## Create/Edit a User
@@ -87,7 +95,3 @@ client.upload_file(filename, bucket_name, key)
 # Download Example
 client.download_file(bucket_name, object_name, path)
 ```
-
-
-
-

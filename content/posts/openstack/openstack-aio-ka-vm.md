@@ -1,22 +1,28 @@
 title: Install OpenStack with Kolla-Ansible in a VM
-description: Installing openstack inside a cloud VM for dev and testing
-slug: openstack-aio-ka-vm.
-category: openstack
+summary: Installing OpenStack on a cloud VM with Kolla-Ansible for dev and testing
+slug: openstack-aio-ka-vm
+category: cloud
 tags: OpenStack
 date: 2019-08-11
 modified: 2019-08-11
 status: published
+image: openstack-kolla.png
+thumbnail: openstack-kolla-thumb.png
 
+
+**This post is linked to from the [OpenStack Deep Dive Project](/openstack)**
+
+---
+
+[TOC]
+
+---
 
 This guide installs OpenStack inside a single VM.
 To install OpenStack, I use [Kolla-Ansible](https://github.com/openstack/kolla-ansible)
 
-To see how OpenStack was installed bare-metal on an Intel NUC,
-check out my other post [here](/openstack-aio-ka-metal.html).
-
 OpenStack [Rocky](https://www.openstack.org/software/rocky/) will be installed,
-configured with a
-[VLAN provider network](https://docs.openstack.org/ocata/networking-guide/intro-os-networking.html#intro-os-networking-provider)
+configured with a [VLAN provider network](https://docs.openstack.org/ocata/networking-guide/intro-os-networking.html#intro-os-networking-provider)
 for overcloud networking, and include the following OpenStack APIs:
 
 - Keystone
@@ -44,13 +50,17 @@ OpenStack cluster.
 - 2 VLAN ports: API interface and neutron interface
 - Docker images are the public Rocky images from Kolla on Docker Hub
 
+
 ## OpenStack-on-OpenStack Considerations
 
 Skip this section if the installation is not on OpenStack.
 
+
 ### Disable Port Security
+
 Turn off neutron port-security on each port.
 Otherwise the unknown IPs will be blocked.
+
 ```bash
 for x in \
     3f664e5e-dd67-4fe5-b2cc-86c2918b6a2f \
@@ -66,7 +76,9 @@ done
 
 
 # Update the OS
+
 It will never be less risky to run an update than right now!
+
 ```bash
 apt-get update && apt-get upgrade -y
 ```
@@ -77,13 +89,14 @@ apt-get update && apt-get upgrade -y
 
 # Create Volume Group for Cinder
 
-OpenStack Cinder supports a huge [list of backend storage providers](https://docs.openstack.org/cinder/rocky/reference/support-matrix.html),
+OpenStack Cinder supports a huge [list of back-end storage providers](https://docs.openstack.org/cinder/rocky/reference/support-matrix.html),
 but the simplest to set up is just using an LVM volume group on the host.
-Cinder will use it to carve out logical volumes for each cloud block storage
-device. This isn't highly available, but that's ok for a dev cloud.
+
+Cinder will use LVM to carve out logical volumes for each cloud block storage
+device. This isn't highly available, but that's OK for a dev cloud.
 
 Create a volume group using a dedicated disk.
-In this example, I'll use /dev/vdb for VMs.
+In this example, I'll use `/dev/vdb` for VMs.
 
 The name of this volume group is defined in the globals.yml file as
 `cinder_volume_group`, and can be changed as needed.
@@ -102,7 +115,8 @@ vgcreate cinder-volumes /dev/vdb
 Kolla-Ansible requires that Ansible be pre-installed. Apt can install it too,
 but pip tends to install a newer version. Some old versions aren't compatible
 with Kolla-Ansible.
-```
+
+```bash
 apt-get -y install python python-pip
 pip install ansible
 ```
@@ -113,9 +127,16 @@ pip install ansible
 
 # Install Kolla-Ansible
 
-## Check out the K8S code
-Git comes pre-installed on Ubuntu 18.04. Use it to pull a stable branch of
-Kolla-Ansible. Check out the code and use pip to install Kolla-Ansible.
+## Check out the Kolla-Ansible code
+
+Git comes pre-installed on many Ubuntu 18.04, but install it otherwise.
+
+```bash
+apt-get install -y git
+```
+
+Clone a stable branch of Kolla-Ansible.
+Check out the code and use pip to install it.
 
 Make sure to use the stable branch associated with Rocky. Kolla-Ansible doesn't
 work right when installing versions of OpenStack that don't match git stable
@@ -129,7 +150,6 @@ git checkout stable/rocky
 pip install .
 ```
 
-
 ---
 
 
@@ -138,9 +158,11 @@ pip install .
 ## OpenStack service config files
 
 Create a directory to store the OpenStack config changes.
+
 ```bash
 mkdir -p /etc/kolla/config
 ```
+
 
 ## Globals file
 
@@ -152,12 +174,12 @@ Check these two links for more info:
 
 Any configs not defined are set by defaults.yml files in KA's Ansible roles.
 
-The globals file can specify your openstack version, where it will pull its
+The globals file can specify your OpenStack version, where it will pull its
 containers from, and which containers will be deployed. Be sure to replace
 `kolla_internal_vip_address`'s value with your VIP address.
 
 The VIP can't be used by your existing network card, else HAproxy will throw a
-fit and Kolla-Ansible will fail at the Mariadb step.
+fit and Kolla-Ansible will fail at the MariaDB step.
 
 The networking in this example is as simple as it gets. You can really split
 things up in this file if you want to. Note the network interface name too, it
@@ -235,6 +257,7 @@ default_docker_volume_type: "local-lvm"
 
 
 ## Passwords file
+
 The passwords file is empty initially, its just a template to be filled in with
 random password from KA. The `kolla-genpwd` command populates it.
 
@@ -245,6 +268,7 @@ kolla-genpwd
 
 
 ## Ansible Inventory
+
 The KA Ansible inventory defines which roles will be assigned to which hosts.
 The all-in-one inventory file assigns all roles to localhost.
 
@@ -269,13 +293,16 @@ kolla-ansible -i /etc/kolla/inventory post-deploy
 ```
 
 ## Install the OpenStack Command Line
+
 This will enable the `openstack` command.
+
 ```bash
 pip install python-openstackclient python-neutronclient python-magnumclient
 ```
 
-To configure the openstack CLI, source the openrc file that was created by KA's
+To configure the OpenStack CLI, source the openrc file that was created by KA's
 post-deploy step.
+
 ```bash
 source /etc/kolla/admin-openrc.sh
 ```
@@ -329,7 +356,8 @@ openstack subnet create \
 ```
 
 ## Up the interface
-physnet1 is bound to ens6 in this example, but that interface is down. Start
+
+`physnet1` is bound to `ens6` in this example, but that interface is down. Start
 the interface.
 ```bash
 ip link set dev ens6 up
@@ -396,6 +424,7 @@ openstack security group rule create --proto udp --dst-port 1:65535 $group_id
 
 
 # Create a test VM
+
 ```bash
 openstack server create --image cirros --flavor tiny --network vx1-net test
 # This server was assigned 192.168.0.13
@@ -408,9 +437,3 @@ openstack server add floating ip \
 ```
 
 You can now ping or SSH to your VM. The cloud is ready for use.
-
-
-# Next Up
-In this guide we installed the Magnum OpenStack project, but didn't do anything
-with it. Check out my next guide to see how I deployed a private K8S cluster on
-OpenStack - [Deploying Kubernetes with Openstack Magnum](/openstack-magnum.html).

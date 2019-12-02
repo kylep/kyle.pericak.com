@@ -1,11 +1,13 @@
-title: Launch Chrome from Remote Ubuntu Server over SSH
-description: X11 forwarding Chrome through SSH to access internal web endpoints
-slug: x11-forwarding-ubuntu18
+title: Launching Chrome from a Remote Ubuntu Server over SSH
+summary: Launching chrome on a remote Ubuntu server using a local X11 graphics server
+slug: x11-forwarding-ubuntu
 category: operations
-tags: ops,remote-access
+tags: remote access, Ubuntu, Chrome
 date: 2019-08-19
 modified: 2019-08-19
 status: published
+image: x-windows.png
+thumbnail: x-windows-thumb.png
 
 
 One pain point I often have is SSH forwarding the ports for a bunch of web
@@ -16,15 +18,19 @@ subnet can be really helpful.
 In this guide, I show how I launch Chrome on a remote Ubuntu server without
 ever installing any graphics tools like Ubuntu Desktop on that server, and
 without needing VNC/RDP/PCOIP/etc. X11 forwarding lets the XQuarts process on
-a Macbook render the browser, while it still uses the networking on the Ubuntu
+a MacBook render the browser, while it still uses the networking on the Ubuntu
 server it launched from.
 
 
 ---
 
+[TOC]
 
-# Configure Workstation (Macbook) SSH Settings for X11 Forwarding
-If you're not using a Macbook, this won't apply.
+---
+
+
+# Configure Workstation (MacBook) SSH Settings for X11 Forwarding
+If you're not using a MacBook, this won't apply.
 
 
 ## Set XAuthLocation
@@ -71,7 +77,7 @@ apt-get install -f
 dpkg -i google-chrome-stable_current_amd64.deb
 ```
 
-## Install x11-apps for xeyes
+## Install X11-apps for xeyes
 
 This is just for fun and testing. Xeyes is kind of neat.
 
@@ -108,7 +114,7 @@ ssh -XC -c chacha20-poly1305@openssh.com myuser@192.168.2.2 google-chrome
 # Troubleshooting
 ## xauth:  timeout in locking authority file ~/.Xauthority
 
-As your not-root user, remove and chmod some files.
+As your not-root user, remove and `chmod` some files.
 
 ```bash
 sudo rm ~/.Xauthority-c

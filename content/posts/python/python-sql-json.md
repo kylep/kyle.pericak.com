@@ -1,11 +1,13 @@
 title: Working with JSON SQL values in Python
-description: Using raw SQL queries to manage JSON values in databases
+summary: Using raw SQL queries to manage JSON values in databases
 slug: python-raw-sql-json
-category: python
+category: development
 tags: python
 date: 2019-09-05
 modified: 2019-09-05
 status: published
+image: python.png
+thumbnail: python-thumb.png
 
 
 Often I need to operate on a huge JSON string that's saved in a MaraiDB
@@ -17,15 +19,15 @@ Having said that, this example is way smaller and more portable.
 
 The way this works is you open up an interactive python session, ideally in
 a virtualenv. Set the variable values at the top. Run the two functions as
-needed. In another window/pane, edit the json files.
+needed. In another window/pane, edit the JSON files.
 
-Another option is to use JQ with interactive MySQL commands. I'm not covering
+Another option is to use `jq` with interactive MySQL commands. I'm not covering
 that in this post, though.
 
 
 # Environment setup
 
-This is best done in a venv if mysql-connector doesn't need to be installed
+This is best done in a venv if `mysql-connector` doesn't need to be installed
 on the base system.
 
 ```bash
