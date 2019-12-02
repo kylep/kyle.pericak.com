@@ -1,7 +1,7 @@
 title: Remote Access: Build a Dial-Home Device
 summary: Building a remote jump-box that dials home to establish a session
 slug: dial-home-device
-category: operations
+category: systems administration
 tags: remote access, Ubuntu
 date: 2019-09-17
 modified: 2019-09-17

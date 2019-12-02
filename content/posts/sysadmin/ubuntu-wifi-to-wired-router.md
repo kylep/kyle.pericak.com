@@ -2,7 +2,7 @@ title: Creating a Wireless Router for Wired Servers With Ubuntu Server
 summary: Connecting wired servers, through a switch, to an ubuntu server with a wireless card.
 slug: ubuntu-wifi-to-wired-router
 tags: WiFi, Ubuntu
-category: operations
+category: systems administration
 date: 2019-08-20
 modified: 2019-08-20
 status: published

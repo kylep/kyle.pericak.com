@@ -1,7 +1,7 @@
 title: Launching Chrome from a Remote Ubuntu Server over SSH
 summary: Launching chrome on a remote Ubuntu server using a local X11 graphics server
 slug: x11-forwarding-ubuntu
-category: operations
+category: systems administration
 tags: remote access, Ubuntu, Chrome
 date: 2019-08-19
 modified: 2019-08-19

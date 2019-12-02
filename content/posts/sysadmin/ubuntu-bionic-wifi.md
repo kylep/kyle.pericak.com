@@ -1,7 +1,7 @@
 title: Connecting Ubuntu 18.04 to WPA WiFi from CLI
 summary: Using the CLI on Ubuntu Server to connect a to a WPA wireless network.
 slug: ubuntu-bionic-wifi
-category: operations
+category: systems administration
 tags: ubuntu, WiFi
 date: 2019-08-19
 modified: 2019-08-19
