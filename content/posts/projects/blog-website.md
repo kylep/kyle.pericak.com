@@ -90,6 +90,15 @@ If any aren't finished, check back later!
       </a>
     </td>
   </tr>
+  <tr>
+    <td>Done</td>
+    <td>
+      <a href="/cloudflare-https">
+        Using Cloudflare to provide HTTPS
+      </a>
+    </td>
+  </tr>
+
 </table>
 
 
@@ -192,3 +201,12 @@ site.
 
 **[Google Cloud Storage: Static Website Hosting](/google-cloud-storage-website)**
 
+
+# Secure the site with HTTPS
+
+These days there's really no good excuse to not have HTTPS on your site. On
+a self-hosted site I usually use [LetsEncrypt](https://letsencrypt.org/), but
+for this static site instead I've used the built-in HTTPS feature of
+CloudFlare's free CDN solution.
+
+**[Using Cloudflare to provide HTTPS to an HTTP static site](/cloudflare-https)**
