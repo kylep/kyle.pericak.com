@@ -74,19 +74,30 @@ It's intended to serve a few purposes:
 
 ## About the Author
 
-My name's Kyle Pericak. I work in the Toronto area.
-I focus mainly on hybrid cloud and DevOps technologies.
+My name's Kyle Pericak, and I'm a technological jack-of-all-trades working
+around the Toronto, Canada area.
 
-Right now I'm leading the dev team and building
-private clouds with a consumerized web UI for a company called [Breqwatr](https://breqwatr.com).
+I've spent the last few years building OpenStack based private clouds for
+[Breqwatr](https://breqwatr.com), where I lead the development team.
 
-I'm particularly interested in site reliability, information security, and
-customer interactions.
+Before that I built custom one-off clouds as a professional services
+consultant. Around then I also spent some time automating every-day IT jobs,
+mostly around Toronto's banks and insurance companies. Even further back I
+wrote Java VOIP applications. I've also ran a web development company briefly,
+worked tech support, been a Chief Security Officer for a small MSP, and worn
+god-knows how many other hats.
+
+My main focus lately has been around hybrid clouds, DevOps, and
+Python application development.
+
+I'm particularly interested in doing more work around site reliability,
+DevSecOps, and having more customer interactions.
 
 Outside of work, I'm a father to two boys, a husband, a bad musician, and
-when time allows I enjoy strategy video games. I listen to a **lot** of
-audibooks, and lately podcasts too. I love learning new things.
+when time allows I enjoy board games and strategy video games. I listen to a
+**lot** of audiobooks, and lately podcasts too.
 
+I love learning new things.
 
 
 ---
@@ -94,5 +105,5 @@ audibooks, and lately podcasts too. I love learning new things.
 
 ## Contact
 
-To contact me, use one of my social pages. Happy to chat about anything I've
-written.
+To contact me, use one of my social pages. Happy to chat about just about
+anything!
