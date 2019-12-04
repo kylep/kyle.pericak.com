@@ -30,10 +30,10 @@ smaller posts together.
     float: left;
   }
   .project-image{
-    width: 248px;
-    height: 248px;
-    margin: 0;
-    padding: 0;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 0 auto;
+    padding: 0 2px 0 2px;
     float: left;
     background-color: #EEEEEE;
     border-top: 1px solid #EEEEEE;
