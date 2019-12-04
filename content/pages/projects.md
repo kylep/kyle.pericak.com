@@ -57,7 +57,7 @@ smaller posts together.
   <div class="project-title">
     GCP: Deep Dive
   </div>
-  <img src="/images/project-gcp.png" class="project-image"/>
+  <img src="/images/gcp-card.png" class="project-image"/>
   <div class="project-description">
     An ongoing series of posts attempting to try out each of the Google Cloud
     Platform services.
