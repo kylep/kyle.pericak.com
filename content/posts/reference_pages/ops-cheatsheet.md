@@ -22,6 +22,30 @@ This reference page contains operations-related mini-guides and minor posts.
 
 ---
 
+# Create a virtual loopback volume on Ubuntu
+
+Useful for simulating a real drive when building a test environment. I use this to test OpenStack in a VM as a ceph or LVM back-end.
+
+```bash
+# create empty file of all zeros
+sudo dd if=/dev/zero of=/root/virtual-disk bs=1M count=512
+# show list of loopback devices. Note its not there
+losetup --list
+# create the loopback device
+losetup /dev/loop0 /root/virtual-disk
+# confirm it worked
+losetup --list
+```
+
+You can now treat it like a normal volume. Mount it, put a filesystem on it, whatever. Example:
+
+```bash
+pvcreate /dev/loop0
+vgcreate cinder-volumes /dev/loop0
+```
+
+---
+
 # Test MTU from Ubuntu
 
 You would not believe the strange problems that an MTU issue can be the root cause of.
