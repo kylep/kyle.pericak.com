@@ -44,6 +44,42 @@ pvcreate /dev/loop0
 vgcreate cinder-volumes /dev/loop0
 ```
 
+## Use Systemd to re-map loopback on reboot
+
+I found [this useful systemd unit example](https://unix.stackexchange.com/questions/418322/persistent-lvm-device-with-loopback-devices-by-fstab) that didn't quite work for me, but was close. Here's mine:
+
+`vi /etc/systemd/system/loops-setup.service`
+
+```text
+[Unit]
+Description=Setup loopback devices
+
+DefaultDependencies=no
+Conflicts=umount.target
+
+Requires=lvm2-lvmetad.service mnt-host.mount
+Before=local-fs.target umount.target
+After=lvm2-lvmetad.service mnt-host.mount
+
+[Service]
+ExecStart=/sbin/losetup /dev/loop0 /root/virtual-disk
+ExecStop=/sbin/losetup -d /dev/loop0
+
+RemainAfterExit=yes
+Type=oneshot
+
+[Install]
+WantedBy=local-fs-pre.target
+```
+
+Then enable it
+
+```bash
+systemctl enable loops-setup
+```
+
+Reboot, then check `vgdisplay` (if that's your use case). It'll be there.
+
 ---
 
 # Test MTU from Ubuntu
