@@ -12,6 +12,8 @@ thumbnail: google-cloud-storage-thumb.png
 
 **This post is linked to from the [Blog Website Project](/blog-website)**
 
+**This post is linked to from the [GCP: Deep Dive Project](/gcp.html)**
+
 ---
 
 Google Cloud Storage has a feature where storage buckets can be used as a cost

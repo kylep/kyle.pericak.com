@@ -43,7 +43,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/aws-ecr">
+      <a href="/aws-ecr.html">
         Save a Docker image to Elastic Container Registry (ECR)
       </a>
     </td>
@@ -51,7 +51,7 @@ as time goes on.
   <tr>
 		<td>Done</td>
 		<td>
-      <a href="/aws-fargate">
+      <a href="/aws-fargate.html">
         Run a Docker container Using AWS Fargate
       </a>
     </td>
@@ -77,7 +77,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/aws-s3-python">
+      <a href="/aws-s3-python.html">
       Using AWS S3 from Python
     </td>
 </table>

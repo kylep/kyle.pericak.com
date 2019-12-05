@@ -11,7 +11,7 @@ thumbnail: openstack-kolla-thumb.png
 
 
 
-**This post is linked to from the [OpenStack Deep Dive Project](/openstack)**
+**This post is linked to from the [OpenStack Deep Dive Project](/openstack.html)**
 
 ---
 

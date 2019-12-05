@@ -59,7 +59,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/openstack-aio-ka-metal">
+      <a href="/openstack-aio-ka-metal.html">
         Install OpenStack on Metal - Intel NUC
       </a>
     </td>
@@ -67,7 +67,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/openstack-aio-ka-vm">
+      <a href="/openstack-aio-ka-vm.html">
         Install OpenStack inside a VM
       </a>
     </td>
@@ -75,7 +75,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/openstack-kolla-custom-plugin">
+      <a href="/openstack-kolla-custom-plugin.html">
         Modifying OpenStack Kolla Docker Images
       </a>
     </td>
@@ -190,7 +190,7 @@ and Ansible automation from the [Kolla-Ansible project](https://github.com/opens
 The nice thing about this approach is you can use a server at home, and once
 you're done it can be a VM host as your private house cloud.
 
-**[Installing OpenStack on a physical server](/openstack-aio-ka-metal)**
+**[Installing OpenStack on a physical server](/openstack-aio-ka-metal.html)**
 
 
 ### Virtual Server + Kolla-Ansible
@@ -202,7 +202,7 @@ will perform terribly though, and there are some networking complications.
 Don't bother trying to launch Windows VMs at all in a nested virtualisation
 scenario, you'll be lucky if they even boot.
 
-**[Installing OpenStack on a Virtual Server](/openstack-aio-ka-vm)**
+**[Installing OpenStack on a Virtual Server](/openstack-aio-ka-vm.html)**
 
 
 ---
@@ -218,4 +218,4 @@ The [Kolla project](https://github.com/openstack/kolla) does such a great job
 of that, that there's no need to do it yourself. That is, until you need to
 change an image, for instance to install a Cinder plugin.
 
-**[Modifying OpenStack Kolla Docker Images](/copenstack-kolla-custom-plugin)**
+**[Modifying OpenStack Kolla Docker Images](/copenstack-kolla-custom-plugin.html)**

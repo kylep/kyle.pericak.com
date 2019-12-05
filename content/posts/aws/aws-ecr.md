@@ -10,6 +10,11 @@ image: aws-ecr.png
 thumbnail: aws-ecr-thumb.png
 
 
+**This post is linked to from the [AWS: Deep Dive Project](/aws.html)**
+
+---
+
+
 This post covers how to make a Docker registry on AWS Elastic Container
 Registry (ECR).
 To secure the registry, least-privilege roles are created and assigned to

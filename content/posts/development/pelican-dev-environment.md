@@ -10,7 +10,7 @@ image: gear.png
 thumbnail: gear-thumb.png
 
 
-**This post is linked to from the [Blog Website Project](/blog-website)**
+**This post is linked to from the [Blog Website Project](/blog-website.html)**
 
 ---
 
@@ -37,7 +37,7 @@ site will re-generate and be hosted by a local web-server for you to review.
 **Option 1: Build your own**
 
 This is the approach I suggest. You can see the guide I wrote explaining how to
-build a Pelican image [here](/docker-pelican-image).
+build a Pelican image [here](/docker-pelican-image.html).
 
 **Option 2: Use a pre-made image**
 I've shared my image for public use [here](https://hub.docker.com/r/kpericak/pelican).

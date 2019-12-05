@@ -10,6 +10,10 @@ image: google-firestore.png
 thumbnail: google-firestore-thumb.png
 
 
+**This post is linked to from the [GCP: Deep Dive Project](/gcp.html)**
+
+---
+
 This post covers how to interact with Google's Cloud Firestore, using examples
 written in Python. The concepts should apply to any language.
 

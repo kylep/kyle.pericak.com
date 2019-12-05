@@ -41,7 +41,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Not Started</td>
     <td>
-      <a href="/python-pypi">
+      <a href="/python-pypi.html">
         Publishing a Python application to PyPi
       </a>
     </td>
@@ -102,6 +102,6 @@ can find the app [here](https://github.com/kylep/jsc2f).
 
 Currently I'm deploying the app manually after testing the app by hand.
 
-[Publishing a Python application to PyPi](/python-pypi)
+[Publishing a Python application to PyPi](/python-pypi.html)
 
 Check back for updates as I automate this.

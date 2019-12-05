@@ -40,7 +40,7 @@ If any aren't finished, check back later!
 			Done
 		</td>
 		<td>
-      <a href="/emails-postfix-ubuntu">
+      <a href="/emails-postfix-ubuntu.html">
         Postfix Send-Only Mail Service: Basic emails from a dedicated VM
       </a>
 		</td>
@@ -50,7 +50,7 @@ If any aren't finished, check back later!
       Done
     </td>
     <td>
-      <a href="/email-bash-cron">
+      <a href="/emails-bash-cron.html">
         Sending cron-scheduled ping failure alerts using a bash script
       </a>
     </td>
@@ -58,7 +58,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/email-spf">
+      <a href="/email-spf.html">
         Using SPF to ensure emails are trusted
       </a>
     </td>

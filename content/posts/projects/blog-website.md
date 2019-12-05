@@ -45,7 +45,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/docker-pelican-image">
+      <a href="/docker-pelican-image.html">
         Building a Pelican Docker image
       </a>
     </td>
@@ -53,7 +53,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/writing-pelican-content">
+      <a href="/writing-pelican-content.html">
         Writing blog content for Pelican
       </a>
     </td>
@@ -61,7 +61,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/pelican-dev-environment">
+      <a href="/pelican-dev-environment.html">
         A simple Pelican development environment
       </a>
     </td>
@@ -69,7 +69,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/google-container-registry">
+      <a href="/google-container-registry.html">
         Saving Docker images in Google's Container Registry
       </a>
     </td>
@@ -77,7 +77,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/google-cloud-build">
+      <a href="/google-cloud-build.html">
         Google Cloud Build with GitHub Trigger
       </a>
     </td>
@@ -85,7 +85,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/google-cloud-storage-website">
+      <a href="/google-cloud-storage-website.html">
         Hosting a website using Google Cloud Storage
       </a>
     </td>
@@ -93,7 +93,7 @@ If any aren't finished, check back later!
   <tr>
     <td>Done</td>
     <td>
-      <a href="/cloudflare-https">
+      <a href="/cloudflare-https.html">
         Using Cloudflare to provide HTTPS
       </a>
     </td>
@@ -152,7 +152,7 @@ Next, the pelican software needs to be containerized for Cloud Build to use it.
 You can either grab an existing image, such as the one I've shared on Docker
 Hub, or build your own.
 
-**[How to build a Docker image for Pelican](/docker-pelican-image)**
+**[How to build a Docker image for Pelican](/docker-pelican-image.html)**
 
 ### Push Pelican Image to GCR
 
@@ -160,7 +160,7 @@ The Pelican image needs to be in the Google Container Registry for Cloud Build
 to use it. GCR is like Docker Hub, but private and not free. It's pretty
 affordable.
 
-**[Using Google Cloud Registry](/google-container-registry)**
+**[Using Google Cloud Registry](/google-container-registry.html)**
 
 
 ## Development Environment
@@ -176,7 +176,7 @@ You can see the utility script I made [here](https://github.com/kylep/kyle.peric
 but basically you just run a local Pelican image, then run `pelican` against
 your content files with `--listen` and `--autoreload`.
 
-**[Pelican Website: Local Development Environment](/pelican-dev-environment)**
+**[Pelican Website: Local Development Environment](/pelican-dev-environment.html)**
 
 
 ## Cloud Build
@@ -188,7 +188,7 @@ them to Google Cloud Storage.
 Configure Cloud Build to watch for commits to the master branch of the blog
 content repository, then run the pelican and rsync jobs against it.
 
-**[Google Cloud Build: Automatically Deploy Changes from GitHub](/google-cloud-build)**
+**[Google Cloud Build: Automatically Deploy Changes from GitHub](/google-cloud-build.html)**
 
 
 ## Google Storage Web Hosting
@@ -199,7 +199,7 @@ accessible, you need to configure Google Cloud Storage to host the content as
 a website. This step is also where you point your custom domain name at the new
 site.
 
-**[Google Cloud Storage: Static Website Hosting](/google-cloud-storage-website)**
+**[Google Cloud Storage: Static Website Hosting](/google-cloud-storage-website.html)**
 
 
 # Secure the site with HTTPS
@@ -209,4 +209,4 @@ a self-hosted site I usually use [LetsEncrypt](https://letsencrypt.org/), but
 for this static site instead I've used the built-in HTTPS feature of
 CloudFlare's free CDN solution.
 
-**[Using Cloudflare to provide HTTPS to an HTTP static site](/cloudflare-https)**
+**[Using Cloudflare to provide HTTPS to an HTTP static site](/cloudflare-https.html)**

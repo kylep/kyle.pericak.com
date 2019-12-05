@@ -52,7 +52,7 @@ smaller posts together.
 </style>
 
 <!-- GCP: Deep Dive -->
-<a href="/gcp">
+<a href="/gcp.html">
 <div class="project-card">
   <div class="project-title">
     GCP: Deep Dive
@@ -65,7 +65,7 @@ smaller posts together.
 </div>
 
 <!-- AWS: Deep Dive -->
-<a href="/aws">
+<a href="/aws.html">
 <div class="project-card">
   <div class="project-title">
     AWS: Deep Dive
@@ -77,7 +77,7 @@ smaller posts together.
 </div>
 
 <!-- Openstack: Deep Dive -->
-<a href="/openstack">
+<a href="/openstack.html">
 <div class="project-card">
   <div class="project-title">
     Openstack: Deep Dive
@@ -90,7 +90,7 @@ smaller posts together.
 
 
 <!-- Public Python App -->
-<a href="/open-source-cli-project">
+<a href="/open-source-cli-project.html">
 <div class="project-card">
   <div class="project-title">
     FOSS Python App
@@ -104,7 +104,7 @@ smaller posts together.
 </div>
 
 <!-- Automated Emails -->
-<a href="/project-email">
+<a href="/project-email.html">
 <div class="project-card">
   <div class="project-title">
     Automated Emails
@@ -119,7 +119,7 @@ smaller posts together.
 
 </a>
 <!-- Blog Website -->
-<a href="/blog-website">
+<a href="/blog-website.html">
 <div class="project-card">
   <div class="project-title">
     Blog Website

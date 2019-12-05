@@ -10,7 +10,9 @@ image: google-container-registry.png
 thumbnail: google-container-registry-thumb.png
 
 
-**This post is linked to from the [Blog Website Project](/blog-website)**
+**This post is linked to from the [GCP: Deep Dive Project](/gcp.html)**
+
+**This post is linked to from the [Blog Website Project](/blog-website.html)**
 
 ---
 

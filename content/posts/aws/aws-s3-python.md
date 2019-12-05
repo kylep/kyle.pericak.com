@@ -10,6 +10,11 @@ image: aws-s3.png
 thumbnail: aws-s3-thumb.png
 
 
+**This post is linked to from the [AWS: Deep Dive Project](/aws.html)**
+
+---
+
+
 This post covers how to upload and download files from Amazon's S3 using
 Python. Setup is done from the web UI.
 

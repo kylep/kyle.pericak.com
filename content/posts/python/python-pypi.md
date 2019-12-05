@@ -10,7 +10,7 @@ image: pypi.png
 thumbnail: pypi-thumb.png
 
 
-**This post is linked to from the [FOSS Python App Project](/open-source-cli-project)**
+**This post is linked to from the [FOSS Python App Project](/open-source-cli-project.html)**
 
 ---
 

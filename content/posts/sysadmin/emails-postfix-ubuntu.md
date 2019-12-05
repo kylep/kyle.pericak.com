@@ -10,7 +10,7 @@ image: postfix.png
 thumbnail: postfix-thumb.png
 
 
-**This post is linked to from the [Automated Emails Project](/project-email)**
+**This post is linked to from the [Automated Emails Project](/project-email.html)**
 
 ---
 

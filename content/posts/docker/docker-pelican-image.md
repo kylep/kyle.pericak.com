@@ -10,7 +10,7 @@ image: Docker.png
 thumbnail: docker-thumb.png
 
 
-**This post is linked to from the [Blog Website Project](/blog-website)**
+**This post is linked to from the [Blog Website Project](/blog-website.html)**
 
 ---
 

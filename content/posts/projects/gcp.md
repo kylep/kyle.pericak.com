@@ -44,7 +44,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/google-cloud-build">
+      <a href="/google-cloud-build.html">
         Google Cloud Build: Basics
       </a>
     </td>
@@ -56,7 +56,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="gcp-firestore-python">
+      <a href="/gcp-firestore-python.html">
         Google Cloud Firestore Basics - Python
       </a>
     </td>
@@ -68,7 +68,7 @@ as time goes on.
   <tr>
     <td>Done</td>
     <td>
-      <a href="/google-container-registry">
+      <a href="/google-container-registry.html">
         Google Container Registry: Basics
       </a>
     </td>
@@ -76,5 +76,17 @@ as time goes on.
   <tr>
     <td>Not Started</td>
     <td>Kubernetes on Google Cloud</td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <th>Cloud Storage</th>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td>
+      <a href="/google-cloud-storage-website.html">
+        Hosting websites on Cloud Storage
+      </a>
+    </td>
   </tr>
 </table>

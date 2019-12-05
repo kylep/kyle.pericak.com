@@ -11,7 +11,7 @@ thumbnail: project-email-thumb.png
 
 **This post isn't done. Doesn't work. Don't publish it.**
 
-**This post is linked to from the [Automated Emails Project](/project-email)**
+**This post is linked to from the [Automated Emails Project](/project-email.html)**
 
 
 # What is DKIM
