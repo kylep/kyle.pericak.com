@@ -22,6 +22,19 @@ This page covers how to do some things in Git.
 
 ---
 
+
+# Use Vim for commits
+
+Ugh, Nano. Kidding, but seriously here's how to use Vim instead.
+
+```bash
+git config --global core.editor "vim"
+```
+
+
+---
+
+
 # Rename Branch
 
 ```bash
