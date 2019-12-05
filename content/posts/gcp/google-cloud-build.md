@@ -4,7 +4,7 @@ slug: google-cloud-build
 tags: GCP,Docker,CI/CD
 category: cloud
 date: 2019-08-06
-modified: 2019-08-06
+modified: 2019-12-05
 status: published
 image: google-cloud-build.png
 thumbnail: google-cloud-build-thumb.png
@@ -50,6 +50,13 @@ The online references for the syntax are pretty good:
 - [Variables Available in cloudbuild.yaml](https://cloud.google.com/cloud-build/docs/configuring-builds/substitute-variable-values)
 
 Below are some example configuration files used for this site.
+
+# IAM Roles
+
+[Official Documentation](https://cloud.google.com/cloud-build/docs/securing-builds/configure-access-control)
+
+- Cloud Build Editor
+- Cloud Build Viewer
 
 ## Docker Image to Cloud Registry
 
