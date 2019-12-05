@@ -24,6 +24,22 @@ wants to talk about it.
 
 ---
 
+# Chrome blocks https://127.0.0.1 with NET::ERR_CERT_REVOKED
+
+This comes up when I reverse tunnel to a remove web server, forwarding it to my workstation. Chrome has decided to not let you do that. They give this errror:
+
+```text
+Your connection is not private
+Attackers might be trying to steal your information from 127.0.0.1 (for example, passwords, messages, or credit cards). Learn more
+NET::ERR_CERT_REVOKED
+```
+
+To bypass that, open `chrome://flags/#allow-insecure-localhost` and set allow-insecure-localhost to enabled. Click relaunch. This will nuke your current browser…
+
+Once it relaunches you'll be able to open the site.
+
+---
+
 # Failed command: aws ecr get-login
 
 This error was caused by a bad NTP config. Renew the NTP lease to fix it.
