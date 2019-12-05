@@ -2,7 +2,7 @@
 Source code for my blog/tutorial site
 
 # How this was made
-[See here](http://kyle.pericak.com/blog-website)
+[See here](http://kyle.pericak.com/blog-website.html)
 
 
 # Launch Dev Webserver & Pelican Auto-Rebuild
