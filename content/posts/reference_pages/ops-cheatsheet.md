@@ -24,7 +24,7 @@ This reference page contains operations-related mini-guides and minor posts.
 
 # Test MTU from Ubuntu
 
-You would not beleive the strange problems that an MTU issue can be the root cause of.
+You would not believe the strange problems that an MTU issue can be the root cause of.
 
 ```bash
 ping -M do -s 1472 <remote server>
