@@ -22,9 +22,32 @@ This reference page contains operations-related mini-guides and minor posts.
 
 ---
 
+# Bypass Chrome's self-signed cert warning
+
+As of Mac Catalina, developing a site using self-signed certs is a bigger pain
+than before. Yeah you can go get the key and add it, but that's a nuisance.
+It looks like the Chrome team built something they call an
+"interstitial bypass keyword" to deal with that. That's one cool feature name.
+
+**Obvious disclaimer** If you're not a developer doing this to access your own
+site, don't do this.
+
+To bypass the warning, type
+
+```
+thisisunsafe
+```
+
+Apparently it used to be `badidea` but they rotated it since it got too well
+known. They'll probably do it again someday. I suspect people are using this
+on sites they "trust" without really knowing any better and getting hurt by
+it.
+
+---
+
 # Create a virtual loopback volume on Ubuntu
 
-Useful for simulating a real drive when building a test environment. I use this to test OpenStack in a VM as a ceph or LVM back-end.
+Useful for simulating a real drive when building a test environment. I use this to test OpenStack in a VM as a Ceph or LVM back-end.
 
 ```bash
 # create empty file of all zeros
