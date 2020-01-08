@@ -93,12 +93,31 @@ as time goes on.
     <th>Operating Openstack Clouds</th>
   </tr>
   <tr>
+    <td>Done</td>
+    <td>
+      <a href="/openstack-ansible.html">
+        Operating OpenStack from Ansible
+      </a>
+    </td>
+  <tr>
     <td>Not Started</td>
     <td>OpenStack Command-Line Cheat-Sheet</td>
   </tr>
   <tr>
     <td>Not Started</td>
     <td>Using Heat: IAC for OpenStack</td>
+  </tr>
+  <tr>
+    <td>-</td>
+    <th>OpenStack Images</th>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td>
+      <a href="windows-kvm-drivers">
+        Injecting KVM Drivers into Windows
+      </a>
+    </td>
   </tr>
 </table>
 

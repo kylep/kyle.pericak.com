@@ -10,6 +10,10 @@ image: openstack.png
 thumbnail: openstack-thumb.png
 
 
+**This post is linked to from the [OpenStack Deep Dive Project](/openstack.html)**
+
+---
+
 
 
 **Assumption:** To avoid dealing with varying OpenStack policy configuration,
