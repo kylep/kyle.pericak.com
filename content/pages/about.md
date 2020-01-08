@@ -93,7 +93,7 @@ Python application development.
 I'm particularly interested in doing more work around site reliability,
 DevSecOps, and having more customer interactions.
 
-Outside of work, I'm a father to two boys, a husband, a bad musician, and
+Outside of work I'm a father to two boys, a husband, a bad musician, and
 when time allows I enjoy board games and strategy video games. I listen to a
 **lot** of audiobooks, and lately podcasts too.
 
