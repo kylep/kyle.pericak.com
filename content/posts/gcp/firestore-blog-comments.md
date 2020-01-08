@@ -5,7 +5,7 @@ category: development
 tags: GCP, Firestore
 date: 2019-12-08
 modified: 2019-12-08
-status: published
+status: draft
 image: google-firestore.png
 thumbnail: google-firestore-thumb.png
 
