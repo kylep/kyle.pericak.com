@@ -81,12 +81,13 @@ that wouldn't throw 500's if you called it with the wrong data.
 import json
 
 def lambda_handler(event, context):
+    name = 'UNDEFINED'
     if 'body' in event:
         try:
             ebody = json.loads(event['body'])
             name = ebody['name']
         except:
-            name = "UNDEFINED"
+            pass
     greeting = f'Hello {name}!'
     body = json.dumps(greeting)
     return {
