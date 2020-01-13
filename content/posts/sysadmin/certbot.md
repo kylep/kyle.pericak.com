@@ -6,8 +6,8 @@ tags: HTTPS
 date: 2020-01-13
 modified: 2020-01-13
 status: published
-image: gear.png
-thumbnail: gear-thumb.png
+image: LetsEncrypt.png
+thumbnail: LetsEncrypt-thumb.png
 
 
 
