@@ -68,5 +68,5 @@ Note that if you want to use these certs for HAProxy, you need to combine
 `cert.pem` and `privkey.pem` into a single file.
 
 ```bash
-cat cert.pem privkey.pem > haproxy-$site.crt
+cat cert.pem privkey.pem > haproxy-$site.pem
 ```
