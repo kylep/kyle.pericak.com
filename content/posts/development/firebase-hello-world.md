@@ -89,15 +89,36 @@ mkdir public
 echo "<h1>Hello World!</h1>" > public/index.html
 ```
 
+## firebase init
+
 Initialize the directory as an application. This will present you with an
-intuive wizard. Keep your index file.
+intuitive wizard.
 
 ```bash
 firebase init
 
-# When prompted, choose only Hosting
+# When prompted,
+#  choose only Hosting
+#  keep your index file
+#  decide if you'll use a single page app
 ```
 
+### Single-page app setting
+
+Running `firebase init` generates a `firebase.json` file for your project.
+In single-page mode, this file will rewrite all traffic to index.html. You can
+edit the file to change this behaviour. The rewrite block in `"hosting":` looks
+like this:
+
+```json
+    "rewrites": [{
+      "source": "**",
+      "destination": "/index.html"
+    }],
+```
+
+
+## firebase deploy
 Deploy the default app
 
 ```bash
