@@ -23,7 +23,7 @@ thumbnail: aws-thumb.png
 
 # Deploy Code to CodeCommit
 
-1. Open [CodeCommit](https://ca-central-1.console.aws.amazon.com/codesuite/codecommit/repositories?region=ca-central-1).
+1. Open [CodeCommit](https://ca-central-1.console.aws.amazon.com/codesuite/codecommit/repositories).
 1. Create a repository
 1. Go to your IAM page and edit your user.
     1. Look for "HTTPS Git credentials for AWS CodeCommit"
@@ -100,7 +100,7 @@ that it needs to do.
 
 ## Define CloudBuild project
 
-1. Navigate to the [CloudBuild Console](https://ca-central-1.console.aws.amazon.com/codesuite/codebuild)
+1. Navigate to the [CloudBuild Console](https://ca-central-1.console.aws.amazon.com/codesuite/codebuild/projects)
 1. Create build project
 1. No build badge
 1. Source provider: CodeCommit
@@ -152,7 +152,7 @@ that it needs to do.
 
 ## Define the pipeline
 
-1. Open the [CodePipeline console](https://ca-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines?region=ca-central-1)
+1. Open the [CodePipeline console](https://ca-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines)
 1. Click Create Pipeline
 1. Name the pipeline
 1. Service Role: New service role
