@@ -4,7 +4,7 @@ slug: ops
 category: reference pages
 tags: Mac OS, Ubuntu, Vim, Docker, Ansible, Bash
 date: 2019-09-11
-modified: 2019-10-24
+modified: 2020-01-24
 status: published
 image: gear.png
 thumbnail: gear-thumb.png
@@ -21,6 +21,26 @@ This reference page contains operations-related mini-guides and minor posts.
 [TOC]
 
 ---
+
+
+# Get real RAM use of processes
+
+You can always use top or htop or whatever. I use this to specifically get the
+info about those processes.
+
+## of ceph
+
+```
+ps aux | grep ceph | grep -v -e grep -e qemu -e "\[" | while read line; do bin=$(echo $line | awk '{print $11}'); pid=$(echo $line | awk '{print $2}'); id=$(echo $line | awk '{print $16}'); size=$(grep 'VmSize' /proc/$pid/status); echo -e "pid: $pid, \tbin: $bin, \tid: $id,    \tRAM: ($size)"; done
+```
+
+## of VMs
+
+for KVM
+
+```
+ps aux | grep qemu | grep -v -e grep| while read line; do bin=$(echo $line | awk '{print $11}'); pid=$(echo $line | awk '{print $2}'); guest=$(echo $line | awk '{print $13}'); size=$(grep 'VmSize' /proc/$pid/status); echo -e "pid: $pid, \tbin: $bin, \tguest: $guest,   \t\tRAM: ($size)" ; done
+```
 
 # Bypass Chrome's self-signed cert warning
 
