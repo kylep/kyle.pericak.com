@@ -24,6 +24,36 @@ wants to talk about it.
 
 ---
 
+
+# Runaway memory usage in Ceph OSD process
+
+It looked like a memory leak. Each OSD process was using around 30GB of RAM.
+
+It turns out that Ceph-Ansible has the following logic when generating its
+`ceph.conf` file:
+
+```
+# this math
+roles/ceph-config/templates/ceph.conf.j2:{% set _osd_memory_target = (ansible_memtotal_mb * 1048576 * hci_safety_factor / _num_osds) | int %}
+# sets osd memory target
+roles/ceph-config/templates/ceph.conf.j2:osd memory target = {{ _osd_memory_target | default(osd_memory_target) }}
+```
+
+In my case, this set the value WAY too high. In one of my deployments, it was
+set to `37853425827`, which is like 35GB (PER OSD SERVICE!).
+
+The 4GB default is much more sane, `4294967296`.
+
+```
+# ceph.conf
+[osd]
+osd memory target = 4294967296
+```
+
+
+---
+
+
 # Chrome blocks https://127.0.0.1 with NET::ERR_CERT_REVOKED
 
 This comes up when I reverse tunnel to a remove web server, forwarding it to my workstation. Chrome has decided to not let you do that. They give this errror:
