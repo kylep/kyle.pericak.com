@@ -112,7 +112,7 @@ Resources:
   TestCicdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: lambda_handler
+      Handler: cicd-test.lambda_handler
       Runtime: python3.8
       CodeUri: ./cicd-test.py
       Events:
