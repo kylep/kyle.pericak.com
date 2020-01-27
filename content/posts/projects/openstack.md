@@ -108,6 +108,14 @@ as time goes on.
     <td>Using Heat: IAC for OpenStack</td>
   </tr>
   <tr>
+    <td>Done</td>
+    <td>
+      <a href="/openstack-cloudinit-powershell.html">
+        OpenStack Cloud-Init Powershell Example
+      </a>
+    </td>
+  </tr>
+  <tr>
     <td>-</td>
     <th>OpenStack Images</th>
   </tr>
