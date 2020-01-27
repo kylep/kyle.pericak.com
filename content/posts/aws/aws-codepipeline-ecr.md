@@ -10,6 +10,11 @@ image: aws.png
 thumbnail: aws-thumb.png
 
 
+**This post is linked to from the [AWS: Deep Dive Project](/aws.html)**
+
+---
+
+
 # Workflow
 
 1. Commit code to AWS CodeCommit

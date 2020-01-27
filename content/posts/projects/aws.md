@@ -38,6 +38,14 @@ as time goes on.
   </tr>
 	<tr>
 		<td>-</td>
+    <th>Running Servers on AWS</th>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td><a href="/aws-ec2-python.html">Create & Terminate EC2 Instances from Python</a></td>
+  </tr>
+	<tr>
+		<td>-</td>
     <th>Running Containers on AWS</th>
   </tr>
   <tr>
@@ -57,6 +65,10 @@ as time goes on.
     </td>
 	</tr>
   <tr>
+    <td>Done</td>
+    <td><a href="/aws-codepipeline-ecr.html">CodePipeline: Continuous Delivery to AWS ECR</a></td>
+  </tr>
+  <tr>
     <td>Not Started</td>
     <td>Running Kubernetes on AWS</td>
   <tr>
@@ -72,14 +84,32 @@ as time goes on.
     <th>Cloud Storage</th>
   </tr>
   <tr>
-    <td>Not Started</td>
-    <td>Amazon S3 Storage: Basics</td>
-  <tr>
     <td>Done</td>
     <td>
       <a href="/aws-s3-python.html">
       Using AWS S3 from Python
     </td>
+  <tr>
+  <tr>
+    <td>-</td>
+    <th>Serverless Applications</th>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td><a href="/aws-lambda.html">Lambda basics</a></td>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td><a href="/aws-lambda-iam.html">IAM for Lambda</a></td>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td><a href="/aws-api-gateway-iam.html">IAM Authentication using API Gateway</a></td>
+  </tr>
+  <tr>
+    <td>Done</td>
+    <td><a href="/aws-labmda-cicd.html">CodeBuild CICD: Deploy to Lambda</a></td>
+  </tr>
 </table>
 
 
