@@ -79,6 +79,11 @@ cmd = {"prefix":"status", "format":"json"}
 command_result = cluster.mon_command(json.dumps(cmd), b'', timeout=5)
 status = json.loads(command_result[1])
 
+# Get Pool usage stats
+# Returns num_objects_degraded, num_kb, num_wr, num_rd, num_objects_unfound,
+#   num_objects_missing_on_primary, num_object_clones, num_objects,
+#   num_object_copies, num_bytes, num_rd_kb, num_wr_kb
+ioctx.get_stats()
 
 # List pools
 cluster.list_pools()
