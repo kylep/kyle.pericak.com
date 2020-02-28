@@ -52,6 +52,10 @@ turn them off everywhere but usually I just want to ignore a certain occurrence.
 
 # - Using python3 compatible print statement makes python2 linter mad
 # pylint: disable=superfluous-parens
+
+# - Ignore too-long line (this needs both the pylint command and the trailing no-qa)
+# pylint: disable=line-too-long
+binaryValue = b'QVdTOmV5SndZWGxzYjJGa0lqb2lVSFkwWXpKeFNEaHZXVkkxVmtwRmVXdFhXamhKUVRGcGNFWk1kelJKZEV0V1UwSk9'  # noqa: E50
 ```
 
 
