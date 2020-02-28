@@ -59,6 +59,10 @@ turn them off everywhere but usually I just want to ignore a certain occurrence.
 # - Ignore too-long line (this needs both the pylint command and the trailing no-qa)
 # pylint: disable=line-too-long
 binaryValue = b'QVdTOmV5SndZWGxzYjJGa0lqb2lVSFkwWXpKeFNEaHZXVkkxVmtwRmVXdFhXamhKUVRGcGNFWk1kelJKZEV0V1UwSk9'  # noqa: E50
+
+# - Wrong Import Position (Required when putting python version check up top)
+# flake8: noqa=402
+# pylint: disable=wrong-import-position
 ```
 
 
