@@ -44,6 +44,9 @@ turn them off everywhere but usually I just want to ignore a certain occurrence.
 # - too-many-arguments (R0913):
 # pylint: disable-msg=R0913
 
+# - too-many-locals (R0914)
+# pylint: disable=R0914
+
 # - Invalid constant name:
 # pylint: disable=C0103
 
