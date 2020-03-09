@@ -4,7 +4,7 @@ slug: ubuntu-bionic-wifi
 category: systems administration
 tags: ubuntu, WiFi
 date: 2019-08-19
-modified: 2019-08-19
+modified: 2020-03-09
 status: published
 image: wifi.png
 thumbnail: wifi-thumb.png
@@ -30,17 +30,55 @@ ip link set dev wlp2s0 up
 ---
 
 
-# Install wireless software
+# Download & Install wireless software
 
-Ubuntu server doesn't ship with the required packages to connect to WiFi. This
-is kind of a catch-22, so you need a wired connection to follow this guide.
-You could also download the debs from another server but I won't be covering
-that.
+Ubuntu server doesn't ship with the required packages to connect to WiFi.
+
+From another Ubuntu server that **does** have internet, plug in a USB stick
+and mount it. This example assumes it's mounted to /mnt.
 
 I'm pretty sure that it can connect to WEP without this, and its just the
 newer WPA2 networks that basically everyone is using that need this.
 
 ```bash
+# Delete anything currently in the apt cache
+apt-get clean
+
+# building some temp package lists, drop them in ~ or wherever
+cd ~
+
+# use apt-rdepends to get the dependencies
+apt-get install apt-rdepends
+
+# find deps for wireless-tools
+apt-rdepends wireless-tools 2>/dev/null | grep "Depends: " | awk '{print $2}' | sort | uniq > packages1
+echo wireless-tools >> packages1
+
+# find deps for wpasupplicant
+apt-rdepends wpasupplicant 2>/dev/null | grep "Depends: " | awk '{print $2}' | sort | uniq > packages2
+echo wpasupplicant >> packages2
+cat packages1 packages2 | sort | uniq > packages
+
+# download the debs
+cd /var/cache/apt/archives
+cat ~/packages | while read p; do echo $p; apt-get download $p; done
+
+# Copy the files
+mkdir -p /mnt/debs
+cp /var/cache/apt/archives/*.deb /mnt/debs
+umount /mnt
+```
+
+Now remove the USB drive from that system and plug it into the offiline one.
+
+```bash
+# mount the usb drive
+mount /dev/sdb1 /mnt
+
+# move the files to your cache directory
+cp /mnt/debs/* /var/cache/apt/archives/
+
+# Install the packages
 apt-get install wireless-tools wpasupplicant
 ```
 
