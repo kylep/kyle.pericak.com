@@ -46,7 +46,7 @@ SITESUBTITLE = "\"It works in my environment.\""
 SITETAG = "Tech Blog"
 
 # extra files (pictures, robots, etc)
-STATIC_PATHS = ['images', 'extra']
+STATIC_PATHS = ['images', 'extra', 'pdfs']
 EXTRA_PATH_METADATA = {
     'extra/favicon.ico': {'path': 'favicon.ico'},
     'extra/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
