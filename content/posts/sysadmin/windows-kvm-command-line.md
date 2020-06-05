@@ -114,7 +114,7 @@ virt-install \
   --graphics vnc,listen=0.0.0.0 \
   --noautoconsole \  
   --os-type=linux \
-  --ram 8192 \
+  --memory 8192 \
   --vcpus=4 \
   --disk path=/var/lib/libvirt/images/importedVM.qcow2,bus=virtio\
   --network bridge:br0,model=virtio
@@ -136,7 +136,7 @@ virt-install \
   --name Server2019 \
   --description "Windows Server 2019 Template" \
   --os-type=windows \
-  --ram 8192 \
+  --memory 8192 \
   --vcpus=4 \
   --disk path=/var/lib/libvirt/images/windows2019.qcow2,bus=virtio,size=30 \
   --disk /var/lib/libvirt/isos/WindowsServer2019StandardCore_1909.iso,device=cdrom,bus=ide \
@@ -160,7 +160,8 @@ Edit the server using `virsh edit` to remove the disk:
 virsh edit Server2019
 ```
 
-Choose your editor of choice (vim, obviously), and remove the `cdrom` disks. They look like this:
+Choose your editor of choice (vim, obviously), and remove the boot `cdrom` disk.
+Leave the virtio one, you stil need it. It looks like this:
 
 
 ```xml
@@ -171,13 +172,6 @@ Choose your editor of choice (vim, obviously), and remove the `cdrom` disks. The
       <readonly/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
     </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/var/lib/libvirt/isos/virtio-win.iso'/>
-      <target dev='hdb' bus='ide'/>
-      <readonly/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
-    </disk>
 ```
 
 Turn it back on using `virsh start`:
@@ -186,7 +180,21 @@ Turn it back on using `virsh start`:
 virsh start Server2019
 ```
 
+#### Fix the other drivers
 
+The storage driver is now installed, but the network driver isn't there.
+Since the VM was launched with `--network bridge=br0,model=virtio`, the VirtIO
+driver is required. Not using the virtio NIC leads to some pretty terrible performance.
+
+Log into the server and open up the device manager.
+Navigate to "other devices". Right click the question marked network driver
+and update the driver. Select your virtio disk and allow searching subdirectories,
+it should find the driver and install it for you.
+
+Do the same for the unidentified PCI device, that will install the VirtIO Baloon driver.
+
+The server is now ready to use, or be made into a template. If you intend to use this server
+with OpenStack later, consider installing cloud-init from [cloudbase-init](https://cloudbase.it/cloudbase-init/).
 
 ---
 
