@@ -3,7 +3,7 @@ summary: Creating a Windows KVM VM without OpenStack using the command line on U
 slug: windows-kvm-command-line
 category: systems administration
 tags: Ubuntu, KVM
-date: 2020-06-04
+date: 2020-06-05
 modified: 2020-06-05
 status: published
 image: ubuntu.png
