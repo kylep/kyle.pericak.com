@@ -117,6 +117,7 @@ virt-install \
   --memory 8192 \
   --vcpus=4 \
   --disk path=/var/lib/libvirt/images/importedVM.qcow2,bus=virtio\
+  --boot hd \
   --network bridge:br0,model=virtio
 ```
 
