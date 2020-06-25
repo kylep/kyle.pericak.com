@@ -214,3 +214,16 @@ The output will be something like `:0` or `:1`. Add 5900 to that, and that's you
 If you needed to use a different port, `--graphics` supports a `,port=` argument.
 
 
+
+---
+
+# Exporting to Glance
+
+If you want to use this file in OpenStack Glance next, you need to convert it. It's not intuitive, but the file looks like it's basically a thick-provisioned qcow2 (somehow). Use qemu-img:
+
+```bash
+# thin provision the volume
+qemu-img convert -f qcow2 -O qcow2 <boot-vol> <new-file.qcow2>
+# upload it as an image
+openstack image create --container-format bare --disk-format qcow2 --public --file <new-file.qcow2> "<image name>"
+```
