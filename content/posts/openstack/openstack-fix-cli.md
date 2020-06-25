@@ -23,13 +23,13 @@ from multiprocessing import Queue as queue
 
 In Ubuntu 18.04 you'd typically install the openstack CLI client like this:
 
-```
+```bash
 pip install python-openstackclient
 ```
 
 Sadly, this installs a broken version of the client. If you try and run any command you get a stack trace:
 
-````
+```bash
 Traceback (most recent call last):
   File "/usr/local/bin/openstack", line 6, in <module>
     from openstackclient.shell import main
