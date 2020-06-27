@@ -4,7 +4,7 @@ slug: ops
 category: reference pages
 tags: Mac OS, Ubuntu, Vim, Docker, Ansible, Bash
 date: 2019-09-11
-modified: 2020-01-24
+modified: 2020-06-27
 status: published
 image: gear.png
 thumbnail: gear-thumb.png
@@ -19,6 +19,32 @@ This reference page contains operations-related mini-guides and minor posts.
 ---
 
 [TOC]
+
+---
+
+# Journalctl commands
+
+Watch the logs as they come in:
+
+```bash
+journalctl -f
+```
+
+When journalctl logs too much and you need to pair it down:
+
+```bash
+# to 30 days
+journalctl --vacuum-time=30d
+
+# to 500MB
+journalctl --vacuum-size=500M
+```
+
+Show for a specific service
+
+```bash
+journalctl ceph*
+```
 
 ---
 
