@@ -28,7 +28,20 @@ List your devices. Note your USB stick (example: `/dev/disk2`)
 diskutil list
 ```
 
-If it's mounted, unmount the drive.
+Try to fix it using diskutil:
+```bash
+diskutil eraseDisk free EMPTY /dev/disk2
+```
+
+Often that's good enough, and the drive now shows up in Disk Utility with its full capacity. 
+
+
+---
+
+
+If that fails, you can overwrite the partition/filesystem's metadata at the start of the disk with zeros.
+
+If the drive is mounted, unmount it.
 
 ```bash
 diskutil umountDisk /dev/disk2
