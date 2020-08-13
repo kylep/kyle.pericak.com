@@ -4,7 +4,7 @@ slug: errors
 category: reference pages
 tags: AWS, Pure Storage, Mac OS
 date: 2019-09-11
-modified: 2019-09-23
+modified: 2020-08-13
 status: published
 image: error.png
 thumbnail: error-thumb.png
@@ -24,6 +24,20 @@ wants to talk about it.
 
 ---
 
+
+# Docker Login Fails
+
+```
+Error saving credentials: error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
+```
+
+I had this happen after running both Ceph-Ansible then Kolla-Ansible on an Ubuntu server, so it could be either of those that set up the conditions for this to happen. [this solution](https://github.com/docker/cli/issues/1136) worked for me:
+
+```bash
+apt-get install -y gnupg2 pass
+```
+
+---
 
 # Runaway memory usage in Ceph OSD process
 
