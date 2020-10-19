@@ -28,6 +28,7 @@ You need to define the script ahead of time. Here's a super simple script
 to add a local administrator:
 
 ```powershell
+#ps1
 $name = "MyUser"
 $password = "MyPassword"
 $password_secure_string = ConvertTo-SecureString -AsPlainText -Force $password
