@@ -24,17 +24,15 @@ From some research, Chrome's version 58 (2017) is when it changed, so I guess it
 
 
 Using the CommonName (CN) instead of SubjectAltName (SAN) in your cert was deprecated in RFC 2818 (forever ago). 
-For a long time for browsers didn't to enforce that requirement and could fall back to CN, but it seems like that allows hommograph attacks 
+For a long time for browsers didn't enforce that requirement and could fall back to CN, but it seems like that allows homograph attacks 
 (fake "a" in apple.com, for instance), where the SAN field somehow does not.
 
-Even if you add and trust the issuing and root CA's, Chrome will still throw `ERR_CERT_COMMON_NAME_INVALID`.
+Even if you add and trust the issuing and root CA certs, Chrome will still throw `ERR_CERT_COMMON_NAME_INVALID`.
 
 Generating a CSR with a SAN is not intuitive. Unless you want to use heredoc, you need to create a file first.
-The `req_distinguished_name` values are the ones you'd normally fill in during the `openssl req` questionairre. 
-The DNS.x values are the SAN entries. If you have one URL, then commonName and DNS.1 will match, and you'll have no others (no DNS.2, ect).
 
-
-Note: the `req_distinguished_name` section just sets the prompts. Changing it does not change the values in the CSR.
+- The `req_distinguished_name` values set the prompts during the CSR questionairre. 
+- The DNS.x values are the SAN entries. If you have one URL, then commonName and DNS.1 will match, and you'll have no others (no DNS.2, ect).
 
 `vi san.ini`
 
