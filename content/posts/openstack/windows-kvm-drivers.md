@@ -1,7 +1,7 @@
 title: Injecting KVM Drivers to Windows 10 for OpenStack
 summary: How to inject KVM drivers into a Windows 10 image for use in OpenStack Glance
 slug: windows-kvm-drivers
-category: openstack
+category: cloud
 tags: OpenStack, Windows
 date: 2019-12-17
 modified: 2019-12-17

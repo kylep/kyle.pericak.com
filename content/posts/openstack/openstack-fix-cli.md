@@ -1,7 +1,7 @@
 title: OpenStack: Fixing the CLI (python2) error: No module named queue
 summary: pip install python-openstack does not work without this fix
 slug: openstack-fix-cli
-category: openstack
+category: cloud
 tags: OpenStack
 date: 2020-06-25
 modified: 2020-06-25

@@ -1,7 +1,7 @@
 title: Operating OpenStack from Ansible
 summary: Creating instances, volumes, and networks in OpenStack using Ansible
 slug: openstack-ansible
-category: openstack
+category: cloud
 tags: OpenStack, Ansible
 date: 2019-12-03
 modified: 2019-12-03

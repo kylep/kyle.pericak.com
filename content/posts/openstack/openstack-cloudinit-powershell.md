@@ -1,7 +1,7 @@
 title: OpenStack: Execute Powershell from Cloud-Init
 summary: Running startup scripts on Windows instances deployed by OpenStack
 slug: openstack-cloudinit-powershell
-category: openstack
+category: cloud
 tags: OpenStack, Windows, Powershell
 date: 2020-01-25
 modified: 2020-01-25

@@ -1,7 +1,7 @@
 title: Openstack Magnum: Kubernetes as a Service
 summary: How to install, configure, and operate Magnum to deploy Kubernetes
 slug: openstack-magnum
-category: openstack
+category: cloud
 tags: OpenStack, Kubernetes
 date: 2019-08-30
 modified: 2019-08-30
