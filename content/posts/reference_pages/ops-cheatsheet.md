@@ -4,7 +4,7 @@ slug: ops
 category: reference pages
 tags: Mac OS, Ubuntu, Vim, Docker, Ansible, Bash
 date: 2019-09-11
-modified: 2020-06-27
+modified: 2020-10-22
 status: published
 image: gear.png
 thumbnail: gear-thumb.png
@@ -19,6 +19,14 @@ This reference page contains operations-related mini-guides and minor posts.
 ---
 
 [TOC]
+
+---
+
+# Convert p7b certificate to pem format
+
+```bash
+openssl pkcs7 -print_certs -in certnew.p7b -out cert.pem
+```
 
 ---
 
