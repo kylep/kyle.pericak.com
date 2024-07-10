@@ -1,4 +1,11 @@
 # kyle.pericak.com
+
+## DEPRECATED
+
+I've rebuilt this and the pelican engine that powered it in another repo.
+You can find it [here](https://github.com/kylep/multi/tree/main/apps/blog).
+
+----
 Source code for my blog/tutorial site
 
 # How this was made
